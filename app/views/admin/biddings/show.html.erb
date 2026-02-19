@@ -1,0 +1,212 @@
+<div class="bidding-show">
+  <div class="header">
+    <h1><%= @bidding.title %></h1>
+    <div class="actions">
+      <%= link_to "수정", edit_admin_bidding_path(@bidding), class: "btn btn-primary" %>
+      <%= link_to "삭제", admin_bidding_path(@bidding), method: :delete, data: { confirm: "정말 삭제하시겠습니까?" }, class: "btn btn-danger" %>
+      <%= link_to "목록으로", admin_biddings_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <label>공모기관</label>
+      <div class="value"><%= @bidding.agency %></div>
+    </div>
+
+    <div class="info-card">
+      <label>협력사</label>
+      <div class="value"><%= @bidding.partner %></div>
+    </div>
+
+    <div class="info-card">
+      <label>예산규모</label>
+      <div class="value"><%= @bidding.budget %></div>
+    </div>
+
+    <div class="info-card">
+      <label>신청기간</label>
+      <div class="value"><%= @bidding.application_period %></div>
+    </div>
+
+    <div class="info-card">
+      <label>상태</label>
+      <div class="value">
+        <span class="badge badge-<%= @bidding.status_color %>">
+          <%= @bidding.status %>
+        </span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <label>진행률</label>
+      <div class="value">
+        <div class="progress-bar">
+          <div class="progress-fill progress-<%= @bidding.progress_color %>" style="width: <%= @bidding.progress %>%"></div>
+        </div>
+        <span><%= @bidding.progress %>%</span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <label>담당자</label>
+      <div class="value"><%= @bidding.assignee %></div>
+    </div>
+
+    <div class="info-card">
+      <label>마감일</label>
+      <div class="value"><%= @bidding.deadline&.strftime("%Y-%m-%d") || "미정" %></div>
+    </div>
+  </div>
+
+  <% if @bidding.description.present? %>
+    <div class="description-section">
+      <label>사업 설명</label>
+      <div class="description-content">
+        <%= simple_format(@bidding.description) %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .bidding-show {
+    max-width: 1000px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .header h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1E3A8A;
+    margin: 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .info-card label {
+    display: block;
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .info-card .value {
+    font-size: 1.125rem;
+    color: #111827;
+    font-weight: 500;
+  }
+
+  .description-section {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }
+
+  .description-section label {
+    display: block;
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .description-content {
+    color: #374151;
+    line-height: 1.6;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .badge-gray { background: #F3F4F6; color: #374151; }
+  .badge-blue { background: #DBEAFE; color: #1E40AF; }
+  .badge-yellow { background: #FEF3C7; color: #92400E; }
+  .badge-purple { background: #EDE9FE; color: #5B21B6; }
+  .badge-green { background: #D1FAE5; color: #065F46; }
+  .badge-red { background: #FEE2E2; color: #991B1B; }
+
+  .progress-bar {
+    height: 0.75rem;
+    background: #E5E7EB;
+    border-radius: 9999px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+
+  .progress-fill {
+    height: 100%;
+  }
+
+  .progress-red { background: #EF4444; }
+  .progress-yellow { background: #F59E0B; }
+  .progress-blue { background: #3B82F6; }
+  .progress-green { background: #10B981; }
+
+  .btn {
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+
+  .btn-primary {
+    background: #1E3A8A;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #3B82F6;
+  }
+
+  .btn-secondary {
+    background: #E5E7EB;
+    color: #374151;
+  }
+
+  .btn-secondary:hover {
+    background: #D1D5DB;
+  }
+
+  .btn-danger {
+    background: #DC2626;
+    color: white;
+  }
+
+  .btn-danger:hover {
+    background: #B91C1C;
+  }
+</style>

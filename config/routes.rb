@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     resources :design_templates
     resources :agencies
     resources :users
+    resources :biddings
 
     resources :orders do
       member do
