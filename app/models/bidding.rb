@@ -2,10 +2,27 @@ class Bidding < ApplicationRecord
   # Attachments
   has_many_attached :documents
 
+  # Serialize
+  serialize :selected_template_ids, coder: JSON
+
   # Validations
   validates :title, presence: true
   validates :status, inclusion: { in: %w[예정 진행중 제출완료 심사중 선정 탈락] }
   validates :progress, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+
+  # Template methods
+  def selected_templates
+    return [] if selected_template_ids.blank?
+    CompanyTemplate.where(id: selected_template_ids).active.ordered
+  end
+
+  def theme_color
+    slide_theme_color.presence || '#1E40AF'
+  end
+
+  def font_family
+    slide_font_family.presence || 'Pretendard'
+  end
 
   # Scopes
   scope :by_status, ->(status) { where(status: status) if status.present? }

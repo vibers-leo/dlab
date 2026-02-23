@@ -78,6 +78,15 @@
                   <span>디자인 템플릿</span>
                 <% end %>
               </li>
+              <li style="margin-bottom: var(--space-2);">
+                <%= link_to admin_company_templates_path, style: "display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-md); color: var(--color-gray-700); text-decoration: none; transition: all var(--transition-fast); #{current_page?(admin_company_templates_path) ? 'background: var(--color-primary); color: white;' : ''}" do %>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                  </svg>
+                  <span>회사 템플릿</span>
+                <% end %>
+              </li>
             <% end %>
 
             <li style="margin-bottom: var(--space-2);">

@@ -77,7 +77,8 @@ class Admin::BiddingsController < ApplicationController
       :progress, :assignee, :description, :deadline, :partner,
       :analysis_notes, :proposal_outline, :winning_strategy,
       :diagnosis_report, :slides_html,
-      documents: []
+      :slide_theme_color, :slide_font_family,
+      documents: [], selected_template_ids: []
     )
   end
 end

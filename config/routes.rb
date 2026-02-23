@@ -71,6 +71,11 @@ Rails.application.routes.draw do
     resources :design_templates
     resources :agencies
     resources :users
+    resources :company_templates do
+      member do
+        patch :toggle_active
+      end
+    end
     resources :biddings do
       member do
         post :generate_proposal

@@ -135,7 +135,8 @@
       <div class="slides-actions">
         <%= link_to "슬라이드 미리보기", "#", class: "btn btn-info btn-sm", onclick: "openSlidesPreview(); return false;" %>
         <%= link_to "HTML 다운로드", "#", class: "btn btn-outline btn-sm", onclick: "downloadSlidesHTML(); return false;" %>
-        <span style="font-size: 0.875rem; color: #6B7280; margin-left: 1rem;">💡 피그마에서 File → Import → HTML로 가져올 수 있습니다</span>
+        <%= link_to "PDF로 저장", "#", class: "btn btn-success btn-sm", onclick: "printToPDF(); return false;" %>
+        <span style="font-size: 0.875rem; color: #6B7280; margin-left: 1rem;">💡 피그마: File → Import → HTML | PDF: 브라우저 인쇄 기능 사용</span>
       </div>
       <div class="slides-preview" style="display: none;">
         <iframe id="slides-iframe" style="width: 100%; height: 800px; border: 1px solid #E5E7EB; border-radius: 0.5rem; margin-top: 1rem;"></iframe>
@@ -165,6 +166,27 @@
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  }
+
+  function printToPDF() {
+    const preview = document.querySelector('.slides-preview');
+    const iframe = document.getElementById('slides-iframe');
+    const htmlContent = <%= raw @bidding.slides_html.to_json %>;
+
+    // 미리보기가 없으면 먼저 열기
+    if (preview.style.display === 'none') {
+      preview.style.display = 'block';
+      iframe.srcdoc = htmlContent;
+    }
+
+    // iframe 로드 후 인쇄
+    setTimeout(() => {
+      try {
+        iframe.contentWindow.print();
+      } catch (e) {
+        alert('PDF 저장 기능:\n\n1. "슬라이드 미리보기" 버튼을 먼저 클릭하세요\n2. 미리보기 화면에서 우클릭 → "인쇄" 선택\n3. 대상을 "PDF로 저장"으로 변경\n4. 여백을 "없음"으로 설정\n5. 저장 버튼 클릭');
+      }
+    }, 1000);
   }
 </script>
 
