@@ -211,3 +211,60 @@ templates.each do |t|
 end
 
 puts "Seed Data Updated Successfully: #{DesignTemplate.count} Templates"
+
+# ===== Agency Seed Data (Multi-tenant Branding) =====
+puts "\nSeeding Agencies..."
+
+# super_admin 유저 확보 (없으면 생성)
+admin_user = User.find_by(role: "super_admin") || User.first
+unless admin_user
+  admin_user = User.create!(
+    email: "admin@designd.co.kr",
+    password: "changeme123!",
+    name: "Admin",
+    role: "super_admin"
+  )
+  puts "Created admin user: #{admin_user.email}"
+end
+
+# dlab 브랜딩 설정
+dlab_settings = {
+  "brand_name" => "디랩",
+  "company_name" => "주식회사디랩 (D.Lab Corp)",
+  "tagline" => "AI와 기술의 힘으로 비즈니스를 혁신합니다",
+  "sub_tagline" => "바이버스 플랫폼과 맞춤 솔루션으로 디지털 전환을 가속화합니다",
+  "hero_stats" => [
+    { "number" => "AI", "label" => "네이티브 개발" },
+    { "number" => "5+", "label" => "사업체 운영" },
+    { "number" => "맞춤형", "label" => "솔루션 제공" },
+    { "number" => "풀스택", "label" => "기술 지원" }
+  ],
+  "why_title" => "왜 디랩일까요?",
+  "why_subtitle" => "AI 네이티브 기술력과 실전 경험으로 비즈니스 성장을 함께합니다!",
+  "primary_color" => "#1E3A8A",
+  "primary_dark" => "#1e2f6a",
+  "accent_color" => "#3B82F6",
+  "contact_email" => "contact@dlab.co.kr",
+  "meta_description" => "주식회사디랩 - AI 네이티브 개발사. 바이버스 플랫폼, 맞춤 웹/앱 개발, IT 컨설팅 서비스를 제공합니다.",
+  "meta_keywords" => "디랩, D.Lab, AI개발, 웹개발, 앱개발, 바이버스, IT컨설팅, 디지털전환",
+  "logo" => "logo.png",
+  "copyright" => "주식회사디랩 (D.Lab Corp)"
+}
+
+Agency.find_or_create_by!(subdomain: "dlab") do |a|
+  a.name = "주식회사디랩"
+  a.owner = admin_user
+  a.settings = dlab_settings
+  a.active = true
+  puts "Created agency: dlab.designd.co.kr"
+end
+
+Agency.find_or_create_by!(subdomain: "lab") do |a|
+  a.name = "주식회사디랩 (lab)"
+  a.owner = admin_user
+  a.settings = dlab_settings
+  a.active = true
+  puts "Created agency: lab.designd.co.kr"
+end
+
+puts "Agency Seed Complete: #{Agency.count} agencies"

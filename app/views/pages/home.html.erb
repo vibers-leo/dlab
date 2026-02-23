@@ -1,5 +1,5 @@
-<% content_for :title, "돈 벌어주는 홈페이지!" %>
-<% content_for :description, "디어스는 AI 기술과 창의적인 디자인으로 비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다. 혁신적인 디지털 솔루션으로 비즈니스 성장을 가속화합니다." %>
+<% content_for :title, branding['tagline'] %>
+<% content_for :description, branding['meta_description'] %>
 
 <!-- Hero Section -->
 <section class="hero">
@@ -163,11 +163,10 @@
         <!-- Center Text -->
         <div class="hero-text-box">
           <h1 class="hero-title" style="margin-bottom: 1.5rem; line-height: 1.2; font-weight: 850; letter-spacing: -0.02em; font-size: clamp(2rem, 10vw, 4.5rem); word-break: keep-all;">
-            비싼 홈페이지? NO!<br>
-            돈 벌어주는 홈페이지!
+            <%= branding['tagline'] %>
           </h1>
           <p class="hero-subtitle" style="margin-bottom: 0.5rem; word-break: keep-all; font-size: clamp(1rem, 4.5vw, 1.5rem); opacity: 0.9; line-height: 1.6;">
-            요금제로 초기 개발비 부담은 낮추고,<br>주력 사업에 집중하세요!
+            <%= branding['sub_tagline'] %>
           </p>
         </div>
 
@@ -184,27 +183,13 @@
 
     <!-- Stats Grid -->
     <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">30+</div>
-        <div class="stat-label">템플릿 선택</div>
-      </div>
-      
-      <!-- Separator removed for cleaner mobile look, kept in PC structure logically if needed but removing messy markup for now as grid gap handles spacing -->
-
-      <div class="stat-card">
-        <div class="stat-number">3+</div>
-        <div class="stat-label">플랜 선택</div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-number">맞춤형</div>
-        <div class="stat-label">개발 서비스</div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-number">안정적인</div>
-        <div class="stat-label">유지보수</div>
-      </div>
+      <% stats = branding['hero_stats'] || [{ "number" => "30+", "label" => "템플릿 선택" }, { "number" => "3+", "label" => "플랜 선택" }, { "number" => "맞춤형", "label" => "개발 서비스" }, { "number" => "안정적인", "label" => "유지보수" }] %>
+      <% stats.each do |stat| %>
+        <div class="stat-card">
+          <div class="stat-number"><%= stat['number'] %></div>
+          <div class="stat-label"><%= stat['label'] %></div>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
@@ -387,9 +372,9 @@
 <section class="section">
   <div class="container">
     <div class="text-center" style="margin-bottom: 4rem;">
-      <h2 style="font-size: var(--text-5xl); margin-bottom: var(--space-4);">왜 디어스일까요?</h2>
+      <h2 style="font-size: var(--text-5xl); margin-bottom: var(--space-4);"><%= branding['why_title'] || "왜 #{branding['brand_name']}일까요?" %></h2>
       <p class="text-gray" style="font-size: var(--text-xl); max-width: 700px; margin: 0 auto;">
-        차별화된 전문성과 경험으로 여러분과 함께 성공합니다!
+        <%= branding['why_subtitle'] || "차별화된 전문성과 경험으로 여러분과 함께 성공합니다!" %>
       </p>
     </div>
 

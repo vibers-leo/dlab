@@ -2,13 +2,13 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8">
-    <title><%= content_for(:title) || "디어스 - AI와 함께하는 디지털 혁신 파트너" %></title>
+    <title><%= content_for(:title) || "#{branding['brand_name']} - AI와 함께하는 디지털 혁신 파트너" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="<%= content_for(:description) || '디어스는 AI 기술과 창의적인 디자인으로 비즈니스의 성공을 이끄는 프리미엄 개발 에이전시입니다.' %>">
-    <meta name="keywords" content="웹개발, 앱개발, AI개발, UI/UX디자인, 개발에이전시, 디어스, D.US, 홈페이지제작, 랜딩페이지">
-    <meta name="author" content="디어스">
+    <meta name="description" content="<%= content_for(:description) || branding['meta_description'] %>">
+    <meta name="keywords" content="<%= branding['meta_keywords'] %>">
+    <meta name="author" content="<%= branding['brand_name'] %>">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#00a859">
+    <meta name="theme-color" content="<%= branding['primary_color'] %>">
     
     <!-- Performance Hints -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -19,19 +19,19 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= request.original_url %>">
-    <meta property="og:title" content="<%= content_for?(:title) ? "#{content_for(:title)} | DLAB" : "DLAB - AI Premium Web Agency" %>">
-    <meta property="og:description" content="<%= content_for?(:description) ? content_for(:description) : "AI 기술과 디자인의 완벽한 조화. 디어스에서 당신의 비즈니스를 혁신하세요." %>">
-    <meta property="og:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : asset_path('logo.png') %>">
+    <meta property="og:title" content="<%= content_for?(:title) ? "#{content_for(:title)} | #{branding['brand_name']}" : "#{branding['brand_name']} - AI Premium Web Agency" %>">
+    <meta property="og:description" content="<%= content_for?(:description) ? content_for(:description) : branding['meta_description'] %>">
+    <meta property="og:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : asset_path(branding['logo']) %>">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="<%= request.original_url %>">
-    <meta name="twitter:title" content="<%= content_for?(:title) ? "#{content_for(:title)} | DLAB" : "DLAB - AI Premium Web Agency" %>">
-    <meta name="twitter:description" content="<%= content_for?(:description) ? content_for(:description) : "AI 기술과 디자인의 완벽한 조화. 디어스에서 당신의 비즈니스를 혁신하세요." %>">
-    <meta name="twitter:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : asset_path('logo.png') %>">
+    <meta name="twitter:title" content="<%= content_for?(:title) ? "#{content_for(:title)} | #{branding['brand_name']}" : "#{branding['brand_name']} - AI Premium Web Agency" %>">
+    <meta name="twitter:description" content="<%= content_for?(:description) ? content_for(:description) : branding['meta_description'] %>">
+    <meta name="twitter:image" content="<%= content_for?(:og_image) ? content_for(:og_image) : asset_path(branding['logo']) %>">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="디어스">
+    <meta name="application-name" content="<%= branding['brand_name'] %>">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -76,10 +76,10 @@
           extend: {
             colors: {
               primary: {
-                DEFAULT: "#00a859",
-                dark: "#008a47",
+                DEFAULT: "<%= branding['primary_color'] %>",
+                dark: "<%= branding['primary_dark'] || branding['primary_color'] %>",
               },
-              accent: "#00d670",
+              accent: "<%= branding['accent_color'] || branding['primary_color'] %>",
             },
             fontFamily: {
               sans: ["Inter", "sans-serif"],
@@ -106,7 +106,7 @@
     <nav class="navbar" id="navbar">
       <div class="navbar-container">
         <%= link_to root_path, class: "navbar-logo" do %>
-          <%= image_tag "logo.png", alt: "디어스", style: "height: 50px; width: auto;" %>
+          <%= image_tag branding['logo'], alt: branding['brand_name'], style: "height: 50px; width: auto;" %>
         <% end %>
         
         <!-- Desktop Menu -->
@@ -319,8 +319,8 @@
       <div class="container">
         <div class="footer-content">
           <div class="footer-section">
-            <h3>디어스</h3>
-            <p>비싼 홈페이지? NO!<br>돈 벌어주는 홈페이지</p>
+            <h3><%= branding['brand_name'] %></h3>
+            <p><%= branding['tagline'] %></p>
           </div>
           
           <div class="footer-section">
@@ -345,12 +345,12 @@
           
           <div class="footer-section">
             <h3>연락처</h3>
-            <p>이메일: duscontactus@gmail.com</p>
+            <p>이메일: <%= branding['contact_email'] %></p>
           </div>
         </div>
         
         <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-          <p>&copy; <%= Time.current.year %> 디어스(D.US). All rights reserved.</p>
+          <p>&copy; <%= Time.current.year %> <%= branding['copyright'] || branding['company_name'] %>. All rights reserved.</p>
           <div style="display: flex; gap: 20px;">
             <%= link_to "서비스 이용약관", terms_path, style: "color: #999; text-decoration: none; font-size: 13px;" %>
             <%= link_to "개인정보처리방침", privacy_path, style: "color: #999; text-decoration: none; font-size: 13px; font-weight: bold;" %>
