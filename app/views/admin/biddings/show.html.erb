@@ -136,16 +136,18 @@
       <div class="slides-actions">
         <%= link_to "슬라이드 미리보기", "#", class: "btn btn-info btn-sm", onclick: "openSlidesPreview(); return false;" %>
         <%= link_to "HTML 다운로드", "#", class: "btn btn-outline btn-sm", onclick: "downloadSlidesHTML(); return false;" %>
+        <%= link_to "PPT 다운로드", "#", class: "btn btn-warning btn-sm", onclick: "downloadPPT(); return false;" %>
         <%= link_to "PDF로 저장", "#", class: "btn btn-success btn-sm", onclick: "printToPDF(); return false;" %>
-        <span style="font-size: 0.875rem; color: #6B7280; margin-left: 1rem;">💡 피그마: File → Import → HTML | PDF: 브라우저 인쇄 기능 사용</span>
+        <span style="font-size: 0.875rem; color: #6B7280; margin-left: 1rem;">💡 피그마: File → Import → HTML | PowerPoint: .pptx 형식</span>
       </div>
       <div class="slides-preview" style="display: none;">
-        <iframe id="slides-iframe" style="width: 100%; height: 800px; border: 1px solid #E5E7EB; border-radius: 0.5rem; margin-top: 1rem;"></iframe>
+        <iframe id="slides-iframe" style="width: 1920px; height: 1080px; border: 1px solid #E5E7EB; border-radius: 0.5rem; margin-top: 1rem; transform: scale(0.75); transform-origin: 0 0;"></iframe>
       </div>
     </div>
   <% end %>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 <script>
   function openSlidesPreview() {
     const preview = document.querySelector('.slides-preview');
@@ -167,6 +169,113 @@
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  }
+
+  function downloadPPT() {
+    const htmlContent = <%= raw @bidding.slides_html.to_json %>;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlContent, 'text/html');
+    const slides = doc.querySelectorAll('.slide');
+
+    if (slides.length === 0) {
+      alert('슬라이드를 찾을 수 없습니다.');
+      return;
+    }
+
+    const pres = new PptxGenJS();
+    pres.layout = 'LAYOUT_16x9';
+    pres.defineLayout({ name: 'CUSTOM', width: 10, height: 5.625 });
+    pres.layout = 'CUSTOM';
+
+    slides.forEach((slide, index) => {
+      const pptSlide = pres.addSlide();
+
+      // 배경색 추출
+      const bgColor = slide.style.background || '#1a1a1a';
+      const bgMatch = bgColor.match(/#[0-9a-fA-F]{6}/);
+      if (bgMatch) {
+        pptSlide.background = { color: bgMatch[0].substring(1) };
+      }
+
+      // 제목 추출
+      const h1 = slide.querySelector('h1');
+      if (h1) {
+        pptSlide.addText(h1.textContent, {
+          x: 0.5,
+          y: 0.5,
+          w: 9,
+          h: 1,
+          fontSize: 48,
+          bold: true,
+          color: 'FFFFFF',
+          fontFace: 'Pretendard'
+        });
+      }
+
+      // 부제목 추출
+      const h2 = slide.querySelector('h2');
+      if (h2) {
+        pptSlide.addText(h2.textContent, {
+          x: 0.5,
+          y: h1 ? 1.5 : 0.5,
+          w: 9,
+          h: 0.6,
+          fontSize: 32,
+          color: 'CCCCCC',
+          fontFace: 'Pretendard'
+        });
+      }
+
+      // 본문 추출 (ul, p)
+      const contentElements = slide.querySelectorAll('ul, p, .metric, .strategy-item');
+      let yPos = h1 && h2 ? 2.5 : h1 ? 2 : h2 ? 1.5 : 1;
+
+      contentElements.forEach(el => {
+        if (el.tagName === 'UL') {
+          const items = el.querySelectorAll('li');
+          items.forEach(li => {
+            pptSlide.addText('• ' + li.textContent, {
+              x: 0.5,
+              y: yPos,
+              w: 9,
+              h: 0.4,
+              fontSize: 20,
+              color: 'E0E0E0',
+              fontFace: 'Pretendard'
+            });
+            yPos += 0.5;
+          });
+        } else if (el.classList.contains('metric')) {
+          const value = el.querySelector('.value')?.textContent || '';
+          const label = el.querySelector('.label')?.textContent || '';
+          pptSlide.addText(value + '\n' + label, {
+            x: 0.5,
+            y: yPos,
+            w: 2.5,
+            h: 1,
+            fontSize: 24,
+            color: 'FFFFFF',
+            fontFace: 'Pretendard',
+            align: 'center'
+          });
+          yPos += 1.2;
+        } else {
+          pptSlide.addText(el.textContent, {
+            x: 0.5,
+            y: yPos,
+            w: 9,
+            h: 0.4,
+            fontSize: 18,
+            color: 'E0E0E0',
+            fontFace: 'Pretendard'
+          });
+          yPos += 0.6;
+        }
+      });
+    });
+
+    const fileName = '<%= @bidding.title.gsub(/[^\w\s-]/, '') %>_슬라이드.pptx';
+    pres.writeFile({ fileName: fileName });
   }
 
   function printToPDF() {
@@ -466,5 +575,19 @@
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1rem;
+  }
+
+  .slides-preview {
+    max-width: none;
+    overflow: visible;
+  }
+
+  .slides-preview iframe {
+    display: block;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .slides-section {
+    max-width: none;
   }
 </style>
