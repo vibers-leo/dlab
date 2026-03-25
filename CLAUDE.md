@@ -1,3 +1,14 @@
+## 전략 문서 (개발 전 반드시 숙지)
+- **전략 진단 리포트**: `data/STRATEGY_ANALYSIS.md`
+- **PM 공통 지침**: 맥미니 루트 `pm.md`
+
+### 전략 핵심 요약
+- Next.js 아키텍처 교육 가이드 — 비개발자 대상 웹앱 개념 학습
+- Supabase SSR + 다크 테마 글래스모피즘 UI 설계
+- 인터랙티브 실습 기능(코드 샌드박스) 추가로 교육 가치 극대화
+
+---
+
 # My Next Guide
 
 ## 프로젝트 개요
@@ -67,6 +78,44 @@ bun test           # 테스트
 ## 환경 변수
 - `NEXT_PUBLIC_SUPABASE_URL` — Supabase 프로젝트 URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase 익명 키
+
+## AI Recipe 이미지 API
+
+이 프로젝트는 **AI Recipe 중앙 이미지 서비스**를 사용합니다.
+
+### 사용 가능한 함수
+
+```typescript
+import { searchStockImage, generateAIImage } from '@/lib/ai-recipe-client';
+```
+
+### Stock Image 검색
+```typescript
+const image = await searchStockImage('web development architecture diagram', {
+  orientation: 'landscape',
+  size: 'medium',
+});
+// → { url, provider, alt, photographer, ... }
+```
+
+### AI 이미지 생성
+```typescript
+const image = await generateAIImage('educational illustration showing web app architecture, clean infographic style', {
+  size: 'large',
+  provider: 'auto',
+});
+// → { url, prompt, provider }
+```
+
+### 주요 용도
+- 가이드 일러스트
+- 아키텍처 다이어그램 보조
+- 개념 설명 시각 자료
+
+### 주의사항
+- Server Action이나 API Route에서만 사용 (API 키 보호)
+- Rate Limit: 1000회/일
+- AI Recipe 서버 실행 필요: http://localhost:3300
 
 ## 상위 브랜드
 - 회사: 계발자들 (Vibers)
