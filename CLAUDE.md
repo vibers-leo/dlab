@@ -4,7 +4,7 @@
 
 ### 전략 핵심 요약
 - Next.js 아키텍처 교육 가이드 — 비개발자 대상 웹앱 개념 학습
-- Supabase SSR + 다크 테마 글래스모피즘 UI 설계
+- 다크 테마 글래스모피즘 UI 설계
 - 인터랙티브 실습 기능(코드 샌드박스) 추가로 교육 가치 극대화
 
 ---
@@ -12,14 +12,13 @@
 # My Next Guide
 
 ## 프로젝트 개요
-Next.js 아키텍처 학습/가이드 프로젝트. Supabase에서 가이드 데이터를 가져와 시각적으로 표시하는 싱글 페이지 앱.
+Next.js 아키텍처 학습/가이드 프로젝트. 가이드 데이터를 시각적으로 표시하는 싱글 페이지 앱.
 비개발자도 이해할 수 있도록 웹 애플리케이션의 구조와 동작 원리를 설명한다.
 
 ## 기술 스택
 - Framework: Next.js 16
 - Language: TypeScript
 - Styling: Tailwind CSS (유틸리티 클래스 기반, CSS 변수 최소)
-- Database: Supabase (가이드 콘텐츠 저장)
 - Icons: Lucide React
 - Package Manager: bun (권장) / npm
 
@@ -29,10 +28,8 @@ my-next-guide/
 ├── app/
 │   ├── globals.css      ← 다크 테마 CSS 변수 (Slate-950 배경)
 │   ├── layout.tsx        ← 루트 레이아웃
-│   └── page.tsx          ← 메인 페이지 (SSR, Supabase 데이터 패칭)
-├── tailwind.config.ts    ← Tailwind 설정 (커스텀 그라데이션)
-└── utils/
-    └── supabase/         ← Supabase 클라이언트 설정
+│   └── page.tsx          ← 메인 페이지 (정적 데이터)
+└── tailwind.config.ts    ← Tailwind 설정 (커스텀 그라데이션)
 ```
 
 ## 디자인 특징
@@ -74,10 +71,6 @@ bun dev            # 개발 서버
 bun run build      # 빌드
 bun test           # 테스트
 ```
-
-## 환경 변수
-- `NEXT_PUBLIC_SUPABASE_URL` — Supabase 프로젝트 URL
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase 익명 키
 
 ## AI Recipe 이미지 API
 

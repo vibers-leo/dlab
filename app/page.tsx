@@ -1,5 +1,4 @@
 import React from "react";
-import { supabase } from "@/lib/supabase";
 import {
   Smartphone,
   Globe,
@@ -177,17 +176,23 @@ const FlowStep = ({
 // 2. Server Configuration
 // ----------------------------------------------------------------------
 
-export const dynamic = "force-dynamic";
-
 // ----------------------------------------------------------------------
-// 3. Main Page
+// 3. Static Guide Data (Supabase 제거 → 정적 데이터로 전환)
 // ----------------------------------------------------------------------
 
-export default async function Home() {
-  const { data: guidePosts, error } = await supabase
-    .from("guide_posts")
-    .select("id, title, desc, tag")
-    .order("id", { ascending: true });
+const guidePosts = [
+  { id: 1, title: "라우팅 (Routing)", desc: "URL 경로에 따라 어떤 페이지를 보여줄지 결정하는 시스템. Next.js는 파일 기반 라우팅을 사용합니다.", tag: "Core" },
+  { id: 2, title: "서버 컴포넌트", desc: "서버에서 렌더링되어 클라이언트로 HTML을 전달하는 컴포넌트. 빠른 초기 로딩과 SEO에 유리합니다.", tag: "RSC" },
+  { id: 3, title: "클라이언트 컴포넌트", desc: "브라우저에서 실행되는 인터랙티브 컴포넌트. 'use client' 지시어로 선언합니다.", tag: "CSR" },
+  { id: 4, title: "데이터 페칭", desc: "서버에서 데이터를 가져오는 다양한 방법. fetch API, 서버 액션 등을 활용합니다.", tag: "Data" },
+  { id: 5, title: "미들웨어", desc: "요청이 완료되기 전에 코드를 실행할 수 있는 기능. 인증, 리다이렉트 등에 사용됩니다.", tag: "Edge" },
+];
+
+// ----------------------------------------------------------------------
+// 4. Main Page
+// ----------------------------------------------------------------------
+
+export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#020617] text-slate-300 font-sans selection:bg-red-500 selection:text-white">
@@ -639,7 +644,7 @@ export default async function Home() {
           <section>
             <SectionHeader num="08." title="데이터베이스: 정보 저장소" />
             <div className="grid md:grid-cols-2 gap-6">
-              <BentoCard title="Supabase (PostgreSQL)" icon={Database}>
+              <BentoCard title="PostgreSQL (관계형 DB)" icon={Database}>
                 <p className="mb-4 text-sm text-slate-300">
                   가장 대중적인 <strong>관계형 데이터베이스</strong>입니다.{" "}
                   <br />
@@ -654,37 +659,30 @@ export default async function Home() {
                 </div>
               </BentoCard>
 
-              {/* ★ 실제 데이터 연동 부분 ★ */}
+              {/* ★ 가이드 데이터 예시 ★ */}
               <BentoCard
-                title="실제 저장된 데이터 (Live)"
+                title="가이드 데이터 예시"
                 icon={Activity}
-                badge="Supabase"
               >
                 <div className="flex flex-col gap-3 max-h-60 overflow-y-auto custom-scrollbar pr-2">
-                  {(guidePosts || []).length > 0 ? (
-                    guidePosts?.map((post: any) => (
-                      <div
-                        key={post.id}
-                        className="bg-slate-800/50 p-3 rounded-xl border border-white/5 hover:border-red-500/50 transition-colors"
-                      >
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="font-bold text-slate-200">
-                            {post.title}
-                          </span>
-                          <span className="text-[10px] bg-red-500/20 text-red-300 px-2 py-0.5 rounded-full">
-                            {post.tag}
-                          </span>
-                        </div>
-                        <p className="text-xs text-slate-500 line-clamp-2">
-                          {post.desc}
-                        </p>
+                  {guidePosts.map((post) => (
+                    <div
+                      key={post.id}
+                      className="bg-slate-800/50 p-3 rounded-xl border border-white/5 hover:border-red-500/50 transition-colors"
+                    >
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="font-bold text-slate-200">
+                          {post.title}
+                        </span>
+                        <span className="text-[10px] bg-red-500/20 text-red-300 px-2 py-0.5 rounded-full">
+                          {post.tag}
+                        </span>
                       </div>
-                    ))
-                  ) : (
-                    <div className="text-center py-8 text-slate-600 border border-dashed border-slate-700 rounded-xl">
-                      데이터가 없습니다.
+                      <p className="text-xs text-slate-500 line-clamp-2">
+                        {post.desc}
+                      </p>
                     </div>
-                  )}
+                  ))}
                 </div>
               </BentoCard>
             </div>
