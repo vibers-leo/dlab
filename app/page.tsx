@@ -1,4 +1,5 @@
 import React from "react";
+import VibersBanner from "./components/VibersBanner";
 import {
   Smartphone,
   Globe,
@@ -1269,6 +1270,11 @@ export default function Home() {
                   </a>
                 </div>
               </div>
+            </div>
+
+            {/* Vibers 크로스 프로모션 */}
+            <div className="flex justify-center py-6">
+              <VibersBanner size="leaderboard" currentProject="my-next-guide" />
             </div>
 
             <div className="pt-8 border-t border-slate-800/50 text-center text-slate-500 text-sm">
