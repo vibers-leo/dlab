@@ -1277,10 +1277,14 @@ export default function Home() {
               <VibersBanner size="leaderboard" currentProject="my-next-guide" />
             </div>
 
-            <div className="pt-8 border-t border-slate-800/50 text-center text-slate-500 text-sm">
+            <div className="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-500 text-sm">
               <p>
                 &copy; 2025 Next.js Architecture Guide. All rights reserved.
               </p>
+              <div className="flex gap-6">
+                <a href="/privacy" className="hover:text-red-400 transition-colors">개인정보처리방침</a>
+                <a href="/terms" className="hover:text-red-400 transition-colors">이용약관</a>
+              </div>
             </div>
           </div>
         </footer>
