@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import VibersBanner from "./components/VibersBanner";
 import {
   Smartphone,
@@ -1282,8 +1283,8 @@ export default function Home() {
                 &copy; 2025 Next.js Architecture Guide. All rights reserved.
               </p>
               <div className="flex gap-6">
-                <a href="/privacy" className="hover:text-red-400 transition-colors">개인정보처리방침</a>
-                <a href="/terms" className="hover:text-red-400 transition-colors">이용약관</a>
+                <Link href="/privacy" className="hover:text-red-400 transition-colors">개인정보처리방침</Link>
+                <Link href="/terms" className="hover:text-red-400 transition-colors">이용약관</Link>
               </div>
             </div>
           </div>
