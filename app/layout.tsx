@@ -14,16 +14,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "마이넥스트가이드 | Next.js 학습 가이드",
-  description: "Next.js 아키텍처와 개발 패턴을 쉽게 배우는 가이드",
+  title: "디랩 | 전문 개발 에이전시",
+  description: "기획부터 배포까지 함께하는 풀스택 개발 파트너. 웹 서비스, 앱, 커머스, 유지보수 전문.",
   metadataBase: new URL("https://my-next-guide.vercel.app"),
   openGraph: {
     type: "website",
     locale: "ko_KR",
     url: "https://my-next-guide.vercel.app",
-    siteName: "마이넥스트가이드",
-    title: "마이넥스트가이드 | Next.js 학습 가이드",
-    description: "Next.js 아키텍처와 개발 패턴을 쉽게 배우는 가이드. 비개발자도 이해할 수 있는 웹 애플리케이션 학습 플랫폼.",
+    siteName: "디랩",
+    title: "디랩 | 전문 개발 에이전시",
+    description: "기획부터 배포까지 함께하는 풀스택 개발 파트너. 웹 서비스, 앱, 커머스, 유지보수 전문.",
   },
 };
 
@@ -60,8 +60,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            name: '마이넥스트가이드',
-            description: 'Next.js 아키텍처와 개발 패턴을 쉽게 배우는 가이드. 비개발자도 이해할 수 있는 웹 애플리케이션 학습 플랫폼.',
+            name: '디랩',
+            description: '기획부터 배포까지 함께하는 풀스택 개발 파트너. 웹 서비스, 앱, 커머스, 유지보수 전문.',
             url: 'https://my-next-guide.vercel.app',
             inLanguage: 'ko',
             author: {
