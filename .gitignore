@@ -53,3 +53,8 @@
 !/knowledge-base/templates/.gitkeep
 /knowledge-base/resources/*
 !/knowledge-base/resources/.gitkeep
+
+# Expo mobile app
+mobile/node_modules/
+mobile/dist/
+mobile/.expo/
