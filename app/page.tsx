@@ -671,9 +671,9 @@ export default function Home() {
             {/* 헤더 */}
             <div className="flex items-start justify-between px-10 py-7 border-b border-gray-100" style={{ backgroundColor: '#0B2447' }}>
               <div>
-                <p className="text-xs font-bold tracking-widest text-blue-300 mb-2">TECH STACK</p>
-                <h3 className="text-2xl font-extrabold text-white">왜 Next.js와 Rails인가?</h3>
-                <p className="text-blue-300/70 text-sm mt-1">디랩이 이 두 기술을 함께 쓰는 이유</p>
+                <p className="text-xs font-bold tracking-widest text-blue-300 mb-2">TECHNOLOGY</p>
+                <h3 className="text-2xl font-extrabold text-white">검증된 최신 기술로 만듭니다</h3>
+                <p className="text-blue-300/70 text-sm mt-1">빠르고, 안정적이고, 오래 쓸 수 있는 서비스</p>
               </div>
               <button
                 onClick={() => setShowStackModal(false)}
@@ -683,74 +683,38 @@ export default function Home() {
 
             {/* 본문 */}
             <div className="px-10 py-8">
-              {/* 한 줄 요약 */}
-              <div className="border-l-4 border-blue-500 pl-5 mb-10">
-                <p className="text-gray-700 leading-relaxed">
-                  <strong className="text-gray-900">Next.js는 사용자가 보는 앞단</strong>을, <strong className="text-gray-900">Rails는 복잡한 뒷단 로직</strong>을 담당합니다.
-                  두 가지를 함께 쓰는 이유는 단순합니다 — 각자 가장 잘하는 일을 맡기기 위해서입니다.
-                </p>
+              <p className="text-gray-600 text-sm leading-relaxed mb-10">
+                디랩이 사용하는 기술은 넷플릭스, 에어비앤비, 깃허브 같은 전 세계 서비스들이 실제로 쓰고 있는 도구입니다.
+                검증된 기술을 쓴다는 건 — 처음부터 잘 만들어진 길을 걷는 것과 같습니다.
+                시간이 지나도 고장나지 않고, 필요할 때 빠르게 고칠 수 있습니다.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+                {[
+                  { icon: '⚡', title: '열리는 속도가 빠릅니다', desc: '첫 화면을 서버에서 미리 준비해서 보내줍니다. 느린 인터넷 환경에서도 기다리는 시간이 짧습니다.' },
+                  { icon: '🔍', title: '검색에 잘 잡힙니다', desc: 'Google, 네이버가 페이지 내용을 바로 읽을 수 있어서 검색 결과 상위에 노출되기 유리합니다.' },
+                  { icon: '🛡️', title: '안정적으로 운영됩니다', desc: '20년 이상 수백만 서비스가 사용하며 다듬어진 기술입니다. 예상치 못한 오류가 적습니다.' },
+                  { icon: '🚀', title: '빠르게 만들 수 있습니다', desc: '새로운 기능을 추가하거나 수정할 때 기존 구조를 건드리지 않고 붙일 수 있어 개발 속도가 빠릅니다.' },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4">
+                    <span className="text-2xl shrink-0">{item.icon}</span>
+                    <div>
+                      <h4 className="font-bold text-gray-900 text-sm mb-1">{item.title}</h4>
+                      <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
-                {/* Next.js */}
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 bg-black flex items-center justify-center shrink-0">
-                      <span className="text-white text-xs font-black">N</span>
-                    </div>
-                    <h4 className="font-extrabold text-gray-900">Next.js</h4>
-                    <span className="text-xs text-gray-400">프론트엔드</span>
-                  </div>
-                  <ul className="space-y-3 text-sm text-gray-600">
-                    {[
-                      { label: '빠른 첫 화면', desc: '서버에서 미리 만들어서 보내주기 때문에 느린 인터넷에서도 빠르게 뜹니다.' },
-                      { label: '검색 노출에 유리', desc: 'Google, 네이버가 페이지 내용을 바로 읽을 수 있어 SEO에 강합니다.' },
-                      { label: 'Vercel 배포 1분', desc: '코드를 올리면 자동으로 전 세계에 배포됩니다. 서버 관리가 없습니다.' },
-                      { label: '리액트 기반', desc: '컴포넌트 재사용이 가능해서 여러 프로젝트에 걸쳐 개발 속도가 빠릅니다.' },
-                    ].map((i) => (
-                      <li key={i.label} className="flex gap-2">
-                        <span className="text-blue-500 shrink-0 mt-0.5">→</span>
-                        <span><strong className="text-gray-800">{i.label}.</strong> {i.desc}</span>
-                      </li>
-                    ))}
-                  </ul>
+              <div className="border-t border-gray-100 pt-7">
+                <p className="text-xs font-bold tracking-widest text-gray-300 mb-3">디랩이 쓰는 기술</p>
+                <div className="flex flex-wrap gap-2">
+                  {['Next.js', 'Ruby on Rails', 'React', 'TypeScript', 'Firebase', 'Vercel', 'PostgreSQL'].map((t) => (
+                    <span key={t} className="text-xs px-3 py-1 bg-gray-50 text-gray-600 border border-gray-100 font-medium">{t}</span>
+                  ))}
                 </div>
-
-                {/* Rails */}
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 flex items-center justify-center shrink-0" style={{ backgroundColor: '#CC0000' }}>
-                      <span className="text-white text-xs font-black">R</span>
-                    </div>
-                    <h4 className="font-extrabold text-gray-900">Ruby on Rails</h4>
-                    <span className="text-xs text-gray-400">백엔드</span>
-                  </div>
-                  <ul className="space-y-3 text-sm text-gray-600">
-                    {[
-                      { label: '빠른 기능 구현', desc: '회원가입, 결제, 관리자 페이지 같은 복잡한 기능을 아주 빠르게 만들 수 있습니다.' },
-                      { label: '검증된 구조', desc: '20년 이상 다듬어진 규칙이 있어서 어디에 무엇을 쓸지 고민할 시간이 줄어듭니다.' },
-                      { label: '복잡한 데이터 처리', desc: '여러 테이블이 얽힌 복잡한 비즈니스 로직을 깔끔하게 다룹니다.' },
-                      { label: '에이전시 운영에 최적', desc: '디어스처럼 여러 고객사를 한 서버에서 운영하는 멀티 테넌시 구조에 강합니다.' },
-                    ].map((i) => (
-                      <li key={i.label} className="flex gap-2">
-                        <span className="shrink-0 mt-0.5" style={{ color: '#CC0000' }}>→</span>
-                        <span><strong className="text-gray-800">{i.label}.</strong> {i.desc}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* 조합 이유 */}
-              <div className="border-t border-gray-100 pt-8">
-                <p className="text-xs font-bold tracking-widest text-gray-300 mb-4">함께 쓰는 이유</p>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                  랜딩 페이지나 홍보 사이트는 <strong className="text-gray-900">Next.js</strong>로 빠르게 배포하고,
-                  회원·결제·관리자처럼 복잡한 로직이 필요한 서비스는 <strong className="text-gray-900">Rails</strong>가 담당합니다.
-                  프로젝트의 성격과 규모에 따라 둘 중 하나만 쓰기도 하고, 함께 쓰기도 합니다.
-                </p>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  결국 기술 선택의 기준은 하나입니다 — <strong className="text-gray-900">만들어야 할 것에 가장 맞는 도구를 고른다.</strong>
+                <p className="text-xs text-gray-400 mt-4 leading-relaxed">
+                  기술 이름이 낯설어도 괜찮습니다. 중요한 건 어떤 기술이냐가 아니라, 그것으로 무엇을 만들 수 있느냐니까요.
                 </p>
               </div>
             </div>
