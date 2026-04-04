@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const SECTIONS = ['hero', 'identity', 'history', 'numbers', 'services', 'collab', 'process', 'news', 'pricing', 'contact'];
+const SECTIONS = ['hero', 'identity', 'history', 'numbers', 'services', 'collab', 'process', 'news', 'flow', 'contact'];
 
 const NEWS = [
   { date: '2026.04', tag: '협업', title: '계발자들 어드민킷 v1 출시', desc: 'vibers.co.kr 통합 어드민 시스템 공개' },
@@ -13,9 +13,54 @@ const NEWS = [
   { date: '2025.10', tag: '개발', title: '누수체크 서비스 개발 착수', desc: 'IoT 연동 누수 탐지 플랫폼 nusucheck.com' },
 ];
 
+const COLLAB_CARDS = [
+  {
+    partner: '계발자들',
+    tag: '× Vibers',
+    tagColor: 'bg-green-50 text-green-700',
+    borderColor: 'border-green-200',
+    desc: '전문 계발자 협업 서비스를 함께 만들었습니다. AI 활용, 앱 개발 역량을 갖춘 계발자들과 디랩의 기획·실행력이 만났습니다.',
+    output: '협업 플랫폼 · 어드민킷 · 다수 프로젝트',
+    detail: '계발자들(Vibers)은 IT 전문가 네트워크를 기반으로 기업의 기술 파트너 역할을 합니다. 디랩은 초기 기획 단계부터 함께하며 사이트 구조 설계, 관리자 시스템 개발, 다수의 고객사 프로젝트를 공동 수행했습니다. 현재도 신규 서비스 개발 및 운영에 지속 협력 중입니다.',
+    highlights: ['vibers.co.kr 사이트 설계·개발', '통합 어드민 시스템(Admin Kit)', '고객사 5개 이상 공동 프로젝트'],
+  },
+  {
+    partner: '디어스',
+    tag: '× D.US',
+    tagColor: 'bg-blue-50 text-blue-700',
+    borderColor: 'border-blue-200',
+    desc: '소상공인을 위한 홈페이지 제작을 쉽게 하는 서비스를 만들었습니다. 에이전시 플랫폼의 기술 구조를 디랩이 함께 설계했습니다.',
+    output: '에이전시 플랫폼 · 템플릿 마켓 · 멀티 테넌시',
+    detail: '디어스(D.US)는 소상공인 전문 홈페이지 에이전시 SaaS 플랫폼입니다. 디랩은 초기 브랜드 포지셔닝과 서비스 설계에 참여하여 멀티 테넌시 아키텍처, 에이전시 계층 구조, 템플릿 마켓플레이스를 함께 구상했습니다.',
+    highlights: ['에이전시 플랫폼 아키텍처 설계', '템플릿 마켓 기획', '서브도메인 자동 발급 시스템'],
+  },
+  {
+    partner: '팬이지',
+    tag: '× FanEasy',
+    tagColor: 'bg-purple-50 text-purple-700',
+    borderColor: 'border-purple-200',
+    desc: '인플루언서와 팬을 연결하는 페이지 빌더. 다양한 브랜드 사이트의 기획과 운영에 함께 참여했습니다.',
+    output: '브랜드 사이트 다수 · 올루올루 · 야화 · 비즈온',
+    detail: '팬이지(FanEasy)는 브랜드와 고객을 연결하는 페이지 빌더 플랫폼입니다. 디랩은 올루올루, 야화, 비즈온 등 10개 이상의 브랜드 사이트 기획과 콘텐츠 구조 설계에 참여했습니다. 각 브랜드의 성격에 맞는 디지털 공간 기획을 전담했습니다.',
+    highlights: ['올루올루 브랜드 사이트', '야화 랜딩 페이지 기획', '10개 이상 브랜드 디지털 공간 설계'],
+  },
+  {
+    partner: '새로운 협업',
+    tag: '+ Open',
+    tagColor: 'bg-gray-50 text-gray-500',
+    borderColor: 'border-dashed border-gray-200',
+    desc: '세상을 이롭게 하는 목적이 같다면, 어떤 파트너와도 함께합니다. 먼저 이야기해보세요.',
+    output: '기획 · 개발 · 운영 모든 영역',
+    detail: '같이 가치 만들어요. 디랩은 규모나 분야보다 방향이 맞는 파트너를 찾습니다. 좋은 아이디어가 있고 세상에 내보내고 싶다면, 그것으로 충분한 이유가 됩니다.',
+    highlights: ['기획 단계부터 함께', '개발·운영 파트너십', '장기 협력 우선'],
+    isOpen: true,
+  },
+];
+
 export default function Home() {
   const [current, setCurrent] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [collabModal, setCollabModal] = useState<typeof COLLAB_CARDS[0] | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -67,27 +112,20 @@ export default function Home() {
         className="relative flex flex-col h-dvh overflow-hidden"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#051226' }}
       >
-        {/* 도트 그리드 배경 */}
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
           backgroundImage: 'radial-gradient(circle, #60A5FA 1px, transparent 1px)',
           backgroundSize: '32px 32px'
         }} />
-
-        {/* 우상단 원형 장식 */}
         <div className="absolute top-[-5rem] right-[-5rem] w-96 h-96 rounded-full border border-blue-400/20 pointer-events-none" />
         <div className="absolute top-[-3rem] right-[-3rem] w-64 h-64 rounded-full border border-blue-400/10 pointer-events-none" />
         <div className="absolute top-8 right-8 w-32 h-32 rounded-full border border-blue-400/15 pointer-events-none" />
-
-        {/* 좌하단 블루 블러 원 */}
         <div className="absolute bottom-20 left-[-4rem] w-72 h-72 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
 
-        {/* 로고 */}
         <div className="absolute top-8 left-10 text-lg font-extrabold" style={{ letterSpacing: '-0.02em' }}>
           <span style={{ color: '#60A5FA' }}>:</span>
           <span className="text-white">DLAB</span>
         </div>
 
-        {/* 중앙 콘텐츠 */}
         <div className="flex-1 flex flex-col items-center justify-center px-6 text-center relative z-10">
           <span className="border border-blue-400/50 text-blue-100 px-4 py-1 rounded-full text-sm tracking-widest mb-6">
             "세상과 연결되는 방법을 연구합니다"
@@ -118,7 +156,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* 스크롤 힌트 */}
         <div className="absolute bottom-8 right-10 text-sm tracking-widest text-blue-400/50">
           ↓ scroll
         </div>
@@ -130,10 +167,7 @@ export default function Home() {
         className="relative flex flex-col h-dvh items-center justify-center px-10 overflow-hidden"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
       >
-        {/* 좌측 세로 라인 */}
         <div className="absolute left-0 top-0 bottom-0 w-0.5" style={{ backgroundColor: '#1565C0' }} />
-
-        {/* 배경 숫자 */}
         <span
           className="absolute left-8 top-1/2 -translate-y-1/2 font-extrabold select-none leading-none pointer-events-none"
           style={{ fontSize: '20rem', color: 'rgba(21,101,192,0.15)' }}
@@ -173,30 +207,25 @@ export default function Home() {
         className="relative flex h-dvh items-center overflow-hidden"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
       >
-        {/* 배경 장식 원 */}
         <div className="absolute right-[-8rem] top-1/2 w-96 h-96 rounded-full border border-blue-500/10 pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-8 w-full">
-          {/* 상단 태그 */}
           <span className="text-blue-400 text-sm tracking-widest">OUR JOURNEY</span>
           <h2 className="text-5xl font-extrabold text-white mt-3 mb-12">
             디자인에서 시작해,<br />
             <span className="text-blue-400">세상으로 넓혀왔습니다.</span>
           </h2>
 
-          {/* 타임라인 가로형 */}
           <div className="flex gap-0 relative">
-            {/* 연결선 */}
             <div className="absolute top-6 left-0 right-0 h-px bg-blue-500/30" />
 
             {[
-              { year: '2018', title: '디자인디', desc: '디자인 외주로 시작. 브랜딩, 인쇄물, UI 디자인', color: 'bg-blue-600' },
-              { year: '2020', title: '전시 기획', desc: '공간과 이야기를 연결하는 전시 기획으로 확장', color: 'bg-blue-500' },
+              { year: '2013', title: '디자인디', desc: '브랜딩, 인쇄물, UI 디자인 외주로 시작', color: 'bg-blue-700' },
+              { year: '2018', title: '전시 기획', desc: '공간과 이야기를 연결하는 전시 기획으로 확장', color: 'bg-blue-500' },
               { year: '2022', title: '축제·행사 대행', desc: '지역 축제, 기업 행사의 디지털 창구 제작', color: 'bg-blue-400' },
-              { year: '2024', title: ':DLAB', desc: 'AI와 개발 역량을 더해 더 많이, 더 빠르게', color: 'bg-cyan-400' },
+              { year: '2023', title: ':DLAB', desc: 'AI와 개발 역량을 더해 더 많이, 더 빠르게', color: 'bg-cyan-400' },
             ].map((item, i) => (
               <div key={i} className="flex-1 relative pt-14 pr-8">
-                {/* 도트 */}
                 <div className={`absolute top-4 left-0 w-4 h-4 rounded-full ${item.color} -translate-y-1/2 z-10`} />
                 <span className="text-blue-300/60 text-xs font-mono">{item.year}</span>
                 <h3 className="text-white font-bold text-lg mt-1">{item.title}</h3>
@@ -205,27 +234,25 @@ export default function Home() {
             ))}
           </div>
 
-          {/* 하단 */}
           <p className="text-blue-200/50 text-sm mt-12">
             그리고 지금, AI와 개발 역량까지 — 더 많이 만들고, 더 많이 함께합니다.
           </p>
         </div>
       </section>
 
-      {/* ── Slide 4: Numbers (대각선 분할) ── */}
+      {/* ── Slide 4: Numbers ── */}
       <section
         ref={(el) => { sectionRefs.current[3] = el; }}
         className="relative flex h-dvh items-center overflow-hidden"
         style={{ scrollSnapAlign: 'start' }}
       >
-        {/* 대각선 배경 분할 */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ backgroundColor: '#0B2447', clipPath: 'polygon(0 0, 60% 0, 40% 100%, 0 100%)' }}
+          style={{ backgroundColor: '#0B2447', clipPath: 'polygon(0 0, 55% 0, 35% 100%, 0 100%)' }}
         />
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ backgroundColor: '#F0F6FF', clipPath: 'polygon(60% 0, 100% 0, 100% 100%, 40% 100%)' }}
+          style={{ backgroundColor: '#F0F6FF', clipPath: 'polygon(55% 0, 100% 0, 100% 100%, 35% 100%)' }}
         />
 
         <div className="relative z-10 max-w-5xl w-full mx-auto px-10 grid grid-cols-1 sm:grid-cols-2 gap-16 items-center">
@@ -234,26 +261,27 @@ export default function Home() {
             <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
               같이
             </h2>
-            <h2 className="text-6xl sm:text-7xl font-extrabold leading-tight" style={{ color: '#60A5FA' }}>
-              만든 것들
+            <h2 className="text-6xl sm:text-7xl font-extrabold leading-tight mb-4" style={{ color: '#60A5FA' }}>
+              가치 만들어요
             </h2>
+            <p className="text-blue-200/50 text-sm">2013년부터 쌓아온 숫자들</p>
           </div>
 
-          {/* 우측 — 원형 숫자 */}
-          <div className="flex flex-col gap-6 items-center sm:items-start">
+          {/* 우측 — 원형 숫자 (더 크게, 오른쪽으로) */}
+          <div className="flex flex-col gap-5 items-end pr-4">
             {[
-              { num: '47+', label: '함께한 프로젝트', desc: '완료한 프로젝트 수' },
-              { num: '12', label: '공공·기관 협력', desc: '공공기관 협업 경험' },
-              { num: '8', label: '세상에 나온 서비스', desc: 'iOS·Android 출시' },
+              { num: '47+', label: '함께한 프로젝트', desc: '완료된 프로젝트 수' },
+              { num: '12', label: '공공기관 협력', desc: '지자체·공공기관 협업' },
+              { num: '8', label: '세상에 나온 서비스', desc: '올루올루 · 야화 · 세모폰 · 누수체크 외' },
             ].map((item) => (
               <div
                 key={item.num}
-                className="w-44 h-44 rounded-full border-2 flex flex-col items-center justify-center shrink-0"
+                className="w-52 h-52 rounded-full border-2 flex flex-col items-center justify-center shrink-0"
                 style={{ borderColor: '#93C5FD' }}
               >
-                <span className="text-5xl font-black" style={{ color: '#1565C0' }}>{item.num}</span>
-                <span className="text-sm font-semibold mt-1" style={{ color: '#0B2447' }}>{item.label}</span>
-                <span className="text-xs mt-0.5" style={{ color: '#42A5F5' }}>{item.desc}</span>
+                <span className="text-6xl font-black" style={{ color: '#1565C0' }}>{item.num}</span>
+                <span className="text-sm font-bold mt-1 text-center px-4 leading-snug" style={{ color: '#0B2447' }}>{item.label}</span>
+                <span className="text-xs mt-1 text-center px-6 leading-snug" style={{ color: '#42A5F5' }}>{item.desc}</span>
               </div>
             ))}
           </div>
@@ -267,13 +295,11 @@ export default function Home() {
         style={{ scrollSnapAlign: 'start' }}
       >
         <div className="max-w-5xl w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16 items-start">
-          {/* 좌측 타이틀 */}
           <div className="pt-4">
             <h2 className="text-6xl sm:text-7xl font-extrabold" style={{ color: '#0B2447' }}>일의 범주</h2>
             <p className="mt-4 text-sm" style={{ color: '#42A5F5' }}>디랩이 함께하는 네 가지 방식</p>
           </div>
 
-          {/* 우측 서비스 목록 */}
           <div className="flex flex-col divide-y divide-gray-100">
             {[
               { num: '01', name: '디지털 공간 기획', desc: '행사·전시·캠페인의 온라인 거점을 만듭니다', icon: '🎪' },
@@ -285,7 +311,6 @@ export default function Home() {
                 key={item.num}
                 className="py-6 flex gap-5 items-start cursor-default pl-2 transition-all duration-200 hover:border-l-4 hover:border-l-blue-500"
               >
-                {/* 육각형 아이콘 */}
                 <div
                   className="shrink-0 flex items-center justify-center text-lg"
                   style={{
@@ -320,64 +345,24 @@ export default function Home() {
           <h2 className="text-5xl font-extrabold text-gray-900 mt-3 mb-3">
             함께 만든 것들
           </h2>
-          <p className="text-gray-400 mb-12">
-            디랩은 좋은 파트너와 함께할 때 더 큰 일을 합니다.
+          <p className="text-gray-400 mb-10">
+            디랩은 좋은 파트너와 함께할 때 더 큰 일을 합니다. 카드를 눌러 자세히 보세요.
           </p>
 
-          {/* 협업 카드 그리드 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {[
-              {
-                partner: '계발자들',
-                tag: '× Vibers',
-                tagColor: 'bg-green-50 text-green-700',
-                desc: '전문 계발자 협업 서비스를 함께 만들었습니다. AI 활용, 앱 개발 역량을 갖춘 계발자들과 디랩의 기획·실행력이 만났습니다.',
-                output: '협업 플랫폼 · 어드민킷 · 다수 프로젝트',
-                url: 'https://vibers.co.kr',
-                borderColor: 'border-green-200',
-              },
-              {
-                partner: '디어스',
-                tag: '× D.US',
-                tagColor: 'bg-blue-50 text-blue-700',
-                desc: '소상공인을 위한 홈페이지 제작을 쉽게 하는 서비스를 만들었습니다. 에이전시 플랫폼의 기술 구조를 디랩이 함께 설계했습니다.',
-                output: '에이전시 플랫폼 · 템플릿 마켓 · 멀티 테넌시',
-                url: 'https://designd.co.kr',
-                borderColor: 'border-blue-200',
-              },
-              {
-                partner: '팬이지',
-                tag: '× FanEasy',
-                tagColor: 'bg-purple-50 text-purple-700',
-                desc: '인플루언서와 팬을 연결하는 페이지 빌더. 다양한 브랜드 사이트의 기획과 운영에 함께 참여했습니다.',
-                output: '브랜드 사이트 다수 · 올루올루 · 야화 · 비즈온',
-                url: 'https://faneasy.kr',
-                borderColor: 'border-purple-200',
-              },
-              {
-                partner: '새로운 협업',
-                tag: '+ Open',
-                tagColor: 'bg-gray-50 text-gray-500',
-                desc: '세상을 이롭게 하는 목적이 같다면, 어떤 파트너와도 함께합니다. 먼저 이야기해보세요.',
-                output: '기획 · 개발 · 운영 모든 영역',
-                url: null,
-                borderColor: 'border-dashed border-gray-200',
-              },
-            ].map((item, i) => (
-              <div key={i} className={`border ${item.borderColor} rounded-2xl p-6 hover:-translate-y-0.5 transition-transform`}>
-                <div className="flex items-center justify-between mb-3">
+            {COLLAB_CARDS.map((item, i) => (
+              <button
+                key={i}
+                onClick={() => setCollabModal(item)}
+                className={`border ${item.borderColor} rounded-2xl p-6 text-left hover:-translate-y-1 hover:shadow-md transition-all duration-200 cursor-pointer`}
+              >
+                <div className="flex items-center gap-3 mb-3">
                   <span className={`text-xs font-bold px-3 py-1 rounded-full ${item.tagColor}`}>{item.tag}</span>
-                  {item.url && (
-                    <a href={item.url} target="_blank" rel="noopener noreferrer"
-                      className="text-xs text-gray-400 hover:text-blue-500 transition-colors">
-                      방문하기 →
-                    </a>
-                  )}
                 </div>
                 <h3 className="font-bold text-gray-900 text-lg mb-2">{item.partner}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-3">{item.desc}</p>
                 <p className="text-xs text-gray-400 border-t border-gray-100 pt-3">{item.output}</p>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -389,43 +374,36 @@ export default function Home() {
         className="relative flex h-dvh items-center px-10 overflow-hidden"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
       >
-        {/* 블루 블러 장식 */}
         <div
           className="absolute top-[-4rem] left-[-4rem] w-64 h-64 rounded-full pointer-events-none"
           style={{ backgroundColor: 'rgba(21,101,192,0.2)', filter: 'blur(60px)' }}
         />
 
         <div className="relative z-10 max-w-5xl w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16 items-center">
-          {/* 좌측 */}
           <div>
             <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
-              우리의<br />방식
+              우리가<br />일하는<br />방식
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-blue-300/80">
               모든 프로젝트는 이 5단계를<br />거쳐 완성됩니다
             </p>
           </div>
 
-          {/* 우측 타임라인 */}
           <div className="relative flex flex-col gap-7 pl-8 border-l-2" style={{ borderColor: '#1565C0' }}>
             {[
-              { step: '01', title: '발견', desc: '함께 문제를 정의합니다', time: '1~2일' },
-              { step: '02', title: '제안', desc: '방향과 방법을 함께 그립니다', time: '2~3일' },
-              { step: '03', title: '제작', desc: '만들면서 계속 이야기합니다', time: '2~6주' },
-              { step: '04', title: '조율', desc: '피드백을 통해 완성에 가까워집니다', time: '3~5일' },
-              { step: '05', title: '완성', desc: '세상에 내보내고, 계속 돌봅니다', time: '1~2일' },
+              { step: '01', title: '발견', desc: '함께 문제를 정의합니다' },
+              { step: '02', title: '제안', desc: '방향과 방법을 함께 그립니다' },
+              { step: '03', title: '제작', desc: '만들면서 계속 이야기합니다' },
+              { step: '04', title: '조율', desc: '피드백을 통해 완성에 가까워집니다' },
+              { step: '05', title: '완성', desc: '세상에 내보내고, 계속 돌봅니다' },
             ].map((item) => (
               <div key={item.step} className="relative flex items-center gap-5">
-                {/* 타임라인 도트 */}
                 <div className="absolute -left-[2.35rem] w-4 h-4 rounded-full bg-blue-500 border-2 border-blue-300" />
                 <div className="flex items-center gap-3 flex-1">
                   <span className="font-bold text-sm w-6 text-blue-400">{item.step}</span>
-                  <div className="flex-1 flex items-center justify-between">
-                    <div>
-                      <span className="text-white font-semibold">{item.title}</span>
-                      <span className="text-sm ml-3 text-blue-300/80">{item.desc}</span>
-                    </div>
-                    <span className="text-xs text-blue-600">{item.time}</span>
+                  <div>
+                    <span className="text-white font-semibold">{item.title}</span>
+                    <span className="text-sm ml-3 text-blue-300/80">{item.desc}</span>
                   </div>
                 </div>
               </div>
@@ -468,74 +446,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Slide 9: Pricing ── */}
+      {/* ── Slide 9: 협업 절차 ── */}
       <section
         ref={(el) => { sectionRefs.current[8] = el; }}
         className="flex h-dvh items-center px-10"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#F0F6FF' }}
       >
         <div className="max-w-4xl w-full mx-auto">
-          <h2 className="text-5xl sm:text-6xl font-extrabold text-center mb-16" style={{ color: '#0B2447' }}>
+          <span className="text-blue-500 text-sm tracking-widest">HOW WE WORK TOGETHER</span>
+          <h2 className="text-5xl sm:text-6xl font-extrabold mt-3 mb-4" style={{ color: '#0B2447' }}>
             함께하는 방법
           </h2>
+          <p className="text-gray-500 mb-14">가격표보다 대화가 먼저입니다. 프로젝트의 크기와 가격은 함께 만들어갑니다.</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* 플랜 1 */}
-            <div className="bg-white border-2 border-blue-200 p-10 rounded-xl">
-              <p className="text-sm tracking-widest mb-4 text-blue-400">프로젝트로 시작하기</p>
-              <p className="text-5xl font-extrabold mb-1" style={{ color: '#0B2447' }}>500만원~</p>
-              <p className="text-sm mb-8 text-gray-400">한 번의 프로젝트로 디랩을 경험해보세요</p>
-              <ul className="space-y-3 text-sm text-gray-600">
-                {[
-                  '요구사항 분석 및 제안서 제공',
-                  '디자인 + 개발 원스톱',
-                  '런칭 후 1개월 무상 수정',
-                  '소스코드 및 운영 권한 이관',
-                  '관리자 교육 포함',
-                ].map((f) => (
-                  <li key={f} className="flex gap-3">
-                    <span className="font-bold text-blue-500">✓</span>
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => scrollTo(9)}
-                className="mt-8 w-full py-3 rounded-full font-semibold text-sm transition-colors border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
-              >
-                문의하기
-              </button>
-            </div>
+          {/* 플로우 스텝 */}
+          <div className="relative">
+            {/* 연결선 */}
+            <div className="absolute top-8 left-8 right-8 h-0.5 hidden sm:block" style={{ backgroundColor: '#BFDBFE' }} />
 
-            {/* 플랜 2 — 하이라이트 */}
-            <div className="relative p-10 rounded-xl overflow-hidden" style={{ backgroundColor: '#0B2447' }}>
-              <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold text-white bg-blue-500">
-                BEST
-              </div>
-              <p className="text-sm tracking-widest mb-4 text-blue-300">오래 함께하기</p>
-              <p className="text-5xl font-extrabold text-white mb-1">월 200만원~</p>
-              <p className="text-sm mb-8 text-blue-400">매달 함께 성장하는 파트너</p>
-              <ul className="space-y-3 text-sm text-blue-100">
-                {[
-                  '연간 프로젝트 우선 배정',
-                  '월별 유지보수 및 기능 추가',
-                  '긴급 대응 (48시간 이내)',
-                  '연간 전략 미팅 2회',
-                  '신규 서비스 기획 컨설팅',
-                ].map((f) => (
-                  <li key={f} className="flex gap-3">
-                    <span className="text-white font-bold">✓</span>
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => scrollTo(9)}
-                className="mt-8 w-full py-3 bg-blue-500 text-white rounded-full font-semibold text-sm hover:bg-blue-400 transition-colors"
-              >
-                파트너 계약 시작하기
-              </button>
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-6 relative z-10">
+              {[
+                {
+                  num: '01',
+                  title: '협업 문의',
+                  desc: '어떤 일을 함께하고 싶은지 가볍게 이야기해주세요. 형식 없이 편하게.',
+                  icon: '💬',
+                  accent: '#3B82F6',
+                },
+                {
+                  num: '02',
+                  title: '제안',
+                  desc: '방향, 범위, 일정을 정리한 제안서를 드립니다. 가격도 이때 함께.',
+                  icon: '📄',
+                  accent: '#1D4ED8',
+                },
+                {
+                  num: '03',
+                  title: '협업',
+                  desc: '만들면서 계속 이야기합니다. 완성까지 함께 있습니다.',
+                  icon: '🔨',
+                  accent: '#1E40AF',
+                },
+                {
+                  num: '04',
+                  title: '지속 가능한 유지관리',
+                  desc: '런칭 후에도 끝이 아닙니다. 오래 함께하는 파트너십.',
+                  icon: '🌱',
+                  accent: '#0B2447',
+                },
+              ].map((item) => (
+                <div key={item.num} className="flex flex-col items-start sm:items-center sm:text-center">
+                  {/* 아이콘 원 */}
+                  <div
+                    className="w-16 h-16 rounded-full flex items-center justify-center text-2xl mb-4 shrink-0"
+                    style={{ backgroundColor: item.accent }}
+                  >
+                    {item.icon}
+                  </div>
+                  <span className="text-xs font-bold mb-1" style={{ color: item.accent }}>{item.num}</span>
+                  <h3 className="font-extrabold text-base mb-2" style={{ color: '#0B2447' }}>{item.title}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
             </div>
+          </div>
+
+          <div className="mt-14 text-center">
+            <button
+              onClick={() => scrollTo(9)}
+              className="px-10 py-4 bg-[#0B2447] text-white font-bold text-sm rounded-full hover:bg-[#1565C0] transition-colors"
+            >
+              같이 가치 만들어요 →
+            </button>
           </div>
         </div>
       </section>
@@ -547,13 +529,10 @@ export default function Home() {
         className="relative flex flex-col h-dvh overflow-hidden"
         style={{ scrollSnapAlign: 'start', background: 'linear-gradient(135deg, #051226 0%, #0B2447 50%, #1565C0 100%)' }}
       >
-        {/* 도트 그리드 */}
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
           backgroundImage: 'radial-gradient(circle, #60A5FA 1px, transparent 1px)',
           backgroundSize: '32px 32px'
         }} />
-
-        {/* 우하단 원형 장식 */}
         <div className="absolute bottom-[-8rem] right-[-8rem] w-96 h-96 rounded-full border border-white/10 pointer-events-none" />
         <div className="absolute bottom-[-5rem] right-[-5rem] w-64 h-64 rounded-full border border-white/[0.07] pointer-events-none" />
 
@@ -578,7 +557,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Footer */}
         <footer className="relative z-10 border-t border-white/10 py-6 px-10 flex flex-col sm:flex-row justify-between items-center gap-2">
           <span className="text-sm font-extrabold text-white/40" style={{ letterSpacing: '-0.02em' }}>
             <span className="text-blue-400/60">:</span>DLAB · 계발자들 협력사
@@ -587,6 +565,48 @@ export default function Home() {
           <span className="text-sm text-white/20">© {new Date().getFullYear()} 디랩. All rights reserved.</span>
         </footer>
       </section>
+
+      {/* ── 협업 카드 모달 ── */}
+      {collabModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          onClick={(e) => { if (e.target === e.currentTarget) setCollabModal(null); }}
+        >
+          <div className="bg-white rounded-2xl p-8 w-full max-w-lg mx-4 relative">
+            <button
+              onClick={() => setCollabModal(null)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl leading-none"
+            >×</button>
+
+            <span className={`text-xs font-bold px-3 py-1 rounded-full ${collabModal.tagColor} mb-4 inline-block`}>
+              {collabModal.tag}
+            </span>
+            <h3 className="text-2xl font-extrabold text-gray-900 mb-4">{collabModal.partner}</h3>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6">{collabModal.detail}</p>
+
+            <div className="border-t border-gray-100 pt-5">
+              <p className="text-xs font-bold text-gray-400 mb-3 tracking-widest">함께한 것들</p>
+              <ul className="space-y-2">
+                {collabModal.highlights.map((h) => (
+                  <li key={h} className="flex items-center gap-2 text-sm text-gray-700">
+                    <span className="text-blue-500 font-bold">→</span>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {collabModal.isOpen && (
+              <button
+                onClick={() => { setCollabModal(null); setShowModal(true); }}
+                className="mt-6 w-full py-3 bg-[#0B2447] text-white font-bold rounded-xl text-sm hover:bg-[#1565C0] transition-colors"
+              >
+                함께 이야기하기
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* ── 문의 모달 ── */}
       {showModal && (
