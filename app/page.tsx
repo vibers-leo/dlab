@@ -60,6 +60,7 @@ const COLLAB_CARDS = [
 export default function Home() {
   const [current, setCurrent] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [showCollabModal, setShowCollabModal] = useState(false);
   const [selectedCollabIdx, setSelectedCollabIdx] = useState(0);
   const [showStackModal, setShowStackModal] = useState(false);
@@ -621,12 +622,6 @@ export default function Home() {
             >
               이야기 시작하기
             </button>
-            <a
-              href="mailto:hello@designdlab.co.kr"
-              className="px-8 py-4 border border-white/30 text-white font-semibold text-sm rounded-full hover:bg-white/10 transition-colors"
-            >
-              메일 보내기
-            </a>
           </div>
         </div>
 
@@ -801,12 +796,24 @@ export default function Home() {
             <p className="text-gray-400 text-sm mb-6">디랩 팀이 직접 답변드립니다.</p>
 
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
-                const form = e.currentTarget;
-                const data = new FormData(form);
-                window.open(`mailto:hello@designdlab.co.kr?subject=[협업 문의] ${data.get('name')}&body=${data.get('message')}`, '_blank');
-                setShowModal(false);
+                const data = new FormData(e.currentTarget);
+                setFormStatus('sending');
+                try {
+                  const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      name: data.get('name'),
+                      contact: data.get('contact'),
+                      message: data.get('message'),
+                    }),
+                  });
+                  setFormStatus(res.ok ? 'done' : 'error');
+                } catch {
+                  setFormStatus('error');
+                }
               }}
               className="space-y-4"
             >
@@ -825,18 +832,21 @@ export default function Home() {
                 <textarea name="message" required rows={4} placeholder="프로젝트나 아이디어를 간단히 알려주세요."
                   className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none" />
               </div>
-              <button type="submit"
-                className="w-full bg-[#0B2447] text-white font-bold py-3.5 rounded-xl hover:bg-[#1565C0] transition-colors text-sm">
-                메일로 보내기
+              <button
+                type="submit"
+                disabled={formStatus === 'sending' || formStatus === 'done'}
+                className="w-full bg-[#0B2447] text-white font-bold py-3.5 hover:bg-[#1565C0] transition-colors text-sm disabled:opacity-50"
+              >
+                {formStatus === 'sending' ? '전송 중...' : formStatus === 'done' ? '문의가 전달되었습니다 ✓' : '문의 남기기'}
               </button>
             </form>
 
-            <div className="mt-4 text-center">
-              <a href="https://open.kakao.com" target="_blank" rel="noopener noreferrer"
-                className="text-xs text-gray-400 hover:text-yellow-600 transition-colors">
-                카카오로 바로 연락하기 →
-              </a>
-            </div>
+            {formStatus === 'error' && (
+              <p className="mt-3 text-center text-xs text-red-400">전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</p>
+            )}
+            {formStatus === 'done' && (
+              <p className="mt-3 text-center text-xs text-blue-400">빠른 시일 내에 연락드리겠습니다.</p>
+            )}
           </div>
         </div>
       )}
