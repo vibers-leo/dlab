@@ -80,16 +80,16 @@ export default function Home() {
         {/* 중앙 콘텐츠 */}
         <div className="flex-1 flex flex-col items-center justify-center px-6 text-center relative z-10">
           <span className="border border-blue-400/50 text-blue-100 px-4 py-1 rounded-full text-sm tracking-widest mb-6">
-            소셜벤처 · Social Venture
+            "세상과 연결되는 방법을 연구합니다"
           </span>
           <h1 className="text-7xl sm:text-8xl font-extrabold text-white leading-tight mb-2">
             세상을 이롭게,
           </h1>
           <h2 className="text-7xl sm:text-8xl font-extrabold leading-tight mb-8" style={{ color: '#60A5FA' }}>
-            디랩이 만듭니다.
+            함께 만듭니다.
           </h2>
           <p className="text-blue-200/70 text-lg mb-12">
-            축제 · 전시 · 제안서 · 앱
+            기획 · 연구 · 구현 · 협력 — 가치 있는 것들을 끝까지
           </p>
           <div className="flex gap-4">
             <a
@@ -97,7 +97,7 @@ export default function Home() {
               onClick={(e) => { e.preventDefault(); scrollTo(6); }}
               className="px-8 py-3.5 bg-blue-500 text-white font-semibold rounded-full text-sm tracking-wide hover:bg-blue-400 transition-colors"
             >
-              프로젝트 상담하기
+              함께 시작하기
             </a>
             <button
               onClick={() => scrollTo(3)}
@@ -133,15 +133,15 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl w-full">
           <h2 className="text-5xl sm:text-6xl font-extrabold text-white mb-16">
-            디랩은 무엇을 하나요?
+            디랩이 믿는 것들
           </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
             {[
-              { title: '이벤트·축제', desc: '지자체·기업 행사의 공식 디지털 창구를 제작합니다', dot: 'bg-blue-500' },
-              { title: '입찰·제안서', desc: '경쟁 입찰에서 차별화되는 웹 제안서를 만듭니다', dot: 'bg-blue-400' },
-              { title: '전시·갤러리', desc: '오프라인 전시를 온라인으로 확장합니다', dot: 'bg-sky-400' },
-              { title: '앱·웹 개발', desc: '기획부터 출시까지 한 팀이 책임집니다', dot: 'bg-cyan-400' },
+              { title: '기획 (Planning)', desc: '아이디어에 구조를 만드는 일', dot: 'bg-blue-500' },
+              { title: '설득 (Persuasion)', desc: '가치를 언어와 형태로 전달하는 일', dot: 'bg-blue-400' },
+              { title: '연결 (Connection)', desc: '사람과 사람, 공간과 이야기를 잇는 일', dot: 'bg-sky-400' },
+              { title: '구현 (Making)', desc: '상상을 현실로 옮기는 일', dot: 'bg-cyan-400' },
             ].map((item) => (
               <div key={item.title}>
                 <div className={`w-10 h-10 rounded-full ${item.dot} mb-4`} />
@@ -152,7 +152,7 @@ export default function Home() {
           </div>
 
           <p className="mt-16 text-blue-300/50 text-sm tracking-widest">
-            사회적 가치를 담은 프로젝트를 기획하고 만듭니다.
+            좋은 아이디어는 혼자 완성되지 않습니다.
           </p>
         </div>
       </section>
@@ -177,19 +177,19 @@ export default function Home() {
           {/* 좌측 */}
           <div>
             <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
-              실행으로
+              같이
             </h2>
             <h2 className="text-6xl sm:text-7xl font-extrabold leading-tight" style={{ color: '#60A5FA' }}>
-              증명합니다
+              만든 것들
             </h2>
           </div>
 
           {/* 우측 — 원형 숫자 */}
           <div className="flex flex-col gap-6 items-center sm:items-start">
             {[
-              { num: '47+', label: 'Projects', desc: '완료한 프로젝트 수' },
-              { num: '12', label: '지자체·기관', desc: '공공기관 협업 경험' },
-              { num: '8', label: '앱 런칭', desc: 'iOS·Android 출시' },
+              { num: '47+', label: '함께한 프로젝트', desc: '완료한 프로젝트 수' },
+              { num: '12', label: '공공·기관 협력', desc: '공공기관 협업 경험' },
+              { num: '8', label: '세상에 나온 서비스', desc: 'iOS·Android 출시' },
             ].map((item) => (
               <div
                 key={item.num}
@@ -214,17 +214,17 @@ export default function Home() {
         <div className="max-w-5xl w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16 items-start">
           {/* 좌측 타이틀 */}
           <div className="pt-4">
-            <h2 className="text-6xl sm:text-7xl font-extrabold" style={{ color: '#0B2447' }}>Services</h2>
-            <p className="mt-4 text-sm" style={{ color: '#42A5F5' }}>디랩이 제공하는 4가지 핵심 서비스</p>
+            <h2 className="text-6xl sm:text-7xl font-extrabold" style={{ color: '#0B2447' }}>일의 범주</h2>
+            <p className="mt-4 text-sm" style={{ color: '#42A5F5' }}>디랩이 함께하는 네 가지 방식</p>
           </div>
 
           {/* 우측 서비스 목록 */}
           <div className="flex flex-col divide-y divide-gray-100">
             {[
-              { num: '01', name: '이벤트·축제 홈페이지', desc: '참가 신청, 일정, 지도까지 — 2~4주 내 런칭', icon: '🎪' },
-              { num: '02', name: '입찰 제안서 웹화', desc: '열람 통계, 모바일 최적화로 심사위원 임팩트 극대화', icon: '📋' },
-              { num: '03', name: '전시·갤러리 디지털화', desc: '작품 아카이브, 도슨트 연동, 디지털 팸플릿', icon: '🖼️' },
-              { num: '04', name: '앱·웹 서비스 개발', desc: 'iOS/Android/웹 풀스택, 스토어 출시까지 책임', icon: '📱' },
+              { num: '01', name: '디지털 공간 기획', desc: '행사·전시·캠페인의 온라인 거점을 만듭니다', icon: '🎪' },
+              { num: '02', name: '설득하는 콘텐츠', desc: '제안서, 브랜드 스토리, 발표 자료를 웹으로', icon: '📋' },
+              { num: '03', name: '서비스 개발', desc: '앱과 웹, 처음부터 끝까지 함께 만듭니다', icon: '📱' },
+              { num: '04', name: '지속 가능한 운영', desc: '만들고 끝이 아닌, 오래 함께하는 파트너십', icon: '🤝' },
             ].map((item) => (
               <div
                 key={item.num}
@@ -280,11 +280,11 @@ export default function Home() {
           {/* 우측 타임라인 */}
           <div className="relative flex flex-col gap-7 pl-8 border-l-2" style={{ borderColor: '#1565C0' }}>
             {[
-              { step: '01', title: '발굴', desc: '프로젝트 목표와 제약 파악', time: '1~2일' },
-              { step: '02', title: '제안', desc: '범위·일정·비용 제안서 전달', time: '2~3일' },
-              { step: '03', title: '제작', desc: '디자인·개발 병렬 진행', time: '2~6주' },
-              { step: '04', title: '검수', desc: '클라이언트 피드백 반영', time: '3~5일' },
-              { step: '05', title: '완성', desc: '배포·이관·운영 교육', time: '1~2일' },
+              { step: '01', title: '발견', desc: '함께 문제를 정의합니다', time: '1~2일' },
+              { step: '02', title: '제안', desc: '방향과 방법을 함께 그립니다', time: '2~3일' },
+              { step: '03', title: '제작', desc: '만들면서 계속 이야기합니다', time: '2~6주' },
+              { step: '04', title: '조율', desc: '피드백을 통해 완성에 가까워집니다', time: '3~5일' },
+              { step: '05', title: '완성', desc: '세상에 내보내고, 계속 돌봅니다', time: '1~2일' },
             ].map((item) => (
               <div key={item.step} className="relative flex items-center gap-5">
                 {/* 타임라인 도트 */}
@@ -319,9 +319,9 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* 플랜 1 */}
             <div className="bg-white border-2 border-blue-200 p-10 rounded-xl">
-              <p className="text-sm tracking-widest mb-4 text-blue-400">프로젝트 의뢰</p>
+              <p className="text-sm tracking-widest mb-4 text-blue-400">프로젝트로 시작하기</p>
               <p className="text-5xl font-extrabold mb-1" style={{ color: '#0B2447' }}>500만원~</p>
-              <p className="text-sm mb-8 text-gray-400">프로젝트 단위</p>
+              <p className="text-sm mb-8 text-gray-400">한 번의 프로젝트로 디랩을 경험해보세요</p>
               <ul className="space-y-3 text-sm text-gray-600">
                 {[
                   '요구사항 분석 및 제안서 제공',
@@ -349,9 +349,9 @@ export default function Home() {
               <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold text-white bg-blue-500">
                 BEST
               </div>
-              <p className="text-sm tracking-widest mb-4 text-blue-300">연간 파트너</p>
+              <p className="text-sm tracking-widest mb-4 text-blue-300">오래 함께하기</p>
               <p className="text-5xl font-extrabold text-white mb-1">월 200만원~</p>
-              <p className="text-sm mb-8 text-blue-400">12개월 단위</p>
+              <p className="text-sm mb-8 text-blue-400">매달 함께 성장하는 파트너</p>
               <ul className="space-y-3 text-sm text-blue-100">
                 {[
                   '연간 프로젝트 우선 배정',
@@ -395,22 +395,22 @@ export default function Home() {
         <div className="absolute bottom-[-5rem] right-[-5rem] w-64 h-64 rounded-full border border-white/[0.07] pointer-events-none" />
 
         <div className="flex-1 flex flex-col items-center justify-center px-6 text-center relative z-10">
-          <h2 className="text-6xl sm:text-7xl md:text-8xl font-extrabold text-white mb-8 leading-tight">
+          <h2 className="text-6xl sm:text-7xl md:text-8xl font-extrabold text-white mb-4 leading-tight">
             같이 만들어요.
           </h2>
-          <p className="text-lg mb-10 text-blue-300">hello@designdlab.co.kr</p>
+          <p className="text-lg mb-10 text-blue-300/80">좋은 아이디어가 있다면, 그것으로 충분합니다.</p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="https://open.kakao.com/o/dlab"
               className="px-8 py-4 bg-blue-500 text-white font-bold text-sm tracking-wide rounded-full hover:bg-blue-400 transition-colors"
             >
-              카카오로 상담하기
+              이야기 시작하기
             </a>
             <a
               href="mailto:hello@designdlab.co.kr"
               className="px-8 py-4 border border-white/30 text-white font-semibold text-sm rounded-full hover:bg-white/10 transition-colors"
             >
-              이메일 문의
+              메일 보내기
             </a>
           </div>
         </div>
@@ -420,6 +420,7 @@ export default function Home() {
           <span className="text-sm font-extrabold text-white/40" style={{ letterSpacing: '-0.02em' }}>
             <span className="text-blue-400/60">:</span>DLAB · 계발자들 협력사
           </span>
+          <span className="text-sm text-blue-300/40">디랩은 혼자 만들지 않습니다.</span>
           <span className="text-sm text-white/20">© {new Date().getFullYear()} 디랩. All rights reserved.</span>
         </footer>
       </section>
