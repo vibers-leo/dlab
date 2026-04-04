@@ -622,7 +622,7 @@ export default function Home() {
                 </div>
                 <button
                   onClick={() => setShowCollabModal(false)}
-                  className="text-gray-300 hover:text-gray-600 text-xl leading-none mt-1 transition-colors"
+                  className="text-gray-300 hover:text-gray-600 text-3xl leading-none transition-colors shrink-0"
                 >
                   ✕
                 </button>
@@ -667,7 +667,7 @@ export default function Home() {
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 backdrop-blur-sm"
           onClick={(e) => { if (e.target === e.currentTarget) setShowStackModal(false); }}
         >
-          <div className="bg-white w-full max-w-3xl mx-4 overflow-hidden" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
+          <div className="bg-white w-full max-w-5xl mx-4 overflow-hidden" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
             {/* 헤더 */}
             <div className="flex items-start justify-between px-10 py-7 border-b border-gray-100" style={{ backgroundColor: '#0B2447' }}>
               <div>
@@ -677,7 +677,7 @@ export default function Home() {
               </div>
               <button
                 onClick={() => setShowStackModal(false)}
-                className="text-blue-300/60 hover:text-white text-xl leading-none mt-1 transition-colors"
+                className="text-blue-300/60 hover:text-white text-3xl leading-none transition-colors shrink-0"
               >✕</button>
             </div>
 
