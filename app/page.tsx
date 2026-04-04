@@ -62,6 +62,7 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [showCollabModal, setShowCollabModal] = useState(false);
   const [selectedCollabIdx, setSelectedCollabIdx] = useState(0);
+  const [showStackModal, setShowStackModal] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -305,7 +306,7 @@ export default function Home() {
             {[
               { num: '01', name: '디지털 공간 기획', desc: '행사·전시·캠페인의 온라인 거점을 만듭니다', icon: '🎪' },
               { num: '02', name: '설득하는 콘텐츠', desc: '제안서, 브랜드 스토리, 발표 자료를 웹으로', icon: '📋' },
-              { num: '03', name: '서비스 개발', desc: '앱과 웹, 처음부터 끝까지 함께 만듭니다', icon: '📱' },
+              { num: '03', name: '서비스 개발', desc: '앱과 웹, 처음부터 끝까지 함께 만듭니다', icon: '📱', stack: true },
               { num: '04', name: '지속 가능한 운영', desc: '만들고 끝이 아닌, 오래 함께하는 파트너십', icon: '🤝' },
             ].map((item) => (
               <div
@@ -326,6 +327,14 @@ export default function Home() {
                   <div className="flex items-center gap-3">
                     <span className="font-bold text-sm text-blue-400">{item.num}</span>
                     <h3 className="font-bold text-lg" style={{ color: '#0B2447' }}>{item.name}</h3>
+                    {'stack' in item && (
+                      <button
+                        onClick={() => setShowStackModal(true)}
+                        className="text-xs text-blue-400 border border-blue-200 px-2 py-0.5 hover:bg-blue-50 transition-colors"
+                      >
+                        기술 스택 보기
+                      </button>
+                    )}
                   </div>
                   <p className="text-gray-500 text-sm mt-1">{item.desc}</p>
                 </div>
@@ -647,6 +656,103 @@ export default function Home() {
                   </button>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 기술 스택 모달 ── */}
+      {showStackModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 backdrop-blur-sm"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowStackModal(false); }}
+        >
+          <div className="bg-white w-full max-w-3xl mx-4 overflow-hidden" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
+            {/* 헤더 */}
+            <div className="flex items-start justify-between px-10 py-7 border-b border-gray-100" style={{ backgroundColor: '#0B2447' }}>
+              <div>
+                <p className="text-xs font-bold tracking-widest text-blue-300 mb-2">TECH STACK</p>
+                <h3 className="text-2xl font-extrabold text-white">왜 Next.js와 Rails인가?</h3>
+                <p className="text-blue-300/70 text-sm mt-1">디랩이 이 두 기술을 함께 쓰는 이유</p>
+              </div>
+              <button
+                onClick={() => setShowStackModal(false)}
+                className="text-blue-300/60 hover:text-white text-xl leading-none mt-1 transition-colors"
+              >✕</button>
+            </div>
+
+            {/* 본문 */}
+            <div className="px-10 py-8">
+              {/* 한 줄 요약 */}
+              <div className="border-l-4 border-blue-500 pl-5 mb-10">
+                <p className="text-gray-700 leading-relaxed">
+                  <strong className="text-gray-900">Next.js는 사용자가 보는 앞단</strong>을, <strong className="text-gray-900">Rails는 복잡한 뒷단 로직</strong>을 담당합니다.
+                  두 가지를 함께 쓰는 이유는 단순합니다 — 각자 가장 잘하는 일을 맡기기 위해서입니다.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
+                {/* Next.js */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 bg-black flex items-center justify-center shrink-0">
+                      <span className="text-white text-xs font-black">N</span>
+                    </div>
+                    <h4 className="font-extrabold text-gray-900">Next.js</h4>
+                    <span className="text-xs text-gray-400">프론트엔드</span>
+                  </div>
+                  <ul className="space-y-3 text-sm text-gray-600">
+                    {[
+                      { label: '빠른 첫 화면', desc: '서버에서 미리 만들어서 보내주기 때문에 느린 인터넷에서도 빠르게 뜹니다.' },
+                      { label: '검색 노출에 유리', desc: 'Google, 네이버가 페이지 내용을 바로 읽을 수 있어 SEO에 강합니다.' },
+                      { label: 'Vercel 배포 1분', desc: '코드를 올리면 자동으로 전 세계에 배포됩니다. 서버 관리가 없습니다.' },
+                      { label: '리액트 기반', desc: '컴포넌트 재사용이 가능해서 여러 프로젝트에 걸쳐 개발 속도가 빠릅니다.' },
+                    ].map((i) => (
+                      <li key={i.label} className="flex gap-2">
+                        <span className="text-blue-500 shrink-0 mt-0.5">→</span>
+                        <span><strong className="text-gray-800">{i.label}.</strong> {i.desc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Rails */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 flex items-center justify-center shrink-0" style={{ backgroundColor: '#CC0000' }}>
+                      <span className="text-white text-xs font-black">R</span>
+                    </div>
+                    <h4 className="font-extrabold text-gray-900">Ruby on Rails</h4>
+                    <span className="text-xs text-gray-400">백엔드</span>
+                  </div>
+                  <ul className="space-y-3 text-sm text-gray-600">
+                    {[
+                      { label: '빠른 기능 구현', desc: '회원가입, 결제, 관리자 페이지 같은 복잡한 기능을 아주 빠르게 만들 수 있습니다.' },
+                      { label: '검증된 구조', desc: '20년 이상 다듬어진 규칙이 있어서 어디에 무엇을 쓸지 고민할 시간이 줄어듭니다.' },
+                      { label: '복잡한 데이터 처리', desc: '여러 테이블이 얽힌 복잡한 비즈니스 로직을 깔끔하게 다룹니다.' },
+                      { label: '에이전시 운영에 최적', desc: '디어스처럼 여러 고객사를 한 서버에서 운영하는 멀티 테넌시 구조에 강합니다.' },
+                    ].map((i) => (
+                      <li key={i.label} className="flex gap-2">
+                        <span className="shrink-0 mt-0.5" style={{ color: '#CC0000' }}>→</span>
+                        <span><strong className="text-gray-800">{i.label}.</strong> {i.desc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* 조합 이유 */}
+              <div className="border-t border-gray-100 pt-8">
+                <p className="text-xs font-bold tracking-widest text-gray-300 mb-4">함께 쓰는 이유</p>
+                <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                  랜딩 페이지나 홍보 사이트는 <strong className="text-gray-900">Next.js</strong>로 빠르게 배포하고,
+                  회원·결제·관리자처럼 복잡한 로직이 필요한 서비스는 <strong className="text-gray-900">Rails</strong>가 담당합니다.
+                  프로젝트의 성격과 규모에 따라 둘 중 하나만 쓰기도 하고, 함께 쓰기도 합니다.
+                </p>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  결국 기술 선택의 기준은 하나입니다 — <strong className="text-gray-900">만들어야 할 것에 가장 맞는 도구를 고른다.</strong>
+                </p>
+              </div>
             </div>
           </div>
         </div>
