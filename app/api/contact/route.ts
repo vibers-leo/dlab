@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import pool from '@/lib/db';
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,6 +10,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: '필수 항목을 입력해주세요.' }, { status: 400 });
     }
 
+    // DB 저장
+    await pool.query(
+      'INSERT INTO dlab.inquiries (name, contact, message) VALUES ($1, $2, $3)',
+      [name, contact || null, message]
+    );
+
+    // 이메일 발송
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -40,7 +48,7 @@ export async function POST(req: NextRequest) {
               </tr>
             </table>
             <div style="margin-top: 24px;">
-              <p style="color: #6b7280; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">문의 내용</p>
+              <p style="color: #6b7280; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 10px;">문의 내용</p>
               <div style="background: #f9fafb; padding: 18px; color: #374151; font-size: 14px; line-height: 1.7; white-space: pre-wrap;">${message}</div>
             </div>
           </div>
@@ -53,7 +61,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (e) {
-    console.error('Contact email error:', e);
-    return NextResponse.json({ error: '발송 중 오류가 발생했습니다.' }, { status: 500 });
+    console.error('Contact error:', e);
+    return NextResponse.json({ error: '오류가 발생했습니다.' }, { status: 500 });
   }
 }
