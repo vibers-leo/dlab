@@ -395,8 +395,8 @@ export default function Home() {
               { step: '01', title: '발견', desc: '함께 문제를 정의합니다' },
               { step: '02', title: '제안', desc: '방향과 방법을 함께 그립니다' },
               { step: '03', title: '제작', desc: '만들면서 계속 이야기합니다' },
-              { step: '04', title: '조율', desc: '피드백을 통해 완성에 가까워집니다' },
-              { step: '05', title: '완성', desc: '세상에 내보내고, 계속 돌봅니다' },
+              { step: '04', title: '완성', desc: '세상에 내보냅니다' },
+              { step: '05', title: '이어가기', desc: '끝이 아닌 시작 — 계속 함께 만들어갑니다' },
             ].map((item) => (
               <div key={item.step} className="relative flex items-center gap-5">
                 <div className="absolute -left-[2.35rem] w-4 h-4 rounded-full bg-blue-500 border-2 border-blue-300" />
