@@ -10,11 +10,11 @@ export default function Home() {
         <div className="relative z-10 max-w-4xl w-full text-center">
           {/* 뱃지 */}
           <span className="inline-block mb-6 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-violet-200 text-sm font-semibold tracking-wide">
-            축제 · 입찰 · 앱 · 웹 개발 에이전시
+            소셜벤처 · 세상을 이롭게하는 프로젝트를 연구합니다
           </span>
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight mb-6">
-            기획하고, 만들고,<br />완성합니다
+            세상을 이롭게,<br />디랩이 만듭니다
           </h1>
           <p className="text-xl sm:text-2xl text-violet-200 mb-10 max-w-2xl mx-auto leading-relaxed">
             축제·전시·제안·앱 — 디랩은 아이디어가<br />
