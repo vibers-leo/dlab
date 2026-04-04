@@ -140,17 +140,14 @@ export default function Home() {
         </div>
 
         <div className="flex-1 flex flex-col items-center justify-center px-6 text-center relative z-10">
-          <span className="border border-blue-400/50 text-blue-100 px-4 py-1 rounded-full text-sm tracking-widest mb-6">
-            "세상과 연결되는 방법을 연구합니다"
-          </span>
           <h1 className="text-7xl sm:text-8xl font-extrabold text-white leading-tight mb-2">
-            세상을 이롭게,
+            이로운 일을 더 이롭게,
           </h1>
           <h2 className="text-7xl sm:text-8xl font-extrabold leading-tight mb-8" style={{ color: '#60A5FA' }}>
-            함께 만듭니다.
+            같이 가치 만들어요.
           </h2>
           <p className="text-blue-200/70 text-lg mb-12">
-            기획 · 연구 · 구현 · 협력 — 가치 있는 것들을 끝까지
+            기획 · 연출 · 구현 · 협력 — 가치 있는 것들을 끝까지
           </p>
           <div className="flex gap-4">
             <a
@@ -272,10 +269,10 @@ export default function Home() {
           {/* 좌측 */}
           <div>
             <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
-              같이
+              같이 만든
             </h2>
             <h2 className="text-6xl sm:text-7xl font-extrabold leading-tight mb-4" style={{ color: '#60A5FA' }}>
-              가치 만들어요
+              것들
             </h2>
             <p className="text-blue-200/50 text-sm">2013년부터 쌓아온 숫자들</p>
           </div>
@@ -582,7 +579,7 @@ export default function Home() {
           <span className="text-sm font-extrabold text-white/40" style={{ letterSpacing: '-0.02em' }}>
             <span className="text-blue-400/60">:</span>DLAB · 계발자들 협력사
           </span>
-          <span className="text-sm text-blue-300/40">디랩은 혼자 만들지 않습니다.</span>
+          <span className="text-sm text-blue-300/40">이로운 일을 더 이롭게, 같이 가치 만들어요.</span>
           <span className="text-sm text-white/20">© {new Date().getFullYear()} 디랩. All rights reserved.</span>
         </footer>
       </section>
