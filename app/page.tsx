@@ -60,7 +60,8 @@ const COLLAB_CARDS = [
 export default function Home() {
   const [current, setCurrent] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [collabModal, setCollabModal] = useState<typeof COLLAB_CARDS[0] | null>(null);
+  const [showCollabModal, setShowCollabModal] = useState(false);
+  const [selectedCollabIdx, setSelectedCollabIdx] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -353,8 +354,8 @@ export default function Home() {
             {COLLAB_CARDS.map((item, i) => (
               <button
                 key={i}
-                onClick={() => setCollabModal(item)}
-                className={`border ${item.borderColor} rounded-2xl p-6 text-left hover:-translate-y-1 hover:shadow-md transition-all duration-200 cursor-pointer`}
+                onClick={() => { setSelectedCollabIdx(i); setShowCollabModal(true); }}
+                className={`border ${item.borderColor} rounded p-6 text-left hover:-translate-y-1 hover:shadow-md transition-all duration-200 cursor-pointer`}
               >
                 <div className="flex items-center gap-3 mb-3">
                   <span className={`text-xs font-bold px-3 py-1 rounded-full ${item.tagColor}`}>{item.tag}</span>
@@ -566,44 +567,87 @@ export default function Home() {
         </footer>
       </section>
 
-      {/* ── 협업 카드 모달 ── */}
-      {collabModal && (
+      {/* ── 협업 카드 모달 (2열 마스터-디테일) ── */}
+      {showCollabModal && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm"
-          onClick={(e) => { if (e.target === e.currentTarget) setCollabModal(null); }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 backdrop-blur-sm"
+          onClick={(e) => { if (e.target === e.currentTarget) setShowCollabModal(false); }}
         >
-          <div className="bg-white rounded-2xl p-8 w-full max-w-lg mx-4 relative">
-            <button
-              onClick={() => setCollabModal(null)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl leading-none"
-            >×</button>
-
-            <span className={`text-xs font-bold px-3 py-1 rounded-full ${collabModal.tagColor} mb-4 inline-block`}>
-              {collabModal.tag}
-            </span>
-            <h3 className="text-2xl font-extrabold text-gray-900 mb-4">{collabModal.partner}</h3>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">{collabModal.detail}</p>
-
-            <div className="border-t border-gray-100 pt-5">
-              <p className="text-xs font-bold text-gray-400 mb-3 tracking-widest">함께한 것들</p>
-              <ul className="space-y-2">
-                {collabModal.highlights.map((h) => (
-                  <li key={h} className="flex items-center gap-2 text-sm text-gray-700">
-                    <span className="text-blue-500 font-bold">→</span>
-                    {h}
-                  </li>
-                ))}
-              </ul>
+          <div className="bg-white w-full max-w-4xl mx-4 flex overflow-hidden" style={{ height: '560px' }}>
+            {/* 좌측 목록 */}
+            <div className="w-56 shrink-0 border-r border-gray-100 flex flex-col">
+              <div className="px-6 py-5 border-b border-gray-100">
+                <p className="text-xs font-bold tracking-widest text-gray-400">COLLABORATION</p>
+              </div>
+              {COLLAB_CARDS.map((item, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSelectedCollabIdx(i)}
+                  className={`px-6 py-4 text-left border-b border-gray-50 transition-colors ${
+                    selectedCollabIdx === i
+                      ? 'bg-[#0B2447] text-white'
+                      : 'hover:bg-gray-50 text-gray-700'
+                  }`}
+                >
+                  <p className={`text-xs font-bold mb-0.5 ${selectedCollabIdx === i ? 'text-blue-300' : 'text-gray-400'}`}>
+                    {item.tag}
+                  </p>
+                  <p className={`text-sm font-semibold ${selectedCollabIdx === i ? 'text-white' : 'text-gray-800'}`}>
+                    {item.partner}
+                  </p>
+                </button>
+              ))}
             </div>
 
-            {collabModal.isOpen && (
-              <button
-                onClick={() => { setCollabModal(null); setShowModal(true); }}
-                className="mt-6 w-full py-3 bg-[#0B2447] text-white font-bold rounded-xl text-sm hover:bg-[#1565C0] transition-colors"
-              >
-                함께 이야기하기
-              </button>
-            )}
+            {/* 우측 상세 */}
+            <div className="flex-1 flex flex-col overflow-y-auto">
+              {/* 상단 헤더 */}
+              <div className="flex items-start justify-between px-10 py-7 border-b border-gray-100">
+                <div>
+                  <span className={`text-xs font-bold px-2 py-0.5 ${COLLAB_CARDS[selectedCollabIdx].tagColor}`}>
+                    {COLLAB_CARDS[selectedCollabIdx].tag}
+                  </span>
+                  <h3 className="text-2xl font-extrabold text-gray-900 mt-2">
+                    {COLLAB_CARDS[selectedCollabIdx].partner}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setShowCollabModal(false)}
+                  className="text-gray-300 hover:text-gray-600 text-xl leading-none mt-1 transition-colors"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* 본문 */}
+              <div className="px-10 py-8 flex-1">
+                <p className="text-gray-600 text-sm leading-relaxed mb-8">
+                  {COLLAB_CARDS[selectedCollabIdx].detail}
+                </p>
+
+                <p className="text-xs font-bold text-gray-300 tracking-widest mb-4">함께한 것들</p>
+                <ul className="space-y-3">
+                  {COLLAB_CARDS[selectedCollabIdx].highlights.map((h) => (
+                    <li key={h} className="flex items-center gap-3 text-sm text-gray-700">
+                      <span className="w-1 h-1 rounded-full bg-blue-500 shrink-0" />
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* 하단 */}
+              {COLLAB_CARDS[selectedCollabIdx].isOpen && (
+                <div className="px-10 py-6 border-t border-gray-100">
+                  <button
+                    onClick={() => { setShowCollabModal(false); setShowModal(true); }}
+                    className="px-6 py-2.5 bg-[#0B2447] text-white font-bold text-sm hover:bg-[#1565C0] transition-colors"
+                  >
+                    함께 이야기하기 →
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
