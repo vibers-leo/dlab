@@ -324,21 +324,20 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl w-full mx-auto px-10 grid grid-cols-1 sm:grid-cols-2 gap-16 items-center">
           {/* 좌측 */}
           <div>
+            <h2 className="text-6xl sm:text-7xl font-extrabold leading-tight" style={{ color: '#60A5FA' }}>
+              가치,
+            </h2>
             <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
-              같이 만든
+              같이 만든 것들
             </h2>
-            <h2 className="text-6xl sm:text-7xl font-extrabold leading-tight mb-4" style={{ color: '#60A5FA' }}>
-              것들
-            </h2>
-            <p className="text-blue-200/50 text-sm">2013년부터 쌓아온 숫자들</p>
           </div>
 
           {/* 우측 — 원형 숫자 (더 크게, 오른쪽으로) */}
           <div className="flex flex-col gap-5 items-end pr-4">
             {[
-              { num: '47+', label: '함께한 프로젝트', desc: '완료된 프로젝트 수' },
-              { num: '12', label: '공공기관 협력', desc: '지자체·공공기관 협업' },
-              { num: '8', label: '세상에 나온 서비스', desc: '올루올루 · 야화 · 세모폰 · 누수체크 외' },
+              { num: '270+', label: '함께한 프로젝트', desc: '프로젝트' },
+              { num: '34+', label: '공공기관 협력', desc: '공공기관 · 지자체' },
+              { num: '48+', label: '세상에 나온 것들', desc: '제품, 서비스, 콘텐츠 등' },
             ].map((item) => (
               <div
                 key={item.num}
