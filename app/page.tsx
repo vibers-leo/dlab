@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const SECTIONS = ['hero', 'identity', 'history', 'numbers', 'services', 'collab', 'process', 'news', 'flow', 'contact'];
+const SECTIONS = ['hero', 'campaign', 'identity', 'history', 'numbers', 'services', 'collab', 'process', 'news', 'flow', 'contact'];
 
 const NEWS = [
   { date: '2026.04', tag: '협업', title: '계발자들 어드민킷 v1 출시', desc: 'vibers.co.kr 통합 어드민 시스템 공개' },
@@ -152,13 +152,13 @@ export default function Home() {
           <div className="flex gap-4">
             <a
               href="#contact"
-              onClick={(e) => { e.preventDefault(); scrollTo(9); }}
+              onClick={(e) => { e.preventDefault(); scrollTo(10); }}
               className="px-8 py-3.5 bg-blue-500 text-white font-semibold rounded-full text-sm tracking-wide hover:bg-blue-400 transition-colors"
             >
               함께 시작하기
             </a>
             <button
-              onClick={() => scrollTo(4)}
+              onClick={() => scrollTo(5)}
               className="px-8 py-3.5 border border-blue-400/50 text-blue-200 font-semibold rounded-full text-sm tracking-wide hover:bg-blue-500/10 transition-colors"
             >
               작업물 보기
@@ -171,9 +171,65 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Slide 2: Identity ── */}
+      {/* ── Slide 2: Campaign ── */}
       <section
         ref={(el) => { sectionRefs.current[1] = el; }}
+        className="relative flex h-dvh items-center overflow-hidden"
+        style={{ scrollSnapAlign: 'start', backgroundColor: '#F8FAFF' }}
+      >
+        {/* 배경 대형 텍스트 */}
+        <span
+          className="absolute right-[-2rem] top-1/2 -translate-y-1/2 font-extrabold select-none pointer-events-none leading-none"
+          style={{ fontSize: '22rem', color: 'rgba(11,36,71,0.04)', whiteSpace: 'nowrap' }}
+        >
+          WHY
+        </span>
+
+        <div className="max-w-4xl mx-auto px-12 w-full relative z-10">
+          {/* 질문 */}
+          <h2 className="text-5xl sm:text-6xl font-extrabold leading-tight mb-10" style={{ color: '#0B2447' }}>
+            어떤 일이<br />
+            <span style={{ color: '#60A5FA' }}>세상을 이롭게</span><br />
+            하나요?
+          </h2>
+
+          {/* 답 */}
+          <div className="border-l-4 border-blue-500 pl-8 mb-12">
+            <p className="text-xl sm:text-2xl font-semibold leading-relaxed" style={{ color: '#0B2447' }}>
+              거창한 것에서 시작하지 않아도 됩니다.<br />
+              우리 주변의 사소한 문제를 해결하는 일들,<br />
+              그것이 세상을 바꾸는 시작입니다.
+            </p>
+          </div>
+
+          {/* 예시들 */}
+          <div className="flex flex-wrap gap-3">
+            {[
+              '동네 행사 정보를 쉽게 찾는 것',
+              '작은 브랜드가 멋지게 소개되는 것',
+              '누군가의 아이디어가 세상에 나오는 것',
+              '오래된 사이트가 새 생명을 얻는 것',
+              '좋은 캠페인이 더 많은 사람에게 닿는 것',
+            ].map((item) => (
+              <span
+                key={item}
+                className="text-sm px-4 py-2 border border-blue-100 text-gray-500"
+                style={{ backgroundColor: 'rgba(96,165,250,0.06)' }}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <p className="mt-10 text-sm text-gray-400 tracking-wide">
+            디랩은 그런 일들을 함께 합니다.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Slide 3: Identity ── */}
+      <section
+        ref={(el) => { sectionRefs.current[2] = el; }}
         className="relative flex flex-col h-dvh items-center justify-center px-10 overflow-hidden"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
       >
@@ -213,7 +269,7 @@ export default function Home() {
 
       {/* ── Slide 3: History ── */}
       <section
-        ref={(el) => { sectionRefs.current[2] = el; }}
+        ref={(el) => { sectionRefs.current[3] = el; }}
         className="relative flex h-dvh items-center overflow-hidden"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
       >
@@ -252,7 +308,7 @@ export default function Home() {
 
       {/* ── Slide 4: Numbers ── */}
       <section
-        ref={(el) => { sectionRefs.current[3] = el; }}
+        ref={(el) => { sectionRefs.current[4] = el; }}
         className="relative flex h-dvh items-center overflow-hidden"
         style={{ scrollSnapAlign: 'start' }}
       >
@@ -300,7 +356,7 @@ export default function Home() {
 
       {/* ── Slide 5: Services ── */}
       <section
-        ref={(el) => { sectionRefs.current[4] = el; }}
+        ref={(el) => { sectionRefs.current[5] = el; }}
         className="flex h-dvh items-center px-10 bg-white border-t-4 border-blue-500"
         style={{ scrollSnapAlign: 'start' }}
       >
@@ -354,7 +410,7 @@ export default function Home() {
 
       {/* ── Slide 6: Collab ── */}
       <section
-        ref={(el) => { sectionRefs.current[5] = el; }}
+        ref={(el) => { sectionRefs.current[6] = el; }}
         className="flex h-dvh items-center px-10 bg-white"
         style={{ scrollSnapAlign: 'start' }}
       >
@@ -388,7 +444,7 @@ export default function Home() {
 
       {/* ── Slide 7: Process ── */}
       <section
-        ref={(el) => { sectionRefs.current[6] = el; }}
+        ref={(el) => { sectionRefs.current[7] = el; }}
         className="relative flex h-dvh items-center px-10 overflow-hidden"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
       >
@@ -432,7 +488,7 @@ export default function Home() {
 
       {/* ── Slide 8: News ── */}
       <section
-        ref={(el) => { sectionRefs.current[7] = el; }}
+        ref={(el) => { sectionRefs.current[8] = el; }}
         className="flex h-dvh items-center overflow-hidden"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#051226' }}
       >
@@ -466,7 +522,7 @@ export default function Home() {
 
       {/* ── Slide 9: 협업 절차 ── */}
       <section
-        ref={(el) => { sectionRefs.current[8] = el; }}
+        ref={(el) => { sectionRefs.current[9] = el; }}
         className="flex h-dvh items-center px-10"
         style={{ scrollSnapAlign: 'start', backgroundColor: '#F0F6FF' }}
       >
@@ -531,7 +587,7 @@ export default function Home() {
 
           <div className="mt-14 text-center">
             <button
-              onClick={() => scrollTo(9)}
+              onClick={() => scrollTo(10)}
               className="px-10 py-4 bg-[#0B2447] text-white font-bold text-sm rounded-full hover:bg-[#1565C0] transition-colors"
             >
               같이 가치 만들어요 →
@@ -542,7 +598,7 @@ export default function Home() {
 
       {/* ── Slide 10: Contact ── */}
       <section
-        ref={(el) => { sectionRefs.current[9] = el; }}
+        ref={(el) => { sectionRefs.current[10] = el; }}
         id="contact"
         className="relative flex flex-col h-dvh overflow-hidden"
         style={{ scrollSnapAlign: 'start', background: 'linear-gradient(135deg, #051226 0%, #0B2447 50%, #1565C0 100%)' }}
