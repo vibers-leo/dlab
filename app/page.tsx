@@ -315,7 +315,7 @@ export default function Home() {
 
           <div className="flex flex-col divide-y divide-gray-100">
             {[
-              { num: '01', name: '디지털 공간 기획', desc: '행사·전시·캠페인의 온라인 거점을 만듭니다', icon: '🎪' },
+              { num: '01', name: '디지털 공간 연출', desc: '행사·전시·캠페인의 온도를 온라인에서도 그대로 전달합니다', icon: '🎪' },
               { num: '02', name: '설득하는 콘텐츠', desc: '제안서, 브랜드 스토리, 발표 자료 — 보는 사람을 움직이게 만듭니다', icon: '📋' },
               { num: '03', name: '서비스 개발', desc: '앱과 웹, 처음부터 끝까지 함께 만듭니다', icon: '📱', stack: true },
               { num: '04', name: '지속 가능한 운영', desc: '만들고 끝이 아닌, 오래 함께하는 파트너십', icon: '🤝' },
