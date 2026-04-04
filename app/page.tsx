@@ -185,8 +185,8 @@ export default function Home() {
             {[
               { title: '기획 (Planning)', desc: '아이디어에 구조를 만드는 일', dot: 'bg-blue-500' },
               { title: '설득 (Persuasion)', desc: '가치를 언어와 형태로 전달하는 일', dot: 'bg-blue-400' },
-              { title: '연결 (Connection)', desc: '사람과 사람, 공간과 이야기를 잇는 일', dot: 'bg-sky-400' },
               { title: '구현 (Making)', desc: '상상을 현실로 옮기는 일', dot: 'bg-cyan-400' },
+              { title: '연결 (Connection)', desc: '사람과 사람, 공간과 이야기를 잇는 일', dot: 'bg-sky-400' },
             ].map((item) => (
               <div key={item.title}>
                 <div className={`w-10 h-10 rounded-full ${item.dot} mb-4`} />
