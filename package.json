@@ -1,5 +1,5 @@
 {
-  "name": "@vibers/my-next-guide",
+  "name": "@vibers/dlab",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.17",
+    "@types/pg": "^8.11.6",
     "lucide-react": "^0.555.0",
     "next": "16.0.7",
     "nodemailer": "^6.9.16",
+    "pg": "^8.13.1",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
