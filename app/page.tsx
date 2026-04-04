@@ -325,7 +325,7 @@ export default function Home() {
           {/* 좌측 */}
           <div>
             <h2 className="text-6xl sm:text-7xl font-extrabold leading-tight" style={{ color: '#60A5FA' }}>
-              가치, 같이
+              같이, 가치
             </h2>
             <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
               만든 것들
