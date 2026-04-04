@@ -147,7 +147,7 @@ export default function Home() {
             같이 가치 만들어요.
           </h2>
           <p className="text-blue-200/70 text-lg mb-12">
-            기획 · 연출 · 구현 · 협력 — 가치 있는 것들을 끝까지
+            세상을 이롭게, 가치있는 일들을 더 가치있게
           </p>
           <div className="flex gap-4">
             <a
