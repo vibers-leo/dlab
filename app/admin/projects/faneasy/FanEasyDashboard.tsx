@@ -1,7 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import type { InquiryRow, UserRow, OrderRow, StatsRow } from '@vibers/admin-kit';
+type InquiryRow = Record<string, unknown>;
+type UserRow = Record<string, unknown>;
+type OrderRow = Record<string, unknown>;
+type StatsRow = Record<string, unknown>;
 import { BarChart2, MessageSquare, Users, ShoppingCart } from 'lucide-react';
 
 type Tab = 'stats' | 'inquiries' | 'users' | 'orders';
