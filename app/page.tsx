@@ -142,16 +142,20 @@ export default function Home() {
         </span>
 
         <div className="relative z-10 max-w-5xl w-full">
-          <h2 className="text-5xl sm:text-6xl font-extrabold text-white mb-16">
-            디랩이 믿는 것들
+          <h2 className="text-5xl sm:text-6xl font-extrabold text-white mb-4">
+            :D for Design / Drawing / Dreaming
           </h2>
+          <p className="text-blue-300/70 text-lg mb-12">
+            디자인을 도구로 가치있는 일을 하는 사람이 되자 —<br />
+            이로운 일을 비즈니스로 만드는 디자인 회사
+          </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
             {[
-              { title: '기획 (Planning)', desc: '아이디어에 구조를 만드는 일', dot: 'bg-blue-500' },
-              { title: '설득 (Persuasion)', desc: '가치를 언어와 형태로 전달하는 일', dot: 'bg-blue-400' },
-              { title: '연결 (Connection)', desc: '사람과 사람, 공간과 이야기를 잇는 일', dot: 'bg-sky-400' },
-              { title: '구현 (Making)', desc: '상상을 현실로 옮기는 일', dot: 'bg-cyan-400' },
+              { title: 'Design', desc: '문제를 해결하는 시각 언어를 만드는 일', dot: 'bg-blue-500' },
+              { title: 'Drawing', desc: '아이디어를 형태로 끌어내는 일', dot: 'bg-blue-400' },
+              { title: 'Dreaming', desc: '더 나은 세상을 상상하고 실현하는 일', dot: 'bg-sky-400' },
+              { title: 'Doing', desc: '상상을 현실로 옮기는 실행의 일', dot: 'bg-cyan-400' },
             ].map((item) => (
               <div key={item.title}>
                 <div className={`w-10 h-10 rounded-full ${item.dot} mb-4`} />
@@ -181,7 +185,7 @@ export default function Home() {
           <span className="text-blue-400 text-sm tracking-widest">OUR JOURNEY</span>
           <h2 className="text-5xl font-extrabold text-white mt-3 mb-12">
             디자인에서 시작해,<br />
-            <span className="text-blue-400">세상으로 넓혀왔습니다.</span>
+            <span className="text-blue-400">이로운 비즈니스로 넓혀왔습니다.</span>
           </h2>
 
           {/* 타임라인 가로형 */}
@@ -190,10 +194,10 @@ export default function Home() {
             <div className="absolute top-6 left-0 right-0 h-px bg-blue-500/30" />
 
             {[
-              { year: '2018', title: '디자인디', desc: '디자인 외주로 시작. 브랜딩, 인쇄물, UI 디자인', color: 'bg-blue-600' },
-              { year: '2020', title: '전시 기획', desc: '공간과 이야기를 연결하는 전시 기획으로 확장', color: 'bg-blue-500' },
-              { year: '2022', title: '축제·행사 대행', desc: '지역 축제, 기업 행사의 디지털 창구 제작', color: 'bg-blue-400' },
-              { year: '2024', title: ':DLAB', desc: 'AI와 개발 역량을 더해 더 많이, 더 빠르게', color: 'bg-cyan-400' },
+              { year: '2012', title: '청년창업', desc: '디자인으로 세상과 연결되는 방법을 찾기 시작', color: 'bg-blue-600' },
+              { year: '2016', title: '사회적기업 인증', desc: '이로운 일을 비즈니스로 만들다 — 사회적기업 공식 인증', color: 'bg-blue-500' },
+              { year: '2022', title: '주식회사 디랩', desc: '전시·행사 기획과 디지털 창구 제작으로 피봇', color: 'bg-blue-400' },
+              { year: '2025', title: 'AI 피봇', desc: 'AI와 개발 역량을 더해 바이브코딩 서비스 생태계 구축', color: 'bg-cyan-400' },
             ].map((item, i) => (
               <div key={i} className="flex-1 relative pt-14 pr-8">
                 {/* 도트 */}
@@ -207,7 +211,7 @@ export default function Home() {
 
           {/* 하단 */}
           <p className="text-blue-200/50 text-sm mt-12">
-            그리고 지금, AI와 개발 역량까지 — 더 많이 만들고, 더 많이 함께합니다.
+            세상을 이롭게, 가치있는 일을 함께 — AI와 개발 역량으로 더 많이 만들고, 더 많이 함께합니다.
           </p>
         </div>
       </section>
