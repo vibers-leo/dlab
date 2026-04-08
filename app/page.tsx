@@ -491,7 +491,7 @@ export default function Home() {
               <p className="text-sm mb-8 text-gray-400">한 번의 프로젝트로 디랩을 경험해보세요</p>
               <ul className="space-y-3 text-sm text-gray-600">
                 {[
-                  '요구사항 분석 및 제안서 제공',
+                  '요구사항 살펴보기 및 제안서 제공',
                   '디자인 + 개발 원스톱',
                   '런칭 후 1개월 무상 수정',
                   '소스코드 및 운영 권한 이관',

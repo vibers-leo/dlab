@@ -87,7 +87,7 @@ export default function PrivacyPage() {
             <ul className="list-decimal list-inside space-y-2 ml-4">
               <li>개인정보 열람 요구</li>
               <li>오류 등이 있을 경우 정정 요구</li>
-              <li>삭제 요구</li>
+              <li>없애기 요구</li>
               <li>처리정지 요구</li>
             </ul>
           </div>
@@ -98,7 +98,7 @@ export default function PrivacyPage() {
           <div className="space-y-3 text-base text-slate-300 leading-relaxed">
             <p>회사는 개인정보가 불필요하게 되었을 때에는 지체없이 해당 개인정보를 파기합니다.</p>
             <ul className="list-disc list-inside space-y-1 ml-4 mt-4">
-              <li>전자적 파일 형태: 복구 및 재생되지 않도록 안전하게 삭제</li>
+              <li>전자적 파일 형태: 복구 및 재생되지 않도록 안전하게 없애기</li>
             </ul>
           </div>
         </section>
