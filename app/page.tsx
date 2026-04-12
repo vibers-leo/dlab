@@ -589,7 +589,11 @@ export default function Home() {
           <span className="text-sm font-extrabold text-white/40" style={{ letterSpacing: '-0.02em' }}>
             <span className="text-blue-400/60">:</span>DLAB · 계발자들 협력사
           </span>
-          <span className="text-sm text-blue-300/40">디랩은 혼자 만들지 않습니다.</span>
+          <div className="flex gap-4 text-sm text-blue-300/40">
+            <a href="/works" className="hover:text-blue-300/70 transition-colors">포트폴리오</a>
+            <a href="/templates" className="hover:text-blue-300/70 transition-colors">템플릿</a>
+            <a href="/privacy" className="hover:text-blue-300/70 transition-colors">개인정보</a>
+          </div>
           <span className="text-sm text-white/20">© {new Date().getFullYear()} 디랩. All rights reserved.</span>
         </footer>
       </section>
