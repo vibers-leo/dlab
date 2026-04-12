@@ -1,5 +1,4 @@
-import type { InquiryRow, UserRow, OrderRow, StatsRow } from '@vibers/admin-kit';
-import FanEasyDashboard from './FanEasyDashboard';
+import FanEasyDashboard, { type InquiryRow, type UserRow, type OrderRow, type StatsRow } from './FanEasyDashboard';
 
 const FANEASY_URL = process.env.FANEASY_ADMIN_URL ?? 'http://localhost:3600';
 const SECRET = process.env.VIBERS_ADMIN_SECRET ?? '';

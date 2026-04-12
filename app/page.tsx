@@ -16,6 +16,8 @@ const NEWS = [
 export default function Home() {
   const [current, setCurrent] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState<'success' | 'error' | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
@@ -607,43 +609,78 @@ export default function Home() {
             <h3 className="text-2xl font-extrabold text-gray-900 mb-1">이야기 시작하기</h3>
             <p className="text-gray-400 text-sm mb-6">디랩 팀이 직접 답변드립니다.</p>
 
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.currentTarget;
-                const data = new FormData(form);
-                window.open(`mailto:hello@designdlab.co.kr?subject=[협업 문의] ${data.get('name')}&body=${data.get('message')}`, '_blank');
-                setShowModal(false);
-              }}
-              className="space-y-4"
-            >
-              <div>
-                <label className="text-xs font-semibold text-gray-500 mb-1 block">이름 / 소속</label>
-                <input name="name" required placeholder="홍길동 / 디랩"
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors" />
+            {submitResult === 'success' ? (
+              <div className="text-center py-8">
+                <div className="text-4xl mb-4">&#10003;</div>
+                <p className="text-lg font-bold text-gray-900 mb-2">문의가 접수되었어요!</p>
+                <p className="text-sm text-gray-400 mb-6">빠른 시일 내에 연락드릴게요.</p>
+                <button
+                  onClick={() => { setShowModal(false); setSubmitResult(null); }}
+                  className="px-6 py-2.5 bg-[#0B2447] text-white font-bold rounded-xl text-sm hover:bg-[#1565C0] transition-colors"
+                >
+                  닫기
+                </button>
               </div>
-              <div>
-                <label className="text-xs font-semibold text-gray-500 mb-1 block">연락처</label>
-                <input name="contact" placeholder="이메일 또는 연락처"
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors" />
-              </div>
-              <div>
-                <label className="text-xs font-semibold text-gray-500 mb-1 block">어떤 일을 함께하고 싶으신가요?</label>
-                <textarea name="message" required rows={4} placeholder="프로젝트나 아이디어를 간단히 알려주세요."
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none" />
-              </div>
-              <button type="submit"
-                className="w-full bg-[#0B2447] text-white font-bold py-3.5 rounded-xl hover:bg-[#1565C0] transition-colors text-sm">
-                메일로 보내기
-              </button>
-            </form>
+            ) : (
+              <>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setSubmitting(true);
+                    setSubmitResult(null);
+                    const data = new FormData(e.currentTarget);
+                    try {
+                      const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          name: data.get('name'),
+                          contact: data.get('contact'),
+                          message: data.get('message'),
+                        }),
+                      });
+                      if (res.ok) {
+                        setSubmitResult('success');
+                      } else {
+                        setSubmitResult('error');
+                      }
+                    } catch {
+                      setSubmitResult('error');
+                    } finally {
+                      setSubmitting(false);
+                    }
+                  }}
+                  className="space-y-4"
+                >
+                  <div>
+                    <label className="text-xs font-semibold text-gray-500 mb-1 block">이름 / 소속</label>
+                    <input name="name" required placeholder="홍길동 / 디랩"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors" />
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-gray-500 mb-1 block">연락처</label>
+                    <input name="contact" placeholder="이메일 또는 연락처"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors" />
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-gray-500 mb-1 block">어떤 일을 함께하고 싶으신가요?</label>
+                    <textarea name="message" required rows={4} placeholder="프로젝트나 아이디어를 간단히 알려주세요."
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none" />
+                  </div>
+                  {submitResult === 'error' && (
+                    <p className="text-xs text-red-500">오류가 발생했어요. 다시 시도해주세요.</p>
+                  )}
+                  <button type="submit" disabled={submitting}
+                    className="w-full bg-[#0B2447] text-white font-bold py-3.5 rounded-xl hover:bg-[#1565C0] transition-colors text-sm disabled:opacity-50">
+                    {submitting ? '보내는 중...' : '문의 보내기'}
+                  </button>
+                </form>
 
-            <div className="mt-4 text-center">
-              <a href="https://open.kakao.com" target="_blank" rel="noopener noreferrer"
-                className="text-xs text-gray-400 hover:text-yellow-600 transition-colors">
-                카카오로 바로 연락하기 →
-              </a>
-            </div>
+                <p className="mt-4 text-center text-xs text-gray-400">
+                  또는 <a href="mailto:hello@designdlab.co.kr" className="underline hover:text-gray-600 transition-colors">hello@designdlab.co.kr</a>로 직접 메일 보내기
+                </p>
+              </>
+            )}
           </div>
         </div>
       )}

@@ -1,10 +1,43 @@
 'use client';
 
 import React, { useState } from 'react';
-type InquiryRow = Record<string, unknown>;
-type UserRow = Record<string, unknown>;
-type OrderRow = Record<string, unknown>;
-type StatsRow = Record<string, unknown>;
+export type InquiryRow = {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  siteId: string;
+  plan: string;
+  workflowStatus: string;
+  createdAt: string;
+  [key: string]: unknown;
+};
+export type UserRow = {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  createdAt: string;
+  [key: string]: unknown;
+};
+export type OrderRow = {
+  id: string;
+  buyerName: string;
+  buyerEmail: string;
+  productId: string;
+  amount: number;
+  status: string;
+  createdAt: string;
+  [key: string]: unknown;
+};
+export type StatsRow = {
+  siteId: string;
+  todayVisits: number;
+  monthVisits: number;
+  totalVisits: number;
+  totalInquiries: number;
+  [key: string]: unknown;
+};
 import { BarChart2, MessageSquare, Users, ShoppingCart } from 'lucide-react';
 
 type Tab = 'stats' | 'inquiries' | 'users' | 'orders';
