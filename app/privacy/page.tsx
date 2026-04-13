@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "개인정보처리방침 | Next.js 학습 가이드",
-  description: "Next.js 학습 가이드 개인정보처리방침",
+  title: "개인정보처리방침 | 디랩",
+  description: "디랩 개인정보처리방침",
 };
 
 export default function PrivacyPage() {
@@ -29,8 +29,8 @@ export default function PrivacyPage() {
             <div className="mt-4">
               <h3 className="text-lg font-bold text-white mb-2">1. 서비스 제공</h3>
               <ul className="list-disc list-inside space-y-1 ml-4">
-                <li>Next.js 학습 가이드 콘텐츠 제공</li>
-                <li>웹 아키텍처 학습 자료 열람</li>
+                <li>웹 개발 서비스 제공 및 프로젝트 문의 처리</li>
+                <li>고객사 요청 사항 확인 및 응대</li>
               </ul>
             </div>
             <p className="mt-4 p-4 bg-slate-800/50 rounded-xl text-sm text-slate-400">

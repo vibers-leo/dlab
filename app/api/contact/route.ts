@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: 'juuuno1116@gmail.com',
+      to: process.env.CONTACT_EMAIL || 'juuuno1116@gmail.com',
       subject: `[디랩 협업 문의] ${name}`,
       html: `
         <div style="font-family: 'Apple SD Gothic Neo', sans-serif; max-width: 600px; margin: 0 auto;">

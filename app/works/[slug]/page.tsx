@@ -159,12 +159,12 @@ export default async function WorkDetailPage({ params }: { params: Promise<{ slu
       <section className="border-t border-white/10 py-20 px-6 text-center">
         <p className="text-white/40 text-sm mb-3">비슷한 프로젝트를 원하신다면</p>
         <h2 className="text-3xl font-extrabold text-white mb-8">디랩과 함께 만들어요.</h2>
-        <Link
-          href="/#contact"
+        <a
+          href="https://dlab.vibers.co.kr/#contact"
           className="inline-block px-8 py-4 bg-blue-500 text-white font-bold text-sm tracking-wide rounded-full hover:bg-blue-400 transition-colors"
         >
           프로젝트 문의하기
-        </Link>
+        </a>
       </section>
 
       {/* 푸터 */}

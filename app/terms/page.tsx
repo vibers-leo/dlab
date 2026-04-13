@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "이용약관 | Next.js 학습 가이드",
-  description: "Next.js 학습 가이드 이용약관",
+  title: "이용약관 | 디랩",
+  description: "디랩 이용약관",
 };
 
 export default function TermsPage() {
@@ -19,7 +19,7 @@ export default function TermsPage() {
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-white mb-4">제1조 (목적)</h2>
           <p className="text-base text-slate-300 leading-relaxed">
-            본 약관은 주식회사 디랩(이하 &quot;회사&quot;)이 운영하는 Next.js 학습 가이드 웹사이트(이하 &quot;사이트&quot;)에서 제공하는 서비스(이하 &quot;서비스&quot;)를 이용함에 있어 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
+            본 약관은 주식회사 디랩(이하 &quot;회사&quot;)이 운영하는 디랩 공식 웹사이트(이하 &quot;사이트&quot;)에서 제공하는 서비스(이하 &quot;서비스&quot;)를 이용함에 있어 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
           </p>
         </section>
 
@@ -27,7 +27,7 @@ export default function TermsPage() {
           <h2 className="text-2xl font-bold text-white mb-4">제2조 (정의)</h2>
           <div className="space-y-3 text-base text-slate-300 leading-relaxed">
             <ul className="list-decimal list-inside space-y-2 ml-4">
-              <li>&quot;서비스&quot;라 함은 회사가 제공하는 Next.js 학습 가이드, 웹 아키텍처 학습 콘텐츠 등 제반 서비스를 의미합니다.</li>
+              <li>&quot;서비스&quot;라 함은 회사가 제공하는 디랩 웹 개발 서비스, 웹 아키텍처 학습 콘텐츠 등 제반 서비스를 의미합니다.</li>
               <li>&quot;이용자&quot;라 함은 사이트에 접속하여 본 약관에 따라 회사가 제공하는 서비스를 이용하는 고객을 말합니다.</li>
             </ul>
           </div>
@@ -47,7 +47,7 @@ export default function TermsPage() {
           <div className="space-y-3 text-base text-slate-300 leading-relaxed">
             <p>① 회사는 다음과 같은 서비스를 제공합니다.</p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Next.js 학습 가이드 콘텐츠 제공</li>
+              <li>디랩 웹 개발 서비스 콘텐츠 제공</li>
               <li>웹 아키텍처 학습 자료 제공</li>
               <li>기타 회사가 추가 개발하는 서비스</li>
             </ul>

@@ -592,6 +592,7 @@ export default function Home() {
           <div className="flex gap-4 text-sm text-blue-300/40">
             <a href="/works" className="hover:text-blue-300/70 transition-colors">포트폴리오</a>
             <a href="/templates" className="hover:text-blue-300/70 transition-colors">템플릿</a>
+            <a href="/guide" className="hover:text-blue-300/70 transition-colors">빌드가이드</a>
             <a href="/privacy" className="hover:text-blue-300/70 transition-colors">개인정보</a>
           </div>
           <span className="text-sm text-white/20">© {new Date().getFullYear()} 디랩. All rights reserved.</span>
