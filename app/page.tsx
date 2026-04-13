@@ -94,10 +94,10 @@ export default function Home() {
           <span className="border border-blue-400/50 text-blue-100 px-4 py-1 rounded-full text-sm tracking-widest mb-6">
             "세상과 연결되는 방법을 연구합니다"
           </span>
-          <h1 className="text-7xl sm:text-8xl font-extrabold text-white leading-tight mb-2">
+          <h1 className="text-5xl sm:text-7xl md:text-8xl font-extrabold text-white leading-tight mb-2">
             세상을 이롭게,
           </h1>
-          <h2 className="text-7xl sm:text-8xl font-extrabold leading-tight mb-8" style={{ color: '#60A5FA' }}>
+          <h2 className="text-5xl sm:text-7xl md:text-8xl font-extrabold leading-tight mb-8" style={{ color: '#60A5FA' }}>
             함께 만듭니다.
           </h2>
           <p className="text-blue-200/70 text-lg mb-12">
@@ -458,8 +458,8 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {NEWS.map((item, i) => (
-              <div key={i} className="border border-blue-900/50 rounded-xl p-5 hover:border-blue-500/50 hover:bg-blue-950/30 transition-all">
+            {NEWS.map((item) => (
+              <div key={item.title} className="border border-blue-900/50 rounded-xl p-5 hover:border-blue-500/50 hover:bg-blue-950/30 transition-all">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs bg-blue-500/20 text-blue-300 px-2.5 py-1 rounded-full font-medium">
                     {item.tag}
