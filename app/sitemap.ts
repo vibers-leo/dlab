@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { works } from "./works/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://dlab.vibers.co.kr";
@@ -22,5 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...works.map((w) => ({
+      url: `${baseUrl}/works/${w.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }
