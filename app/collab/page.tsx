@@ -52,12 +52,15 @@ export default function CollabPage() {
             <span className="text-white/20">/</span>
             <span className="text-white font-bold text-base">Collab Hub</span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <Link href="/collab/proposals" className="px-4 py-2 text-xs font-bold bg-indigo-500/80 text-white rounded-lg hover:bg-indigo-500 transition-colors">
+              ✨ AI 제안서
+            </Link>
             <Link href="/collab/entities/new" className="px-4 py-2 text-xs font-bold bg-white/10 text-white rounded-lg hover:bg-white/15 transition-colors">
-              + 엔티티 추가
+              + 엔티티
             </Link>
             <Link href="/collab/projects/new" className="px-4 py-2 text-xs font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-400 transition-colors">
-              + 프로젝트 생성
+              + 프로젝트
             </Link>
           </div>
         </div>
