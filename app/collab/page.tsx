@@ -43,7 +43,21 @@ export default function CollabPage() {
   return (
     <main style={{ fontFamily: "'Paperlogy', sans-serif", backgroundColor: '#051226', minHeight: '100vh' }}>
 
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      {/* 페이지 헤더 */}
+      <div className="border-b border-white/8" style={{ backgroundColor: 'rgba(4,14,30,0.6)' }}>
+        <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-extrabold text-white" style={{ letterSpacing: '-0.02em' }}>대시보드</h1>
+            <p className="text-xs text-white/30 mt-0.5">Vibers 생태계 협업 현황</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Link href="/collab/proposals/new" className="px-3 py-1.5 text-xs font-bold bg-indigo-500/80 text-white rounded-lg hover:bg-indigo-500 transition-colors">✦ AI 제안서</Link>
+            <Link href="/collab/projects/new" className="px-3 py-1.5 text-xs font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-400 transition-colors">+ 프로젝트</Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 py-8">
         {loading ? (
           <div className="flex items-center justify-center h-64">
             <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />

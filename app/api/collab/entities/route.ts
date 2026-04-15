@@ -12,7 +12,9 @@ export async function GET() {
     GROUP BY e.id
     ORDER BY e.type, e.name
   `);
-  return NextResponse.json(rows);
+  return NextResponse.json(rows, {
+    headers: { 'Cache-Control': 's-maxage=60, stale-while-revalidate=300' },
+  });
 }
 
 export async function POST(req: Request) {

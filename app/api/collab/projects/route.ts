@@ -19,7 +19,9 @@ export async function GET() {
     GROUP BY p.id, e.name, e.color
     ORDER BY p.created_at DESC
   `);
-  return NextResponse.json(rows);
+  return NextResponse.json(rows, {
+    headers: { 'Cache-Control': 's-maxage=30, stale-while-revalidate=120' },
+  });
 }
 
 export async function POST(req: Request) {

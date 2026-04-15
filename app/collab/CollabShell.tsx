@@ -1,10 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-type Entity = { id: number; name: string; color: string; type: string };
 
 const NAV = [
   { href: '/collab', label: '대시보드', icon: '◈', exact: true },
@@ -15,15 +13,8 @@ const NAV = [
 
 export default function CollabShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [entities, setEntities] = useState<Entity[]>([]);
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    fetch('/api/collab/entities')
-      .then(r => r.json())
-      .then(data => setEntities(Array.isArray(data) ? data : []));
-  }, []);
 
   useEffect(() => { setMobileOpen(false); }, [pathname]);
 
@@ -85,58 +76,6 @@ export default function CollabShell({ children }: { children: React.ReactNode })
 
       {/* 구분선 */}
       <div className="mx-3 border-t border-white/8 my-2" />
-
-      {/* 내부 엔티티 */}
-      {!collapsed && (
-        <div className="px-2 pb-2">
-          <div className="flex items-center justify-between px-2.5 py-1.5 mb-1">
-            <span className="text-xs text-white/25 font-bold tracking-widest uppercase">엔티티</span>
-            <Link href="/collab/entities/new" className="text-white/20 hover:text-white/50 text-sm leading-none transition-colors" title="추가">+</Link>
-          </div>
-          <div className="space-y-0.5 max-h-48 overflow-y-auto">
-            {internal.map(e => (
-              <Link key={e.id} href={`/collab/entities/${e.id}`}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-all"
-                style={pathname === `/collab/entities/${e.id}`
-                  ? { backgroundColor: e.color + '20', color: e.color }
-                  : { color: 'rgba(255,255,255,0.35)' }
-                }
-              >
-                <div className="w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-xs font-black" style={{ backgroundColor: e.color + '30', color: e.color }}>
-                  {e.name.slice(0, 1)}
-                </div>
-                <span className="truncate">{e.name}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* 협력사 */}
-      {!collapsed && partners.length > 0 && (
-        <div className="px-2 pb-2">
-          <div className="flex items-center justify-between px-2.5 py-1.5 mb-1">
-            <span className="text-xs text-white/25 font-bold tracking-widest uppercase">협력사</span>
-            <Link href="/collab/entities/new?type=partner" className="text-white/20 hover:text-white/50 text-sm leading-none transition-colors">+</Link>
-          </div>
-          <div className="space-y-0.5">
-            {partners.map(e => (
-              <Link key={e.id} href={`/collab/entities/${e.id}`}
-                className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-all"
-                style={pathname === `/collab/entities/${e.id}`
-                  ? { backgroundColor: e.color + '20', color: e.color }
-                  : { color: 'rgba(255,255,255,0.35)' }
-                }
-              >
-                <div className="w-4 h-4 rounded flex items-center justify-center flex-shrink-0 text-xs font-black" style={{ backgroundColor: e.color + '30', color: e.color }}>
-                  {e.name.slice(0, 1)}
-                </div>
-                <span className="truncate">{e.name}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* 하단 */}
       <div className="mt-auto border-t border-white/8 px-2 py-3 space-y-0.5">
