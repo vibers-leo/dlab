@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -21,42 +21,56 @@ export default function CollabShell({ children }: { children: React.ReactNode })
   const isActive = (href: string, exact?: boolean) =>
     exact ? pathname === href : pathname.startsWith(href);
 
-  const internal = entities.filter(e => e.type === 'internal');
-  const partners = entities.filter(e => e.type === 'partner');
-
   const Sidebar = () => (
     <aside
-      className="flex flex-col h-full border-r border-white/8 select-none"
-      style={{ backgroundColor: '#040e1e', width: collapsed ? 56 : 220, transition: 'width 0.2s ease', flexShrink: 0 }}
+      className="flex flex-col h-full select-none relative overflow-hidden"
+      style={{
+        backgroundColor: '#040e1e',
+        borderRight: '1px solid rgba(96,165,250,0.1)',
+        width: collapsed ? 56 : 220,
+        transition: 'width 0.2s ease',
+        flexShrink: 0,
+      }}
     >
+      {/* 도트 그리드 배경 */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
+        backgroundImage: 'radial-gradient(circle, #60A5FA 1px, transparent 1px)',
+        backgroundSize: '24px 24px',
+      }} />
+      {/* 블루 블러 장식 */}
+      <div className="absolute bottom-0 left-0 w-40 h-40 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
+
       {/* 로고 */}
-      <div className="flex items-center justify-between px-4 py-4 border-b border-white/8" style={{ height: 56 }}>
+      <div className="relative flex items-center justify-between px-4 py-4" style={{ height: 56, borderBottom: '1px solid rgba(96,165,250,0.08)' }}>
         {!collapsed && (
           <Link href="/" className="flex items-center gap-1.5">
             <span className="text-base font-extrabold" style={{ letterSpacing: '-0.02em' }}>
               <span style={{ color: '#60A5FA' }}>:</span>
-              <span className="text-white/70">DLAB</span>
+              <span className="text-white/80">DLAB</span>
             </span>
-            <span className="text-xs text-white/25 font-medium">collab</span>
+            <span className="text-xs font-medium" style={{ color: 'rgba(96,165,250,0.4)' }}>collab</span>
           </Link>
         )}
         <button onClick={() => setCollapsed(!collapsed)}
-          className="w-7 h-7 rounded-lg flex items-center justify-center text-white/30 hover:text-white/60 hover:bg-white/8 transition-all ml-auto"
+          className="w-7 h-7 rounded-lg flex items-center justify-center transition-all ml-auto"
+          style={{ color: 'rgba(96,165,250,0.4)' }}
+          onMouseOver={e => (e.currentTarget.style.color = 'rgba(96,165,250,0.8)')}
+          onMouseOut={e => (e.currentTarget.style.color = 'rgba(96,165,250,0.4)')}
         >
           {collapsed ? '→' : '←'}
         </button>
       </div>
 
       {/* 메인 네비 */}
-      <nav className="px-2 py-3 space-y-0.5">
+      <nav className="relative px-2 py-3 space-y-0.5">
         {NAV.map(item => {
           const active = isActive(item.href, item.exact);
           return (
             <Link key={item.href} href={item.href}
-              className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-sm font-medium transition-all group"
+              className="flex items-center gap-2.5 px-2.5 py-2.5 rounded-xl text-sm font-medium transition-all"
               style={active
-                ? { backgroundColor: 'rgba(59,130,246,0.15)', color: '#60A5FA' }
-                : { color: 'rgba(255,255,255,0.45)' }
+                ? { backgroundColor: 'rgba(96,165,250,0.12)', color: '#60A5FA', border: '1px solid rgba(96,165,250,0.2)' }
+                : { color: 'rgba(255,255,255,0.4)', border: '1px solid transparent' }
               }
               title={collapsed ? item.label : undefined}
             >
@@ -65,7 +79,10 @@ export default function CollabShell({ children }: { children: React.ReactNode })
                 <>
                   <span className="flex-1 truncate">{item.label}</span>
                   {item.badge && (
-                    <span className="text-xs px-1.5 py-0.5 rounded font-bold" style={{ backgroundColor: '#6366F130', color: '#818cf8', fontSize: 10 }}>{item.badge}</span>
+                    <span className="text-xs px-1.5 py-0.5 rounded-full font-bold"
+                      style={{ backgroundColor: 'rgba(99,102,241,0.2)', color: '#a5b4fc', fontSize: 9, border: '1px solid rgba(99,102,241,0.3)' }}>
+                      {item.badge}
+                    </span>
                   )}
                 </>
               )}
@@ -75,19 +92,23 @@ export default function CollabShell({ children }: { children: React.ReactNode })
       </nav>
 
       {/* 구분선 */}
-      <div className="mx-3 border-t border-white/8 my-2" />
+      <div className="relative mx-3 my-1" style={{ borderTop: '1px solid rgba(96,165,250,0.08)' }} />
 
       {/* 하단 */}
-      <div className="mt-auto border-t border-white/8 px-2 py-3 space-y-0.5">
+      <div className="relative mt-auto px-2 py-3 space-y-0.5" style={{ borderTop: '1px solid rgba(96,165,250,0.08)' }}>
         <Link href="/collab/entities/new"
-          className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs text-white/30 hover:text-white/60 hover:bg-white/5 transition-all"
+          className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs transition-all"
+          style={{ color: 'rgba(96,165,250,0.4)', border: '1px solid transparent' }}
+          onMouseOver={e => { e.currentTarget.style.color = 'rgba(96,165,250,0.7)'; e.currentTarget.style.border = '1px solid rgba(96,165,250,0.1)'; }}
+          onMouseOut={e => { e.currentTarget.style.color = 'rgba(96,165,250,0.4)'; e.currentTarget.style.border = '1px solid transparent'; }}
           title={collapsed ? '엔티티 추가' : undefined}
         >
           <span style={{ width: 20, textAlign: 'center' }}>＋</span>
           {!collapsed && <span>엔티티 / 협력사 추가</span>}
         </Link>
         <Link href="/"
-          className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs text-white/20 hover:text-white/40 hover:bg-white/5 transition-all"
+          className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl text-xs transition-all"
+          style={{ color: 'rgba(255,255,255,0.2)', border: '1px solid transparent' }}
           title={collapsed ? '디랩 사이트' : undefined}
         >
           <span style={{ width: 20, textAlign: 'center' }}>↗</span>
@@ -110,18 +131,19 @@ export default function CollabShell({ children }: { children: React.ReactNode })
           <div className="flex flex-col" style={{ width: 220 }}>
             <Sidebar />
           </div>
-          <div className="flex-1 bg-black/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <div className="flex-1 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
         </div>
       )}
 
       {/* 메인 콘텐츠 */}
       <div className="flex-1 flex flex-col min-w-0 overflow-auto" style={{ minHeight: '100vh' }}>
         {/* 모바일 탑바 */}
-        <div className="md:hidden flex items-center gap-3 px-4 py-3 border-b border-white/8 sticky top-0 z-40" style={{ backgroundColor: 'rgba(4,14,30,0.95)', backdropFilter: 'blur(12px)' }}>
-          <button onClick={() => setMobileOpen(true)} className="w-8 h-8 flex items-center justify-center text-white/50 hover:text-white/80 transition-colors">
+        <div className="md:hidden flex items-center gap-3 px-4 py-3 sticky top-0 z-40"
+          style={{ backgroundColor: 'rgba(5,18,38,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(96,165,250,0.1)' }}>
+          <button onClick={() => setMobileOpen(true)} className="w-8 h-8 flex items-center justify-center transition-colors" style={{ color: 'rgba(96,165,250,0.6)' }}>
             ☰
           </button>
-          <span className="text-sm font-bold text-white/70">
+          <span className="text-sm font-bold" style={{ color: '#60A5FA' }}>
             {NAV.find(n => isActive(n.href, n.exact))?.label ?? 'Collab Hub'}
           </span>
         </div>

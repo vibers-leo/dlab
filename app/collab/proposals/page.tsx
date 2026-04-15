@@ -28,7 +28,7 @@ export default function ProposalsPage() {
 
   return (
     <main style={{ fontFamily: "'Paperlogy', sans-serif", backgroundColor: '#051226', minHeight: '100vh' }}>
-      <div className="border-b border-white/8" style={{ backgroundColor: 'rgba(4,14,30,0.6)' }}>
+      <div style={{ borderBottom: '1px solid rgba(96,165,250,0.1)', backgroundColor: 'rgba(4,14,30,0.5)', backdropFilter: 'blur(8px)' }}>
         <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
           <div>
             <h1 className="text-lg font-extrabold text-white" style={{ letterSpacing: '-0.02em' }}>AI 제안서</h1>
