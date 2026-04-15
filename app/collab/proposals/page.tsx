@@ -28,18 +28,12 @@ export default function ProposalsPage() {
 
   return (
     <main style={{ fontFamily: "'Paperlogy', sans-serif", backgroundColor: '#051226', minHeight: '100vh' }}>
-      <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10" style={{ backgroundColor: 'rgba(5,18,38,0.85)' }}>
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-sm">
-            <Link href="/collab" className="text-white/40 hover:text-white/60">Collab Hub</Link>
-            <span className="text-white/20">/</span>
-            <span className="text-white font-bold">AI 제안서</span>
-          </div>
-          <Link href="/collab/proposals/new" className="px-4 py-2 text-xs font-bold bg-indigo-500 text-white rounded-lg hover:bg-indigo-400 transition-colors">
-            ✨ 새 제안서 생성
-          </Link>
-        </div>
-      </header>
+      <div className="max-w-5xl mx-auto px-6 pt-8 pb-2 flex items-center justify-between">
+        <h1 className="text-sm font-bold text-white/40 tracking-widest uppercase">AI 제안서</h1>
+        <Link href="/collab/proposals/new" className="px-4 py-2 text-xs font-bold bg-indigo-500 text-white rounded-lg hover:bg-indigo-400 transition-colors">
+          ✨ 새 제안서 생성
+        </Link>
+      </div>
 
       <div className="max-w-5xl mx-auto px-6 py-8">
         {loading ? (

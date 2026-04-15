@@ -42,29 +42,6 @@ export default function CollabPage() {
 
   return (
     <main style={{ fontFamily: "'Paperlogy', sans-serif", backgroundColor: '#051226', minHeight: '100vh' }}>
-      {/* 헤더 */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10" style={{ backgroundColor: 'rgba(5,18,38,0.85)' }}>
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="text-base font-extrabold" style={{ letterSpacing: '-0.02em' }}>
-              <span style={{ color: '#60A5FA' }}>:</span><span className="text-white/60">DLAB</span>
-            </Link>
-            <span className="text-white/20">/</span>
-            <span className="text-white font-bold text-base">Collab Hub</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Link href="/collab/proposals" className="px-4 py-2 text-xs font-bold bg-indigo-500/80 text-white rounded-lg hover:bg-indigo-500 transition-colors">
-              ✨ AI 제안서
-            </Link>
-            <Link href="/collab/entities/new" className="px-4 py-2 text-xs font-bold bg-white/10 text-white rounded-lg hover:bg-white/15 transition-colors">
-              + 엔티티
-            </Link>
-            <Link href="/collab/projects/new" className="px-4 py-2 text-xs font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-400 transition-colors">
-              + 프로젝트
-            </Link>
-          </div>
-        </div>
-      </header>
 
       <div className="max-w-6xl mx-auto px-6 py-10">
         {loading ? (

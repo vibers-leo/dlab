@@ -56,15 +56,9 @@ export default function NewProjectPage() {
 
   return (
     <main style={{ fontFamily: "'Paperlogy', sans-serif", backgroundColor: '#051226', minHeight: '100vh' }}>
-      <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10" style={{ backgroundColor: 'rgba(5,18,38,0.85)' }}>
-        <div className="max-w-2xl mx-auto px-6 py-4 flex items-center gap-2 text-sm">
-          <Link href="/collab" className="text-white/40 hover:text-white/60">Collab Hub</Link>
-          <span className="text-white/20">/</span>
-          <Link href="/collab/projects" className="text-white/40 hover:text-white/60">프로젝트</Link>
-          <span className="text-white/20">/</span>
-          <span className="text-white font-bold">새 프로젝트</span>
-        </div>
-      </header>
+      <div className="max-w-2xl mx-auto px-6 pt-8 pb-2">
+        <p className="text-xs text-white/30">프로젝트 / <span className="text-white/60 font-bold">새 프로젝트</span></p>
+      </div>
 
       <div className="max-w-2xl mx-auto px-6 py-10">
         <form onSubmit={submit} className="space-y-5">

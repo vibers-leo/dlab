@@ -52,26 +52,18 @@ export default function ProjectDetailPage() {
 
   return (
     <main style={{ fontFamily: "'Paperlogy', sans-serif", backgroundColor: '#051226', minHeight: '100vh' }}>
-      <header className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10" style={{ backgroundColor: 'rgba(5,18,38,0.85)' }}>
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-sm">
-            <Link href="/collab" className="text-white/40 hover:text-white/60">Collab Hub</Link>
-            <span className="text-white/20">/</span>
-            <Link href="/collab/projects" className="text-white/40 hover:text-white/60">프로젝트</Link>
-            <span className="text-white/20">/</span>
-            <span className="text-white font-bold truncate max-w-xs">{project.title}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold px-3 py-1.5 rounded-full" style={{ backgroundColor: st.color+'20', color: st.color }}>{st.label}</span>
-            {st.next && (
-              <button onClick={advance} className="px-3 py-1.5 text-xs font-bold border border-white/15 text-white/60 rounded-lg hover:border-white/30 transition-all">
-                {STATUS_LABEL[st.next]?.label}으로 →
-              </button>
-            )}
-            <Link href={`/collab/proposals/new`} className="px-4 py-1.5 text-xs font-bold bg-indigo-500 text-white rounded-lg hover:bg-indigo-400 transition-colors">✨ 제안서 생성</Link>
-          </div>
+      <div className="max-w-5xl mx-auto px-6 pt-6 pb-3 flex items-center justify-between">
+        <p className="text-sm font-bold text-white truncate max-w-xs">{project.title}</p>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-bold px-3 py-1.5 rounded-full" style={{ backgroundColor: st.color+'20', color: st.color }}>{st.label}</span>
+          {st.next && (
+            <button onClick={advance} className="px-3 py-1.5 text-xs font-bold border border-white/15 text-white/60 rounded-lg hover:border-white/30 transition-all">
+              {STATUS_LABEL[st.next]?.label}으로 →
+            </button>
+          )}
+          <Link href={`/collab/proposals/new`} className="px-4 py-1.5 text-xs font-bold bg-indigo-500 text-white rounded-lg hover:bg-indigo-400 transition-colors">✨ 제안서 생성</Link>
         </div>
-      </header>
+      </div>
 
       <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
         {/* 기본 정보 */}
