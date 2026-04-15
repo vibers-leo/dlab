@@ -12,6 +12,7 @@
     "@anthropic-ai/sdk": "^0.89.0",
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.11.6",
+    "@vercel/blob": "^2.3.3",
     "lucide-react": "^0.555.0",
     "next": "^16.2.3",
     "nodemailer": "^8.0.5",

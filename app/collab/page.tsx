@@ -143,6 +143,24 @@ export default function CollabPage() {
             )}
 
             {/* 프로젝트 */}
+            {/* 퀵 액션 */}
+            <section className="mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { href: '/collab/proposals', icon: '✨', label: 'AI 제안서', color: '#6366F1', desc: '제안서 자동 생성' },
+                  { href: '/collab/knowledge', icon: '🧠', label: '지식베이스', color: '#10B981', desc: 'RAG 학습 문서' },
+                  { href: '/collab/projects/new', icon: '📋', label: '프로젝트', color: '#F59E0B', desc: '협업 프로젝트 생성' },
+                  { href: '/collab/entities/new', icon: '🏢', label: '엔티티 추가', color: '#3B82F6', desc: '협력사 온보딩' },
+                ].map(a => (
+                  <Link key={a.href} href={a.href} className="p-4 rounded-2xl border border-white/8 hover:border-white/20 hover:bg-white/3 transition-all group">
+                    <div className="text-2xl mb-2">{a.icon}</div>
+                    <p className="text-white text-sm font-bold group-hover:text-blue-300 transition-colors">{a.label}</p>
+                    <p className="text-white/30 text-xs mt-0.5">{a.desc}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+
             <section>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-bold text-white/40 tracking-widest uppercase">프로젝트</h2>
