@@ -489,7 +489,6 @@ export default function Home() {
             {/* 플랜 1 */}
             <div className="bg-white border-2 border-blue-200 p-10 rounded-xl">
               <p className="text-sm tracking-widest mb-4 text-blue-400">프로젝트로 시작하기</p>
-              <p className="text-5xl font-extrabold mb-1" style={{ color: '#0B2447' }}>500만원~</p>
               <p className="text-sm mb-8 text-gray-400">한 번의 프로젝트로 디랩을 경험해보세요</p>
               <ul className="space-y-3 text-sm text-gray-600">
                 {[
@@ -519,7 +518,6 @@ export default function Home() {
                 BEST
               </div>
               <p className="text-sm tracking-widest mb-4 text-blue-300">오래 함께하기</p>
-              <p className="text-5xl font-extrabold text-white mb-1">월 200만원~</p>
               <p className="text-sm mb-8 text-blue-400">매달 함께 성장하는 파트너</p>
               <ul className="space-y-3 text-sm text-blue-100">
                 {[
