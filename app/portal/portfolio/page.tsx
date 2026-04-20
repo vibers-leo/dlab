@@ -19,7 +19,7 @@ const CATEGORIES = ['전체', '웹개발', '디자인', '마케팅', 'AI'] as co
 
 function PublicHeader({ title }: { title: string }) {
   return (
-    <header className="relative z-10 flex items-center justify-between px-6 py-4" style={{ borderBottom: '1px solid rgba(96,165,250,0.1)' }}>
+    <header className="relative z-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-6 py-4" style={{ borderBottom: '1px solid rgba(96,165,250,0.1)' }}>
       <div className="flex items-center gap-4">
         <Link href="/portal" className="text-base font-extrabold" style={{ letterSpacing: '-0.02em' }}>
           <span style={{ color: '#60A5FA' }}>:</span>

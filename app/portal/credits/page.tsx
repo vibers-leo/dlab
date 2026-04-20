@@ -68,7 +68,7 @@ export default function CreditsPage() {
               const t = TYPE_MAP[tx.type] ?? TYPE_MAP.earn;
               const sign = tx.type === 'spend' ? '-' : '+';
               return (
-                <div key={tx.id} className="flex items-center justify-between px-5 py-4">
+                <div key={tx.id} className="flex flex-col gap-2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
                     <span
                       className="rounded-md px-2 py-0.5 text-xs font-semibold"
@@ -78,12 +78,12 @@ export default function CreditsPage() {
                     </span>
                     <span className="text-sm text-gray-200">{tx.description}</span>
                   </div>
-                  <div className="flex items-center gap-6 text-sm">
+                  <div className="flex items-center gap-4 text-sm sm:gap-6">
                     <span style={{ color: t.color }} className="font-semibold">
                       {sign}{Math.abs(tx.amount).toLocaleString()}
                     </span>
-                    <span className="text-gray-400 w-24 text-right">{tx.balance_after.toLocaleString()}</span>
-                    <span className="text-gray-500 w-28 text-right">
+                    <span className="text-gray-400 text-right">{tx.balance_after.toLocaleString()}</span>
+                    <span className="text-gray-500 text-right">
                       {new Date(tx.created_at).toLocaleDateString('ko-KR')}
                     </span>
                   </div>

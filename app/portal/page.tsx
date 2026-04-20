@@ -77,7 +77,7 @@ export default function PortalDashboardPage() {
       <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -left-10 w-56 h-56 rounded-full bg-blue-600/8 blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-5xl mx-auto px-6 py-8">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* 인사 */}
         <div className="mb-8">
           <h1 className="text-xl font-bold text-white/90">

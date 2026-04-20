@@ -137,7 +137,7 @@ export default function ProductsPage() {
       {modal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setModal(null)}>
           <div
-            className="w-full max-w-md rounded-2xl p-6 space-y-4"
+            className="w-full max-w-md mx-4 rounded-2xl p-6 space-y-4"
             style={{ background: '#0A1A35', border: '1px solid rgba(96,165,250,0.15)' }}
             onClick={(e) => e.stopPropagation()}
           >

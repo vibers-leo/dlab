@@ -82,7 +82,7 @@ export default function AdminProductsPage() {
         <div className="flex justify-center py-16"><div className="w-8 h-8 border-2 border-blue-400/30 border-t-blue-400 rounded-full animate-spin" /></div>
       ) : (
         <div className="overflow-x-auto rounded-xl" style={{ border: '1px solid rgba(96,165,250,0.08)' }}>
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[500px]">
             <thead>
               <tr style={{ backgroundColor: 'rgba(96,165,250,0.04)' }}>
                 {['이름', '카테고리', '가격', '기간(일)', '활성', '정렬순서'].map(h => (
@@ -125,7 +125,7 @@ export default function AdminProductsPage() {
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setShowAddModal(false)}>
           <form onClick={e => e.stopPropagation()} onSubmit={handleAdd}
-            className="w-full max-w-md rounded-2xl p-6 space-y-4" style={{ backgroundColor: '#0a1a2f', border: '1px solid rgba(96,165,250,0.15)' }}>
+            className="w-full max-w-md mx-4 rounded-2xl p-6 space-y-4" style={{ backgroundColor: '#0a1a2f', border: '1px solid rgba(96,165,250,0.15)' }}>
             <h3 className="text-sm font-bold text-white/90">상품 추가</h3>
             {[
               { k: 'slug', label: 'Slug', required: true },

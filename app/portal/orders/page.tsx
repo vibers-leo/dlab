@@ -88,7 +88,7 @@ export default function OrdersPage() {
               <Link
                 key={o.id}
                 href={`/portal/orders/${o.id}`}
-                className="flex items-center justify-between rounded-xl px-5 py-4 transition-colors hover:brightness-110"
+                className="flex flex-col gap-2 rounded-xl px-5 py-4 transition-colors hover:brightness-110 sm:flex-row sm:items-center sm:justify-between"
                 style={{ background: 'rgba(96,165,250,0.04)', border: '1px solid rgba(96,165,250,0.1)' }}
               >
                 <div className="flex items-center gap-3">

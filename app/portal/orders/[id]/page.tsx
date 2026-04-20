@@ -124,7 +124,7 @@ export default function OrderDetailPage() {
                   >
                     {i + 1}
                   </div>
-                  <span className="text-xs" style={{ color: active ? STATUS[step].color : '#6B7280' }}>
+                  <span className="hidden text-xs sm:block" style={{ color: active ? STATUS[step].color : '#6B7280' }}>
                     {STEP_LABELS[i]}
                   </span>
                 </div>
@@ -208,19 +208,19 @@ export default function OrderDetailPage() {
         )}
 
         {/* New comment */}
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             rows={2}
-            className="flex-1 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 outline-none resize-none"
+            className="w-full rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 outline-none resize-none sm:flex-1"
             style={{ background: 'rgba(96,165,250,0.06)', border: '1px solid rgba(96,165,250,0.15)' }}
             placeholder="코멘트를 입력하세요..."
           />
           <button
             onClick={handleComment}
             disabled={!comment.trim() || submitting}
-            className="self-end rounded-lg px-4 py-2 text-sm font-semibold text-white disabled:opacity-40"
+            className="self-end rounded-lg px-4 py-2 text-sm font-semibold text-white disabled:opacity-40 sm:self-end"
             style={{ background: '#3B82F6' }}
           >
             {submitting ? '...' : '전송'}

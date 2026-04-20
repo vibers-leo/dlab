@@ -77,7 +77,7 @@ export default function AdminOrdersPage() {
         <div className="flex justify-center py-16"><div className="w-8 h-8 border-2 border-blue-400/30 border-t-blue-400 rounded-full animate-spin" /></div>
       ) : (
         <div className="overflow-x-auto rounded-xl" style={{ border: '1px solid rgba(96,165,250,0.08)' }}>
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[600px]">
             <thead>
               <tr style={{ backgroundColor: 'rgba(96,165,250,0.04)' }}>
                 {['ID', '클라이언트', '상품', '금액', '상태', '생성일', ''].map(h => (

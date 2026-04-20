@@ -82,7 +82,7 @@ export default function AdminInquiriesPage() {
         <div className="flex justify-center py-16"><div className="w-8 h-8 border-2 border-blue-400/30 border-t-blue-400 rounded-full animate-spin" /></div>
       ) : (
         <div className="overflow-x-auto rounded-xl" style={{ border: '1px solid rgba(96,165,250,0.08)' }}>
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[650px]">
             <thead>
               <tr style={{ backgroundColor: 'rgba(96,165,250,0.04)' }}>
                 {['회사명', '담당자', '이메일', '카테고리', '예산', '상태', '날짜'].map(h => (

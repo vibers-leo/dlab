@@ -171,7 +171,7 @@ export default function PortalShell({ children }: { children: React.ReactNode })
       {/* 모바일 오버레이 */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-50 flex">
-          <div className="flex flex-col" style={{ width: 220 }}>
+          <div className="flex flex-col" style={{ width: 'min(220px, 80vw)' }}>
             <Sidebar />
           </div>
           <div className="flex-1 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
@@ -183,10 +183,10 @@ export default function PortalShell({ children }: { children: React.ReactNode })
         {/* 모바일 탑바 */}
         <div className="md:hidden flex items-center gap-3 px-4 py-3 sticky top-0 z-40"
           style={{ backgroundColor: 'rgba(5,18,38,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(96,165,250,0.1)' }}>
-          <button onClick={() => setMobileOpen(true)} className="w-8 h-8 flex items-center justify-center transition-colors" style={{ color: 'rgba(96,165,250,0.6)' }}>
+          <button onClick={() => setMobileOpen(true)} className="w-10 h-10 flex items-center justify-center transition-colors" style={{ color: 'rgba(96,165,250,0.6)' }}>
             ☰
           </button>
-          <span className="text-sm font-bold" style={{ color: '#60A5FA' }}>
+          <span className="text-base font-bold" style={{ color: '#60A5FA' }}>
             {NAV.find(n => isActive(n.href, n.exact))?.label ?? 'Portal'}
           </span>
         </div>

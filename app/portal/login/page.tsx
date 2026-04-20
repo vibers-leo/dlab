@@ -53,7 +53,7 @@ export default function PortalLoginPage() {
       <div className="absolute bottom-1/3 left-1/5 w-3 h-3 rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(96,165,250,0.1)' }} />
 
       {/* 로그인 카드 */}
-      <div className="relative w-full max-w-sm rounded-2xl p-8"
+      <div className="relative w-full max-w-sm rounded-2xl px-5 sm:px-8 py-8"
         style={{
           backgroundColor: 'rgba(10,25,50,0.6)',
           border: '1px solid rgba(96,165,250,0.1)',
@@ -76,7 +76,7 @@ export default function PortalLoginPage() {
               onChange={e => setLoginId(e.target.value)}
               placeholder="아이디"
               required
-              className="w-full px-4 py-3 rounded-xl text-sm text-white bg-transparent outline-none transition-all focus:ring-1 focus:ring-blue-400/30"
+              className="w-full px-4 py-3 min-h-[44px] rounded-xl text-sm text-white bg-transparent outline-none transition-all focus:ring-1 focus:ring-blue-400/30"
               style={{ border: '1px solid rgba(96,165,250,0.15)' }}
             />
           </div>
@@ -87,7 +87,7 @@ export default function PortalLoginPage() {
               onChange={e => setPassword(e.target.value)}
               placeholder="비밀번호"
               required
-              className="w-full px-4 py-3 rounded-xl text-sm text-white bg-transparent outline-none transition-all focus:ring-1 focus:ring-blue-400/30"
+              className="w-full px-4 py-3 min-h-[44px] rounded-xl text-sm text-white bg-transparent outline-none transition-all focus:ring-1 focus:ring-blue-400/30"
               style={{ border: '1px solid rgba(96,165,250,0.15)' }}
             />
           </div>
