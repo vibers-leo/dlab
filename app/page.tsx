@@ -130,7 +130,7 @@ export default function Home() {
       {/* ── Slide 2: Identity ── */}
       <section
         ref={(el) => { sectionRefs.current[1] = el; }}
-        className="relative flex flex-col h-dvh items-center justify-center px-4 sm:px-10 overflow-hidden"
+        className="relative flex flex-col md:h-dvh items-center justify-center px-4 sm:px-10 overflow-hidden"
         style={{ backgroundColor: '#0B2447' }}
       >
         {/* 좌측 세로 라인 */}
@@ -177,7 +177,7 @@ export default function Home() {
       {/* ── Slide 3: History ── */}
       <section
         ref={(el) => { sectionRefs.current[2] = el; }}
-        className="relative flex h-dvh items-center overflow-hidden"
+        className="relative flex md:h-dvh items-center overflow-hidden"
         style={{ backgroundColor: '#0B2447' }}
       >
         {/* 배경 장식 원 */}
@@ -222,7 +222,7 @@ export default function Home() {
       {/* ── Slide 4: Numbers (대각선 분할) ── */}
       <section
         ref={(el) => { sectionRefs.current[3] = el; }}
-        className="relative flex h-dvh items-center overflow-hidden"
+        className="relative flex md:h-dvh items-center overflow-hidden"
         style={{}}
       >
         {/* 대각선 배경 분할 */}
@@ -270,7 +270,7 @@ export default function Home() {
       {/* ── Slide 5: Services ── */}
       <section
         ref={(el) => { sectionRefs.current[4] = el; }}
-        className="flex h-dvh items-center px-4 sm:px-10 bg-white border-t-4 border-blue-500"
+        className="flex md:h-dvh items-center px-4 sm:px-10 bg-white border-t-4 border-blue-500"
         style={{}}
       >
         <div className="max-w-5xl w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16 items-start">
@@ -319,7 +319,7 @@ export default function Home() {
       {/* ── Slide 6: Collab ── */}
       <section
         ref={(el) => { sectionRefs.current[5] = el; }}
-        className="flex h-dvh items-center px-4 sm:px-10 bg-white"
+        className="flex md:h-dvh items-center px-4 sm:px-10 bg-white"
         style={{}}
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-8 w-full">
@@ -393,7 +393,7 @@ export default function Home() {
       {/* ── Slide 7: Process ── */}
       <section
         ref={(el) => { sectionRefs.current[6] = el; }}
-        className="relative flex h-dvh items-center px-4 sm:px-10 overflow-hidden"
+        className="relative flex md:h-dvh items-center px-4 sm:px-10 overflow-hidden"
         style={{ backgroundColor: '#0B2447' }}
       >
         {/* 블루 블러 장식 */}
@@ -444,7 +444,7 @@ export default function Home() {
       {/* ── Slide 8: News ── */}
       <section
         ref={(el) => { sectionRefs.current[7] = el; }}
-        className="flex h-dvh items-center overflow-hidden"
+        className="flex md:h-dvh items-center overflow-hidden"
         style={{ backgroundColor: '#051226' }}
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-8 w-full">
@@ -478,7 +478,7 @@ export default function Home() {
       {/* ── Slide 9: Pricing ── */}
       <section
         ref={(el) => { sectionRefs.current[8] = el; }}
-        className="flex h-dvh items-center px-4 sm:px-10"
+        className="flex md:h-dvh items-center px-4 sm:px-10"
         style={{ backgroundColor: '#F0F6FF' }}
       >
         <div className="max-w-4xl w-full mx-auto">
