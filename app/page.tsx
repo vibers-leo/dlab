@@ -45,10 +45,11 @@ export default function Home() {
     <div
       ref={containerRef}
       className="snap-container h-screen overflow-y-scroll"
-      style={{ scrollSnapType: 'y mandatory' }}
+      style={{ scrollSnapType: undefined }}
+      data-snap="true"
     >
       {/* 우측 도트 네비 */}
-      <nav className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
+      <nav className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-3">
         {SECTIONS.map((_, i) => (
           <button
             key={i}
@@ -67,7 +68,7 @@ export default function Home() {
       <section
         ref={(el) => { sectionRefs.current[0] = el; }}
         className="relative flex flex-col h-dvh overflow-hidden"
-        style={{ scrollSnapAlign: 'start', backgroundColor: '#051226' }}
+        style={{ backgroundColor: '#051226' }}
       >
         {/* 도트 그리드 배경 */}
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
@@ -84,7 +85,7 @@ export default function Home() {
         <div className="absolute bottom-20 left-[-4rem] w-72 h-72 rounded-full bg-blue-600/10 blur-3xl pointer-events-none" />
 
         {/* 로고 */}
-        <div className="absolute top-8 left-10 text-lg font-extrabold" style={{ letterSpacing: '-0.02em' }}>
+        <div className="absolute top-6 left-4 sm:top-8 sm:left-10 text-lg font-extrabold" style={{ letterSpacing: '-0.02em' }}>
           <span style={{ color: '#60A5FA' }}>:</span>
           <span className="text-white">DLAB</span>
         </div>
@@ -121,7 +122,7 @@ export default function Home() {
         </div>
 
         {/* 스크롤 힌트 */}
-        <div className="absolute bottom-8 right-10 text-sm tracking-widest text-blue-400/50">
+        <div className="hidden sm:block absolute bottom-8 right-10 text-sm tracking-widest text-blue-400/50">
           ↓ scroll
         </div>
       </section>
@@ -129,16 +130,16 @@ export default function Home() {
       {/* ── Slide 2: Identity ── */}
       <section
         ref={(el) => { sectionRefs.current[1] = el; }}
-        className="relative flex flex-col h-dvh items-center justify-center px-10 overflow-hidden"
-        style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
+        className="relative flex flex-col h-dvh items-center justify-center px-4 sm:px-10 overflow-hidden"
+        style={{ backgroundColor: '#0B2447' }}
       >
         {/* 좌측 세로 라인 */}
         <div className="absolute left-0 top-0 bottom-0 w-0.5" style={{ backgroundColor: '#1565C0' }} />
 
         {/* 배경 숫자 */}
         <span
-          className="absolute left-8 top-1/2 -translate-y-1/2 font-extrabold select-none leading-none pointer-events-none"
-          style={{ fontSize: '20rem', color: 'rgba(21,101,192,0.15)' }}
+          className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 font-extrabold select-none leading-none pointer-events-none"
+          style={{ fontSize: 'clamp(8rem, 25vw, 20rem)', color: 'rgba(21,101,192,0.15)' }}
         >
           02
         </span>
@@ -177,12 +178,12 @@ export default function Home() {
       <section
         ref={(el) => { sectionRefs.current[2] = el; }}
         className="relative flex h-dvh items-center overflow-hidden"
-        style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
+        style={{ backgroundColor: '#0B2447' }}
       >
         {/* 배경 장식 원 */}
         <div className="absolute right-[-8rem] top-1/2 w-96 h-96 rounded-full border border-blue-500/10 pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto px-8 w-full">
+        <div className="max-w-5xl mx-auto px-4 sm:px-8 w-full">
           {/* 상단 태그 */}
           <span className="text-blue-400 text-sm tracking-widest">OUR JOURNEY</span>
           <h2 className="text-5xl font-extrabold text-white mt-3 mb-12">
@@ -190,10 +191,10 @@ export default function Home() {
             <span className="text-blue-400">이로운 비즈니스로 넓혀왔습니다.</span>
           </h2>
 
-          {/* 타임라인 가로형 */}
-          <div className="flex gap-0 relative">
-            {/* 연결선 */}
-            <div className="absolute top-6 left-0 right-0 h-px bg-blue-500/30" />
+          {/* 타임라인 */}
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-0 relative">
+            {/* 연결선 (데스크톱만) */}
+            <div className="hidden sm:block absolute top-6 left-0 right-0 h-px bg-blue-500/30" />
 
             {[
               { year: '2012', title: '청년창업', desc: '디자인으로 세상과 연결되는 방법을 찾기 시작', color: 'bg-blue-600' },
@@ -201,9 +202,9 @@ export default function Home() {
               { year: '2022', title: '주식회사 디랩', desc: '전시·행사 기획과 디지털 창구 제작으로 피봇', color: 'bg-blue-400' },
               { year: '2025', title: 'AI 피봇', desc: 'AI와 개발 역량을 더해 바이브코딩 서비스 생태계 구축', color: 'bg-cyan-400' },
             ].map((item, i) => (
-              <div key={i} className="flex-1 relative pt-14 pr-8">
+              <div key={i} className="flex-1 relative pt-0 sm:pt-14 pr-0 sm:pr-8 pl-6 sm:pl-0 border-l-2 sm:border-l-0 border-blue-500/30">
                 {/* 도트 */}
-                <div className={`absolute top-4 left-0 w-4 h-4 rounded-full ${item.color} -translate-y-1/2 z-10`} />
+                <div className={`absolute top-1 sm:top-4 -left-[9px] sm:left-0 w-4 h-4 rounded-full ${item.color} sm:-translate-y-1/2 z-10`} />
                 <span className="text-blue-300/60 text-xs font-mono">{item.year}</span>
                 <h3 className="text-white font-bold text-lg mt-1">{item.title}</h3>
                 <p className="text-blue-200/60 text-sm mt-1 leading-relaxed">{item.desc}</p>
@@ -222,7 +223,7 @@ export default function Home() {
       <section
         ref={(el) => { sectionRefs.current[3] = el; }}
         className="relative flex h-dvh items-center overflow-hidden"
-        style={{ scrollSnapAlign: 'start' }}
+        style={{}}
       >
         {/* 대각선 배경 분할 */}
         <div
@@ -234,7 +235,7 @@ export default function Home() {
           style={{ backgroundColor: '#F0F6FF', clipPath: 'polygon(60% 0, 100% 0, 100% 100%, 40% 100%)' }}
         />
 
-        <div className="relative z-10 max-w-5xl w-full mx-auto px-10 grid grid-cols-1 sm:grid-cols-2 gap-16 items-center">
+        <div className="relative z-10 max-w-5xl w-full mx-auto px-4 sm:px-10 grid grid-cols-1 sm:grid-cols-2 gap-16 items-center">
           {/* 좌측 */}
           <div>
             <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
@@ -254,12 +255,12 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.num}
-                className="w-44 h-44 rounded-full border-2 flex flex-col items-center justify-center shrink-0"
+                className="w-32 h-32 sm:w-44 sm:h-44 rounded-full border-2 flex flex-col items-center justify-center shrink-0"
                 style={{ borderColor: '#93C5FD' }}
               >
-                <span className="text-5xl font-black" style={{ color: '#1565C0' }}>{item.num}</span>
-                <span className="text-sm font-semibold mt-1" style={{ color: '#0B2447' }}>{item.label}</span>
-                <span className="text-xs mt-0.5" style={{ color: '#42A5F5' }}>{item.desc}</span>
+                <span className="text-3xl sm:text-5xl font-black" style={{ color: '#1565C0' }}>{item.num}</span>
+                <span className="text-xs sm:text-sm font-semibold mt-1" style={{ color: '#0B2447' }}>{item.label}</span>
+                <span className="text-[10px] sm:text-xs mt-0.5" style={{ color: '#42A5F5' }}>{item.desc}</span>
               </div>
             ))}
           </div>
@@ -269,8 +270,8 @@ export default function Home() {
       {/* ── Slide 5: Services ── */}
       <section
         ref={(el) => { sectionRefs.current[4] = el; }}
-        className="flex h-dvh items-center px-10 bg-white border-t-4 border-blue-500"
-        style={{ scrollSnapAlign: 'start' }}
+        className="flex h-dvh items-center px-4 sm:px-10 bg-white border-t-4 border-blue-500"
+        style={{}}
       >
         <div className="max-w-5xl w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16 items-start">
           {/* 좌측 타이틀 */}
@@ -318,10 +319,10 @@ export default function Home() {
       {/* ── Slide 6: Collab ── */}
       <section
         ref={(el) => { sectionRefs.current[5] = el; }}
-        className="flex h-dvh items-center px-10 bg-white"
-        style={{ scrollSnapAlign: 'start' }}
+        className="flex h-dvh items-center px-4 sm:px-10 bg-white"
+        style={{}}
       >
-        <div className="max-w-5xl mx-auto px-8 w-full">
+        <div className="max-w-5xl mx-auto px-4 sm:px-8 w-full">
           <span className="text-blue-500 text-sm tracking-widest">COLLABORATION</span>
           <h2 className="text-5xl font-extrabold text-gray-900 mt-3 mb-3">
             함께 만든 것들
@@ -392,8 +393,8 @@ export default function Home() {
       {/* ── Slide 7: Process ── */}
       <section
         ref={(el) => { sectionRefs.current[6] = el; }}
-        className="relative flex h-dvh items-center px-10 overflow-hidden"
-        style={{ scrollSnapAlign: 'start', backgroundColor: '#0B2447' }}
+        className="relative flex h-dvh items-center px-4 sm:px-10 overflow-hidden"
+        style={{ backgroundColor: '#0B2447' }}
       >
         {/* 블루 블러 장식 */}
         <div
@@ -426,10 +427,10 @@ export default function Home() {
                 <div className="absolute -left-[2.35rem] w-4 h-4 rounded-full bg-blue-500 border-2 border-blue-300" />
                 <div className="flex items-center gap-3 flex-1">
                   <span className="font-bold text-sm w-6 text-blue-400">{item.step}</span>
-                  <div className="flex-1 flex items-center justify-between">
+                  <div className="flex-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-0">
                     <div>
                       <span className="text-white font-semibold">{item.title}</span>
-                      <span className="text-sm ml-3 text-blue-300/80">{item.desc}</span>
+                      <span className="text-xs sm:text-sm ml-2 sm:ml-3 text-blue-300/80">{item.desc}</span>
                     </div>
                     <span className="text-xs text-blue-600">{item.time}</span>
                   </div>
@@ -444,9 +445,9 @@ export default function Home() {
       <section
         ref={(el) => { sectionRefs.current[7] = el; }}
         className="flex h-dvh items-center overflow-hidden"
-        style={{ scrollSnapAlign: 'start', backgroundColor: '#051226' }}
+        style={{ backgroundColor: '#051226' }}
       >
-        <div className="max-w-5xl mx-auto px-8 w-full">
+        <div className="max-w-5xl mx-auto px-4 sm:px-8 w-full">
           <div className="flex items-end justify-between mb-10">
             <div>
               <span className="text-blue-400 text-sm tracking-widest">LATEST</span>
@@ -477,8 +478,8 @@ export default function Home() {
       {/* ── Slide 9: Pricing ── */}
       <section
         ref={(el) => { sectionRefs.current[8] = el; }}
-        className="flex h-dvh items-center px-10"
-        style={{ scrollSnapAlign: 'start', backgroundColor: '#F0F6FF' }}
+        className="flex h-dvh items-center px-4 sm:px-10"
+        style={{ backgroundColor: '#F0F6FF' }}
       >
         <div className="max-w-4xl w-full mx-auto">
           <h2 className="text-5xl sm:text-6xl font-extrabold text-center mb-16" style={{ color: '#0B2447' }}>
@@ -487,7 +488,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* 플랜 1 */}
-            <div className="bg-white border-2 border-blue-200 p-10 rounded-xl">
+            <div className="bg-white border-2 border-blue-200 p-6 sm:p-10 rounded-xl">
               <p className="text-2xl font-black mb-4 text-blue-400">프로젝트로 의뢰하기</p>
               <p className="text-sm mb-8 text-gray-400">한 번의 프로젝트로 디랩을 경험해보세요</p>
               <ul className="space-y-3 text-sm text-gray-600">
@@ -513,7 +514,7 @@ export default function Home() {
             </div>
 
             {/* 플랜 2 — 하이라이트 */}
-            <div className="relative p-10 rounded-xl overflow-hidden" style={{ backgroundColor: '#0B2447' }}>
+            <div className="relative p-6 sm:p-10 rounded-xl overflow-hidden" style={{ backgroundColor: '#0B2447' }}>
               <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold text-white bg-blue-500">
                 BEST
               </div>
@@ -549,7 +550,7 @@ export default function Home() {
         ref={(el) => { sectionRefs.current[9] = el; }}
         id="contact"
         className="relative flex flex-col h-dvh overflow-hidden"
-        style={{ scrollSnapAlign: 'start', background: 'linear-gradient(135deg, #051226 0%, #0B2447 50%, #1565C0 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #051226 0%, #0B2447 50%, #1565C0 100%)' }}
       >
         {/* 도트 그리드 */}
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
@@ -583,7 +584,7 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <footer className="relative z-10 border-t border-white/10 py-6 px-10 flex flex-col sm:flex-row justify-between items-center gap-2">
+        <footer className="relative z-10 border-t border-white/10 py-6 px-4 sm:px-10 flex flex-col sm:flex-row justify-between items-center gap-2">
           <span className="text-sm font-extrabold text-white/40" style={{ letterSpacing: '-0.02em' }}>
             <span className="text-blue-400/60">:</span>DLAB · 계발자들 협력사
           </span>

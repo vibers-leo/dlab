@@ -59,6 +59,29 @@ html {
   scrollbar-width: none;
 }
 
+/* 데스크톱에서만 스냅 스크롤 */
+@media (min-width: 768px) {
+  .snap-container[data-snap="true"] {
+    scroll-snap-type: y mandatory;
+  }
+  .snap-container[data-snap="true"] > section {
+    scroll-snap-align: start;
+  }
+}
+
+/* 모바일: 스냅 해제, 자연 스크롤 */
+@media (max-width: 767px) {
+  .snap-container {
+    height: auto !important;
+    overflow-y: auto !important;
+  }
+  .snap-container > section {
+    min-height: 100dvh;
+    height: auto !important;
+    scroll-snap-align: unset !important;
+  }
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
