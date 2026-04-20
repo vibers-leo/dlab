@@ -145,15 +145,15 @@ export default function Home() {
         </span>
 
         <div className="relative z-10 max-w-5xl w-full">
-          <h2 className="text-5xl sm:text-6xl font-extrabold text-white mb-4">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white mb-3 sm:mb-4">
             :D for Design / Drawing / Dreaming
           </h2>
-          <p className="text-blue-300/70 text-lg mb-12">
+          <p className="text-blue-300/70 text-base sm:text-lg mb-8 sm:mb-12 pl-1 sm:pl-0">
             디자인을 도구로 가치있는 일을 하는 사람이 되자 —<br />
             이로운 일을 비즈니스로 만드는 디자인 회사
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 pl-1 sm:pl-0">
             {[
               { title: 'Design', desc: '문제를 해결하는 시각 언어를 만드는 일', dot: 'bg-blue-500' },
               { title: 'Drawing', desc: '아이디어를 형태로 끌어내는 일', dot: 'bg-blue-400' },
@@ -186,13 +186,13 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4 sm:px-8 w-full">
           {/* 상단 태그 */}
           <span className="text-blue-400 text-sm tracking-widest">OUR JOURNEY</span>
-          <h2 className="text-5xl font-extrabold text-white mt-3 mb-12">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-3 mb-8 sm:mb-12">
             디자인에서 시작해,<br />
             <span className="text-blue-400">이로운 비즈니스로 넓혀왔습니다.</span>
           </h2>
 
           {/* 타임라인 */}
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-0 relative">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-0 relative pl-1 sm:pl-0">
             {/* 연결선 (데스크톱만) */}
             <div className="hidden sm:block absolute top-6 left-0 right-0 h-px bg-blue-500/30" />
 
@@ -238,10 +238,10 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl w-full mx-auto px-4 sm:px-10 grid grid-cols-1 sm:grid-cols-2 gap-16 items-center">
           {/* 좌측 */}
           <div>
-            <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
+            <h2 className="text-3xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight">
               같이
             </h2>
-            <h2 className="text-6xl sm:text-7xl font-extrabold leading-tight" style={{ color: '#60A5FA' }}>
+            <h2 className="text-3xl sm:text-6xl md:text-7xl font-extrabold leading-tight" style={{ color: '#60A5FA' }}>
               만든 것들
             </h2>
           </div>
@@ -276,12 +276,12 @@ export default function Home() {
         <div className="max-w-5xl w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16 items-start">
           {/* 좌측 타이틀 */}
           <div className="pt-4">
-            <h2 className="text-6xl sm:text-7xl font-extrabold" style={{ color: '#0B2447' }}>일의 범주</h2>
-            <p className="mt-4 text-sm" style={{ color: '#42A5F5' }}>디랩이 함께하는 네 가지 방식</p>
+            <h2 className="text-3xl sm:text-6xl md:text-7xl font-extrabold" style={{ color: '#0B2447' }}>일의 범주</h2>
+            <p className="mt-3 sm:mt-4 text-sm" style={{ color: '#42A5F5' }}>디랩이 함께하는 네 가지 방식</p>
           </div>
 
           {/* 우측 서비스 목록 */}
-          <div className="flex flex-col divide-y divide-gray-100">
+          <div className="flex flex-col divide-y divide-gray-100 pl-1 sm:pl-0">
             {[
               { num: '01', name: '디지털 공간 기획', desc: '행사·전시·캠페인의 온라인 거점을 만듭니다', icon: '🎪' },
               { num: '02', name: '설득하는 콘텐츠', desc: '제안서, 브랜드 스토리, 발표 자료를 웹으로', icon: '📋' },
@@ -324,15 +324,15 @@ export default function Home() {
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-8 w-full">
           <span className="text-blue-500 text-sm tracking-widest">COLLABORATION</span>
-          <h2 className="text-5xl font-extrabold text-gray-900 mt-3 mb-3">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-gray-900 mt-3 mb-3">
             함께 만든 것들
           </h2>
-          <p className="text-gray-400 mb-12">
+          <p className="text-gray-400 mb-8 sm:mb-12">
             디랩은 좋은 파트너와 함께할 때 더 큰 일을 합니다.
           </p>
 
           {/* 협업 카드 그리드 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 pl-1 sm:pl-0">
             {[
               {
                 partner: '계발자들',
@@ -405,7 +405,7 @@ export default function Home() {
         <div className="relative z-10 max-w-5xl w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-16 items-center">
           {/* 좌측 */}
           <div>
-            <h2 className="text-6xl sm:text-7xl font-extrabold text-white leading-tight">
+            <h2 className="text-3xl sm:text-6xl md:text-7xl font-extrabold text-white leading-tight">
               우리의<br />방식
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-blue-300/80">
@@ -451,14 +451,14 @@ export default function Home() {
           <div className="flex items-end justify-between mb-10">
             <div>
               <span className="text-blue-400 text-sm tracking-widest">LATEST</span>
-              <h2 className="text-5xl font-extrabold text-white mt-2">최신 소식</h2>
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-white mt-2">최신 소식</h2>
             </div>
             <a href="/works" className="text-blue-400 text-sm hover:text-blue-300 transition-colors">
               전체 보기 →
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pl-1 sm:pl-0">
             {NEWS.map((item) => (
               <div key={item.title} className="border border-blue-900/50 rounded-xl p-5 hover:border-blue-500/50 hover:bg-blue-950/30 transition-all">
                 <div className="flex items-center justify-between mb-3">
@@ -482,7 +482,7 @@ export default function Home() {
         style={{ backgroundColor: '#F0F6FF' }}
       >
         <div className="max-w-4xl w-full mx-auto">
-          <h2 className="text-5xl sm:text-6xl font-extrabold text-center mb-16" style={{ color: '#0B2447' }}>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-center mb-10 sm:mb-16" style={{ color: '#0B2447' }}>
             함께하는 방법
           </h2>
 
