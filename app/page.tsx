@@ -593,6 +593,7 @@ export default function Home() {
             <a href="/templates" className="hover:text-blue-300/70 transition-colors">템플릿</a>
             <a href="/guide" className="hover:text-blue-300/70 transition-colors">빌드가이드</a>
             <a href="/privacy" className="hover:text-blue-300/70 transition-colors">개인정보</a>
+            <a href="/portal/login" className="hover:text-blue-300/70 transition-colors">클라이언트 포털</a>
           </div>
           <span className="text-sm text-white/20">© {new Date().getFullYear()} 디랩. All rights reserved.</span>
         </footer>
