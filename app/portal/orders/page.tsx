@@ -101,7 +101,7 @@ export default function OrdersPage() {
                   <span className="text-sm font-medium text-white">{o.product_name}</span>
                 </div>
                 <div className="flex items-center gap-5 text-sm">
-                  <span className="text-blue-400 font-semibold">{o.price.toLocaleString()} 크레딧</span>
+                  <span className="text-blue-400 font-semibold">{o.price.toLocaleString()} 만원</span>
                   <span className="text-gray-500">{new Date(o.created_at).toLocaleDateString('ko-KR')}</span>
                 </div>
               </Link>

@@ -148,7 +148,7 @@ export default function OrderDetailPage() {
         <div className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
           <div>
             <p className="text-gray-500">금액</p>
-            <p className="text-blue-400 font-semibold">{order.price.toLocaleString()} 크레딧</p>
+            <p className="text-blue-400 font-semibold">{order.price.toLocaleString()} 만원</p>
           </div>
           <div>
             <p className="text-gray-500">주문일</p>

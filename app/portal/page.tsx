@@ -55,7 +55,7 @@ export default function PortalDashboardPage() {
   if (loading || !user) return null;
 
   const stats = [
-    { label: '크레딧 잔액', value: data?.credits ?? 0, color: '#60A5FA', bg: 'rgba(96,165,250,0.08)' },
+    { label: '보유 잔액 (만원)', value: data?.credits ?? 0, color: '#60A5FA', bg: 'rgba(96,165,250,0.08)' },
     { label: '진행중 주문', value: data?.activeOrders ?? 0, color: '#F59E0B', bg: 'rgba(245,158,11,0.08)' },
     { label: '총 주문', value: data?.totalOrders ?? 0, color: '#818CF8', bg: 'rgba(129,140,248,0.08)' },
   ];
@@ -63,7 +63,7 @@ export default function PortalDashboardPage() {
   const quickActions = [
     { label: '상품 둘러보기', href: '/portal/products', icon: '◉' },
     { label: '주문 내역', href: '/portal/orders', icon: '◎' },
-    { label: '크레딧 충전 문의', href: '/portal/inquiry', icon: '✦' },
+    { label: '충전 문의', href: '/portal/inquiry', icon: '✦' },
   ];
 
   return (
@@ -144,13 +144,13 @@ export default function PortalDashboardPage() {
             )}
           </div>
 
-          {/* 최근 크레딧 */}
+          {/* 최근 거래 내역 */}
           <div className="rounded-xl p-5" style={{ backgroundColor: 'rgba(10,25,50,0.5)', border: '1px solid rgba(96,165,250,0.08)' }}>
-            <h2 className="text-sm font-bold text-white/70 mb-4">최근 크레딧</h2>
+            <h2 className="text-sm font-bold text-white/70 mb-4">최근 거래 내역</h2>
             {fetching ? (
               <p className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>불러오는 중...</p>
             ) : !data?.recentCredits?.length ? (
-              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>크레딧 내역이 없습니다</p>
+              <p className="text-xs" style={{ color: 'rgba(255,255,255,0.2)' }}>거래 내역이 없습니다</p>
             ) : (
               <div className="space-y-3">
                 {data.recentCredits.map(credit => (

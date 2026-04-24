@@ -44,12 +44,12 @@ export default function CreditsPage() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-white">크레딧 내역</h1>
+        <h1 className="text-2xl font-bold text-white">거래 내역</h1>
         <span
           className="rounded-full px-4 py-1.5 text-sm font-semibold"
           style={{ background: 'rgba(96,165,250,0.15)', border: '1px solid rgba(96,165,250,0.3)', color: '#60A5FA' }}
         >
-          잔액 {user.credits.toLocaleString()} 크레딧
+          잔액 {user.credits.toLocaleString()}만원
         </span>
       </div>
 

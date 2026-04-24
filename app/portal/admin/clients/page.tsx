@@ -79,7 +79,7 @@ export default function AdminClientsPage() {
       setCreditModal(null);
       setCreditForm({ amount: '', description: '' });
       fetchClients();
-    } catch { alert('크레딧 지급 실패'); }
+    } catch { alert('충전 실패'); }
     finally { setSubmitting(false); }
   };
 
@@ -113,7 +113,7 @@ export default function AdminClientsPage() {
           <table className="w-full text-sm min-w-[700px]">
             <thead>
               <tr style={{ backgroundColor: 'rgba(96,165,250,0.04)' }}>
-                {['이름', '로그인 ID', '엔티티', '크레딧', '역할', '상태', '마지막 로그인', ''].map(h => (
+                {['이름', '로그인 ID', '엔티티', '만원', '역할', '상태', '마지막 로그인', ''].map(h => (
                   <th key={h} className="text-left px-4 py-3 text-xs font-medium text-white/30">{h}</th>
                 ))}
               </tr>
@@ -139,7 +139,7 @@ export default function AdminClientsPage() {
                     <div className="flex gap-2">
                       <button onClick={() => { setCreditModal(c); setCreditForm({ amount: '', description: '' }); }}
                         className="text-[10px] px-2 py-1 rounded-lg" style={{ color: '#60A5FA', border: '1px solid rgba(96,165,250,0.15)' }}>
-                        크레딧
+                        만원
                       </button>
                       <button className="text-[10px] px-2 py-1 rounded-lg" style={{ color: 'rgba(255,255,255,0.3)', border: '1px solid rgba(255,255,255,0.06)' }}>
                         편집
@@ -205,7 +205,7 @@ export default function AdminClientsPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setCreditModal(null)}>
           <form onClick={e => e.stopPropagation()} onSubmit={handleCredit}
             className="w-full max-w-sm mx-4 rounded-2xl p-6 space-y-4" style={{ backgroundColor: '#0a1a2f', border: '1px solid rgba(96,165,250,0.15)' }}>
-            <h3 className="text-sm font-bold text-white/90">크레딧 지급 — {creditModal.name}</h3>
+            <h3 className="text-sm font-bold text-white/90">충전 — {creditModal.name}</h3>
             <p className="text-xs text-white/40">현재 잔액: <span className="text-white/70 font-mono">{creditModal.credits.toLocaleString()}</span></p>
             <div className="space-y-1">
               <label className="text-xs text-white/40">금액 (+/-)</label>

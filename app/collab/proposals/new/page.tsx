@@ -57,6 +57,7 @@ export default function NewProposalPage() {
         body: JSON.stringify({ rfp, entity_ids: selectedEntities, project_type: projectType }),
       });
       const json = await res.json();
+      if (res.status === 503) { setError('AI 제안서 기능을 준비 중입니다. 관리자에게 문의해 주세요.'); return; }
       if (!res.ok) { setError(json.error); return; }
       setDraft(json.draft);
       setStep(3);
@@ -244,6 +245,11 @@ export default function NewProposalPage() {
                 <span className="text-white/40">참여 기관</span>
                 <span className="text-white">{entities.filter(e => selectedEntities.includes(e.id)).map(e => e.name).join(', ')}</span>
               </div>
+            </div>
+
+            <div style={{ border: '1px solid rgba(251,191,36,0.3)', backgroundColor: 'rgba(251,191,36,0.05)', borderRadius: 12, padding: '12px 16px', marginBottom: 16 }}>
+              <p style={{ color: '#FBBF24', fontSize: 13, fontWeight: 600 }}>⚠ AI 제안서 생성 기능은 현재 준비 중입니다</p>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginTop: 4 }}>수동으로 제안서를 작성하거나, 관리자에게 문의해 주세요.</p>
             </div>
 
             {loading ? (

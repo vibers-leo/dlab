@@ -9,7 +9,7 @@ const NAV = [
   { href: '/portal', label: '대시보드', icon: '◈', exact: true },
   { href: '/portal/products', label: '상품 목록', icon: '◉' },
   { href: '/portal/orders', label: '주문 내역', icon: '◎' },
-  { href: '/portal/credits', label: '크레딧', icon: '✦' },
+  { href: '/portal/credits', label: '거래 내역', icon: '✦' },
 ];
 
 const ADMIN_NAV = [
@@ -17,6 +17,7 @@ const ADMIN_NAV = [
   { href: '/portal/admin/orders', label: '주문 관리', icon: '◆' },
   { href: '/portal/admin/products', label: '상품 관리', icon: '▣' },
   { href: '/portal/admin/inquiries', label: '문의 관리', icon: '▤' },
+  { href: '/portal/admin/portfolio', label: '포트폴리오', icon: '▧' },
 ];
 
 const PUBLIC_PATHS = ['/portal/login', '/portal/portfolio', '/portal/inquiry'];

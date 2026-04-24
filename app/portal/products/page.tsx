@@ -117,7 +117,7 @@ export default function ProductsPage() {
               </div>
               <div className="flex items-center justify-between pt-2">
                 <div className="space-y-0.5">
-                  <p className="text-blue-400 font-semibold">{p.price.toLocaleString()} 크레딧</p>
+                  <p className="text-blue-400 font-semibold">{p.price.toLocaleString()} 만원</p>
                   <p className="text-xs text-gray-500">예상 {p.duration_days}일</p>
                 </div>
                 <button
@@ -143,7 +143,7 @@ export default function ProductsPage() {
           >
             <h2 className="text-xl font-bold text-white">{modal.name}</h2>
             <p className="text-sm text-gray-400">{modal.description}</p>
-            <p className="text-blue-400 font-semibold">{modal.price.toLocaleString()} 크레딧</p>
+            <p className="text-blue-400 font-semibold">{modal.price.toLocaleString()} 만원</p>
 
             <div>
               <label className="block text-sm text-gray-300 mb-1">상세 요청사항</label>
@@ -158,7 +158,7 @@ export default function ProductsPage() {
             </div>
 
             {user.credits < modal.price && (
-              <p className="text-sm text-red-400">크레딧이 부족합니다. (보유: {user.credits.toLocaleString()})</p>
+              <p className="text-sm text-red-400">잔액이 부족합니다. (보유: {user.credits.toLocaleString()}만원)</p>
             )}
 
             <div className="flex gap-3 pt-2">
@@ -175,7 +175,7 @@ export default function ProductsPage() {
                 className="flex-1 rounded-lg py-2.5 text-sm font-semibold text-white disabled:opacity-40"
                 style={{ background: '#3B82F6' }}
               >
-                {submitting ? '처리중...' : `크레딧 ${modal.price.toLocaleString()} 차감 후 주문`}
+                {submitting ? '처리중...' : `${modal.price.toLocaleString()}만원 차감 후 주문`}
               </button>
             </div>
           </div>

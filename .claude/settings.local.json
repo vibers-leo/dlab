@@ -59,7 +59,15 @@
       "Bash(node -e \"const b=require\\('bcryptjs'\\);b.hash\\('admin1234',10\\).then\\(h=>console.log\\(h\\)\\)\")",
       "Bash(psql -h server.vibers.co.kr -p 5433 -U vibers -d vibers_main -c 'INSERT INTO collab.clients \\(login_id, password_hash, name, email, role, credits\\) VALUES \\('\\\\''admin'\\\\'', '\\\\''__TRACKED_VAR__'\\\\'', '\\\\''디랩 관리자'\\\\'', '\\\\''juuuno1116@gmail.com'\\\\'', '\\\\''admin'\\\\'', 0\\) ON CONFLICT \\(login_id\\) DO NOTHING RETURNING id, login_id, name, role;')",
       "Bash(node -e \"const b=require\\('bcryptjs'\\);b.hash\\('test1234',10\\).then\\(h=>console.log\\(h\\)\\)\")",
-      "Bash(psql -h server.vibers.co.kr -p 5433 -U vibers -d vibers_main -c 'INSERT INTO collab.clients \\(login_id, password_hash, name, email, role, credits\\) VALUES \\('\\\\''testclient'\\\\'', '\\\\''__TRACKED_VAR__'\\\\'', '\\\\''테스트 협력사'\\\\'', '\\\\''test@example.com'\\\\'', '\\\\''client'\\\\'', 5000\\) ON CONFLICT \\(login_id\\) DO NOTHING RETURNING id, login_id, name, role, credits;')"
+      "Bash(psql -h server.vibers.co.kr -p 5433 -U vibers -d vibers_main -c 'INSERT INTO collab.clients \\(login_id, password_hash, name, email, role, credits\\) VALUES \\('\\\\''testclient'\\\\'', '\\\\''__TRACKED_VAR__'\\\\'', '\\\\''테스트 협력사'\\\\'', '\\\\''test@example.com'\\\\'', '\\\\''client'\\\\'', 5000\\) ON CONFLICT \\(login_id\\) DO NOTHING RETURNING id, login_id, name, role, credits;')",
+      "Bash(grep -v \"^$\")",
+      "Bash(grep -r ANTHROPIC_API_KEY /Users/juuuno/Desktop/macminim4/dev/nextjs/apps/vibers-home/.env*)",
+      "Bash(node -e 'const b=require\\('\\\\''bcryptjs'\\\\''\\);b.hash\\('\\\\''__TRACKED_VAR__'\\\\'',10\\).then\\(h=>console.log\\(h\\)\\)')",
+      "Bash(psql -h server.vibers.co.kr -p 5433 -U vibers -d vibers_main -c 'UPDATE collab.clients SET password_hash='\\\\''__TRACKED_VAR__'\\\\'' WHERE login_id='\\\\''admin'\\\\'';')",
+      "Bash(sed -i '' 's/크레딧/만원/g' app/portal/orders/\\\\[id\\\\]/page.tsx app/portal/orders/page.tsx)",
+      "Bash(sed -i '' \"s/'크레딧'/'만원'/g\" app/portal/admin/clients/page.tsx)",
+      "Bash(sed -i '' 's/크레딧 지급/충전/g' app/portal/admin/clients/page.tsx)",
+      "Bash(sed -i '' \"s/크레딧/만원/g\" app/portal/admin/clients/page.tsx)"
     ]
   }
 }
